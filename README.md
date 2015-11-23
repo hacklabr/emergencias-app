@@ -10,7 +10,7 @@ $ sudo npm -g install ionic
 
 * Clonar o repositório
 ```
-$ git clone https://github.com/hacklabr/viradapp.git
+$ git clone https://github.com/hacklabr/emergencias-app.git
 ```
 
 * Fazer o build padrão
