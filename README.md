@@ -31,12 +31,16 @@ $ ionic serve
 ```
 
 * Para rodar no navegador, adicione um proxy com
-
 ```
 $ gulp add-proxy 
 ```
-
 Ele vai te dar uma url padrão e abrir o navegador automaticamente! 
+
+* Ou para rodar no navegador o problema de cross-origin do localhost:
+```
+chromium --disable-web-security
+```
+E abrir o URL [http://localhost:8100](http://localhost:8100)
 
 # Editando
 ----------
