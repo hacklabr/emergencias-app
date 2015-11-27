@@ -1,0 +1,80 @@
+
+/**
+ * Typography
+ * --------------------------------------------------
+ */
+
+$virada-font-path:   "../fonts/" !default;
+
+$virada-n-font-name:          "exo-regular-webfont" !default;
+$virada-n-font-svg-id:        "exoregular" !default;
+$virada-i-font-name:          "exo-italic-webfont" !default;
+$virada-i-font-svg-id:        "exoitalic" !default;
+$virada-b-font-name:          "exo-bold-webfont" !default;
+$virada-b-font-svg-id:        "exobold" !default;
+$virada-bi-font-name:         "exo-bolditalic-webfont" !default;
+$virada-bi-font-svg-id:       "exobolditalic" !default;
+
+$auxiliar-n-font-name:        "MuseoSans_500" !default;
+$auxiliar-n-font-svg-id:      "museo_sans500" !default;
+
+@font-face {
+    font-family: 'Exo';
+    src: url('#{$virada-font-path}#{$virada-n-font-name}.eot');
+    src: url('#{$virada-font-path}#{$virada-n-font-name}.eot?#iefix') format('embedded-opentype'),
+         url('#{$virada-font-path}#{$virada-n-font-name}.woff') format('woff'),
+         url('#{$virada-font-path}#{$virada-n-font-name}.ttf') format('truetype'),
+         url('#{$virada-font-path}#{$virada-n-font-name}.svg##{$virada-n-font-svg-id}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Exo';
+    src: url('#{$virada-font-path}#{$virada-i-font-name}.eot');
+    src: url('#{$virada-font-path}#{$virada-i-font-name}.eot?#iefix') format('embedded-opentype'),
+         url('#{$virada-font-path}#{$virada-i-font-name}.woff') format('woff'),
+         url('#{$virada-font-path}#{$virada-i-font-name}.ttf') format('truetype'),
+         url('#{$virada-font-path}#{$virada-i-font-name}.svg##{$virada-i-font-svg-id}') format('svg');
+    font-weight: normal;
+    font-style: italic;
+}
+@font-face {
+    font-family: 'Exo';
+    src: url('#{$virada-font-path}#{$virada-b-font-name}.eot');
+    src: url('#{$virada-font-path}#{$virada-b-font-name}.eot?#iefix') format('embedded-opentype'),
+         url('#{$virada-font-path}#{$virada-b-font-name}.woff') format('woff'),
+         url('#{$virada-font-path}#{$virada-b-font-name}.ttf') format('truetype'),
+         url('#{$virada-font-path}#{$virada-b-font-name}.svg##{$virada-b-font-svg-id}') format('svg');
+    font-weight: bold;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Exo';
+    src: url('#{$virada-font-path}#{$virada-bi-font-name}.eot');
+    src: url('#{$virada-font-path}#{$virada-bi-font-name}.eot?#iefix') format('embedded-opentype'),
+         url('#{$virada-font-path}#{$virada-bi-font-name}.woff') format('woff'),
+         url('#{$virada-font-path}#{$virada-bi-font-name}.ttf') format('truetype'),
+         url('#{$virada-font-path}#{$virada-bi-font-name}.svg##{$virada-bi-font-svg-id}') format('svg');
+    font-weight: bold;
+    font-style: italic;
+}
+
+
+@font-face {
+    font-family: 'Museo Sans';
+    src: url('#{$virada-font-path}#{$auxiliar-n-font-name}.eot');
+    src: url('#{$virada-font-path}#{$auxiliar-n-font-name}.eot?#iefix') format('embedded-opentype'),
+         url('#{$virada-font-path}#{$auxiliar-n-font-name}.woff') format('woff'),
+         url('#{$virada-font-path}#{$auxiliar-n-font-name}.ttf') format('truetype'),
+         url('#{$virada-font-path}#{$auxiliar-n-font-name}.svg##{$auxiliar-n-font-svg-id}') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+
+a {
+    color: $link-color;
+    text-decoration: none;
+}
+.button {
+    text-transform: uppercase;
+}

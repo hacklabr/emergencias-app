@@ -1,0 +1,196 @@
+
+/**
+* Timeline
+* --------------------------------------------------
+* Timeline for space and Minha Virada
+*/
+.timeline {
+    width: 260px;
+    margin-bottom: 48px;
+    @extend %center-block;
+    .event-group {
+        position: relative;
+        clear: both;
+        float: right;
+        width: 260px;
+        border-left: 2px solid $brand-accent;
+        .timeline-time {
+            position: absolute;
+            z-index: 100;
+            top: 6px;
+            left: -23px;
+            width: 46px;
+            padding: 3px;
+            @extend %secondary-font;
+            color: $brand-auxiliar;
+            background: $brand-accent;
+            text-align: center;
+            border-radius: $border-radius-base;
+        }
+        .event-grid {
+            position: relative;
+            width: 225px;
+            height: auto;
+            box-sizing: border-box;
+            padding-top: 34px;
+            margin-left: 33px;
+            margin-bottom: 24px;
+            background-color: $gray-lighter;
+            img {
+		        width:100%;
+                vertical-align: middle;
+		    }
+		    a {
+		        color: $brand-auxiliar;
+		    }
+            .event-content {
+                position: absolute;
+                top: 0;
+		        width: 100%;
+		        height: auto;
+                box-sizing: border-box;
+		        padding: 5px 36px;
+		        background-color: $brand-primary;
+		        h1 {
+                    margin: 0;
+                    font-size: 16px;
+                    line-height: 1.5;
+		            display: inline-block;
+		            text-align: center;
+		            vertical-align: middle;
+		            width: 97%;
+                    color: $brand-auxiliar;
+		        }
+            }
+            .friends-group {
+                position: absolute;
+                z-index: 100;
+                bottom: 0;
+                right: 0;
+                height: 34px;
+                width: 100%;
+                padding: 3px 3px 3px 34px;
+                text-align: right;
+                background-color: $brand-primary;
+                color: $brand-auxiliar;
+            }
+            .favorite {
+		        position: absolute;
+		        z-index: 100;
+		        bottom: 0;
+		        left: 0;
+		        padding: 9px 9px 9px 10px;
+		        color: $brand-auxiliar;
+                height: 34px;
+                width: 34px;
+		        background-color: $brand-accent;
+                // &:before {
+                //     content: "\e031";
+                // }
+		    }
+		    .event-time {
+		        position: absolute;
+		        z-index: 100;
+		        top: 0;
+		        right: 0;
+		        padding: 0 4px;
+		        color: $brand-auxiliar;
+		        background-color: $brand-accent;
+		    }
+		    &.evento-24h {
+		        .event-content {
+		            background-color: $gray-dark;
+		        }
+		        &:before {
+                    color: $gray-dark;
+                }
+		    }
+		    &.no-thumb {
+		    	height: 178px;
+		        .event-content {
+		            bottom: 0;
+		            height: 100%;
+		            padding: 15px 36px;
+		            &:before {
+		                content: '';
+		                display: inline-block;
+		                height: 100%;
+		                vertical-align: middle;
+		                margin-right: -0.25em; /* Adjusts for spacing */
+		            }
+		        }
+		    }
+            &:before {
+                font-family: 'ElegantIcons';
+				speak: none;
+				font-style: normal;
+				font-weight: normal;
+				font-variant: normal;
+				text-transform: none;
+				line-height: 1;
+				-webkit-font-smoothing: antialiased;
+                content: "\44";
+                left: -18px;
+                display: block;
+                position: absolute;
+                top: 0;
+                font-size: 36px;
+                color: $brand-primary;
+            }
+        }
+        &:first-child {
+            margin-top: 0;
+            .timeline-time {
+                top: 0;
+            }
+            .event-grid {
+                margin-top: -6px;
+            }
+        }
+        &:nth-last-child(2) {
+            .event-grid {
+                margin-bottom: 30px;
+            }
+        }
+        &:last-child {
+            border-left: none;
+            .timeline-time {
+                top: 0;
+            }
+            .event-grid {
+                margin-top: -6px;
+                margin-bottom: 0;
+            }
+        }
+    }
+}
+
+
+rzslider span.rz-bar.rz-selection {
+    background:white;
+}
+
+rzslider span.rz-bubble {
+    color:white;
+}
+
+rzslider span.rz-pointer {
+    font-family: 'ElegantIcons';
+    font-size: 24px;
+    background:white;
+    border-radius: 3px;
+    margin-top:5px;
+    width:25px;
+    height:25px;
+}
+
+rzslider span.rz-pointer:before {
+  display:none;
+}
+
+rzslider span.rz-pointer:after{
+    display:none;
+}
+rzslider span.rz-bubble.rz-limit{
+    display:none;
+}

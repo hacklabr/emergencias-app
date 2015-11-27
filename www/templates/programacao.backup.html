@@ -1,0 +1,57 @@
+<ion-view view-title="Programação">
+<ion-content>
+<div ng-hide="hasData">
+    <article class="single">
+    <p class="text-center">Em breve você verá a programação!</p>
+    </article>
+</div>
+<ion-list ng-repeat="space in ledata" class="list list-programacao">
+    <ion-item ng-if="space.name" ui-sref="virada.palco-detail({palco : space.id })" class="item item-divider" >
+        {{ space.name }}
+        <h3>
+            {{ space.palco.endereco }}
+        </h3>
+    </ion-item>
+    <ion-item ng-class="{active: event.in_minha_virada}" class="item item-complex"
+        ng-repeat="event in space.events"
+        href="#/virada/programacao/atracao/{{event.id}}" >
+        <div class="event-time">
+            <i class="icon icon_clock"></i>
+            <time>
+                {{ event.startsAt }}
+            </time>
+        </div>
+        <h2>{{ event.name }}</h2>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+        <ion-option-button class="button-light"
+                ng-click="minha_virada(event)">
+                <i ng-class="{icon_star: event.in_minha_virada==true}"
+                class="icon icon_star_alt"></i>
+                </ion-option-button>
+    </ion-item>
+    <!-- <div class="item" ng-repeat="event in space.events">
+        <div>
+            <a href="#/virada/programacao/atracao/{{event.id}}" class="item-content">
+                <div class="event-time">
+                    <i class="icon icon_clock"></i>
+                    <time>
+                        {{ event.startsAt }}
+                    </time>
+                </div>
+                <h2>{{ event.name }}</h2>
+            </a>
+            <a href=# ng-click="minha_virada(event)">
+                <i class="icon icon_star_alt icon-accessory"
+                ng-class="event.in_minha_virada ? icon_star : icon_star_alt"></i>
+            </a>
+        </div>
+    </div> -->
+</ion-list>
+<ion-infinite-scroll
+    ng-if="canLoad()"
+    icon="ion-loading-c"
+    on-infinite="loadMore()"
+        distance="1%">
+</ion-infinite-scroll>
+</ion-content>
+</ion-view>

@@ -1,0 +1,77 @@
+<ion-view>
+    <ion-nav-title>
+        {{ atracao.name }}
+    </ion-nav-title>
+    <ion-content>
+        <img class="img-destacada-single-atracao" style="width: 100%;" ng-src="{{atracao.defaultImageThumb}}" alt="{{atracao.name}}" ng-if='atracao.defaultImageThumb'/>
+        <article id="event-00" class="single">
+            <header>
+                <h1>{{ atracao.name }}</h1>
+            </header>
+            <div class="post-content clearfix">
+                <p>{{atracao.shortDescription}}</p>
+            </div>
+            <div class="post-content clearfix">
+                <p>{{atracao.description}}</p>
+            </div>
+            <!-- .post-content -->
+            <footer>
+                <div class="card" ng-if="!connected">
+                    <div class="item item-text-wrap">
+                        Conecte-se em
+                        <a ui-sref="virada.minha-virada()">Minha Virada</a>
+                        para ver seus amigos!
+                    </div>
+                </div>
+                <div ng-show="connected && atracao.friends" class="friends-group">
+                    <a href="#" ng-repeat="friend in atracao.friends"
+                        class="friend" title="{{ friend.name }}">
+                        <!--img com link pra minha virada respectiva -->
+                        <img src="{{ friend.picture }}">
+                    </a>
+                    <a href="#" ng-if="view.hasMore" class="friend" ng-click="openModal()">
+                        <div title="Nome dos amigos">+{{ atracao.allFriends.length }}</div>
+                    </a><!-- link pra modal com lista de todos amigos quando exceder 3 amigos-->
+                </div>
+            </footer>
+            </div>
+            <div class="servico">
+                <p>
+                    <span><span class="label">Local:</span> <a href="#/virada/programacao/palco/{{space.id}}">{{space.name}}</a><br></span>
+                    <span><span class="label">Endereço:</span> {{space.endereco}}<br></span>
+                    <span><span class="label">Data:</span> {{ LL(atracao.startsOn) }}<br></span>
+                    <span><span class="label">Horário:</span> {{atracao.startsAt}}<br></span>
+                    <span ng-if='atracao.terms.linguagem.length > 0'><span class="label">Linguagem:</span> {{atracao.terms.linguagem.join(', ')}} <br></span>
+                    <span ng-if='atracao.classificacaoEtaria'><span class="label">Classificação:</span> {{atracao.classificacaoEtaria}}<br></span>
+                    <span ng-if='atracao.acessibilidade.length > 0'><span class="label">Acessibilidade:</span> {{atracao.acessibilidade.join(', ')}}<br></span>
+                </p>
+                <!--                 <p>
+                    <a target="_blank" class="button button-small button-assertive" href="{{ mapUrl }}">
+                        <span class="icon icon_pin"></span> Ver no mapa
+                    </a>
+                    </p>-->
+            </div>
+        </article>
+        <!-- .single -->
+    </ion-content>
+</ion-view>
+
+<script id="friends-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-assertive">
+            <h1 class="title">{{ atracao.allFriends.length }} amigos também marcaram essa atração</h1>
+            <div class="button button-clear" ng-click="modal.hide()">
+                <span class="icon icon_close"></span>
+            </div>
+        </ion-header-bar>
+        <ion-content>
+            <ion-list class="list">
+                 <ion-item item-height="75px" item-width="100%" collection-repeat="friend in atracao.allFriends" class="item item-avatar">
+                    <img src="{{ friend.picture }}" />
+                    <h2>{{ friend.name }}</h2>
+                    <p></p>
+                </ion-item>
+            </ion-list>
+        </ion-content>
+  </ion-modal-view>
+</script>

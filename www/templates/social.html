@@ -1,0 +1,81 @@
+<ion-view cache-view="false" view-title="Mapa">
+    <ion-content id="map-wrapper" scroll="false" class="has-header" >
+        <div ng-style="{height: frameHeight + 'px'}" style="width:100%;" id="map_canvas">
+            <div class="row">
+                <div class="col col-20">
+                    <div ng-click="openModal()" class="button map_options_button">
+                        <i class="icon ion-ios-gear-outline"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
+<script id="map-config-modal.html" type="text/ng-template">
+    <ion-modal-view>
+        <ion-header-bar class="bar-assertive bar-icon-right">
+            <h1 class="title">Opções</h1>
+            <div class="button button-clear" ng-click="closeModal()">
+                <span class="icon ion-android-done"></span>
+            </div>
+        </ion-header-bar>
+        <ion-content overflow-scroll="true">
+            <div class="list card">
+                <div class="item item-divider">
+                        Visualizar
+                </div>
+                <ion-checkbox ng-model="view.options.friends" ng-disabled="!view.sendPosition">
+                    Amigos
+                </ion-checkbox>
+                <ion-checkbox class="checkbox-assertive" ng-model="view.options.palcos">
+                    Palcos
+                </ion-checkbox>
+                <ion-checkbox class="checkbox-dark" ng-model="view.options.services">
+                    Serviços
+                </ion-checkbox>
+
+                <div class="item item-divider">
+                    Configurações
+                </div>
+
+                <ion-toggle class="item toggle-assertive" ng-click="showSendPositionConfirm($event)" ng-model="view.sendPosition">
+                    Compartilhar localização
+                </ion-toggle>
+            </div>
+            // <p><a href=#  onclick="window.open('http://viradacultural.prefeitura.sp.gov.br/2015/termos-de-uso/', '_system', 'location=yes'); return false;">Termos de uso</a> e <a href=#  onclick="window.open('http://viradacultural.prefeitura.sp.gov.br/2015/politica-de-privacidade/', '_system', 'location=yes'); return false;">Política de privacidade</a></p>
+        </ion-content>
+    </ion-modal-view>
+</script>
+
+<script id="map-confirm.html" type="text/ng-template">
+    <style>.popover {top: 65px !important; left: 5% !important; right: 5%; height:500px; width: 90%;}</style>
+
+    <ion-popover-view id="map-confirm">
+        <ion-content>
+            <div class="card">
+                <div class="item item-text-wrap">
+                    <p>Você pode ver seus amigos do Facebook no mapa para encontrá-los na Virada, mas para isso, você também precisa compartilhar sua localização com eles.</p>
+                    <p ng-if="!connected">Você também irá associar sua conta do Facebook à plataforma da Virada Cultural, tornando públicas algumas informações , como <strong>em quais eventos você pretende comparecer</strong>.</p>
+                    <p>Você pode deixar de compartilhar sua localização a qualquer momento!</p>
+                    <p>Consulte também os <a href=#  onclick="window.open('http://viradacultural.prefeitura.sp.gov.br/2015/termos-de-uso/', '_system', 'location=yes'); return false;">Termos de uso</a> e a <a href=#  onclick="window.open('http://viradacultural.prefeitura.sp.gov.br/2015/politica-de-privacidade/', '_system', 'location=yes'); return false;">Política de privacidade</a></p>
+                    <p ng-if="connected">Deseja compartilhar sua localização agora?</p>
+                    <p ng-if="!connected">Entre com Facebook para compartilhar sua localização.</p>
+                    <label class="card">
+                        <button ng-if="connected" class="button button-block button-positive"
+                                ng-click="share_position()">
+                            Sim
+                        </button>
+                        <button ng-show="!connected" class="button button-block ion-social-facebook button-positive icon-left"
+                                ng-click="login()">
+                            Facebook login
+                        </button>
+                        <button class="button button-block button-assertive"
+                                ng-click="closePopover()">
+                                Agora não, obrigado.
+                        </button>
+                    </label>
+                </div>
+            </div>
+        </ion-content>
+    </ion-popover-view>
+</script>

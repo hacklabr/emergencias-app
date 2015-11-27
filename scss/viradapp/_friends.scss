@@ -1,0 +1,29 @@
+/**
+* Friends
+* --------------------------------------------------
+* Style for friends groups (Palco, Minha Virada & Atração)
+*/
+
+.friends-group {
+    @extend %secondary-font;
+    font-size: 10px;
+    line-height: 28px;
+    a {
+        color: $brand-auxiliar;
+    }
+}
+.friend {
+    display: inline-block;
+    width: 28px;
+    height: 28px;
+    border-radius: 14px;
+    background-color: $brand-accent;
+    overflow: hidden;
+    vertical-align: middle;
+    text-align: center;
+    img {
+        min-height: 100%;
+        max-width: 100%;
+        display: block;
+    }
+}

@@ -1,0 +1,18 @@
+// Viradapp main scss file that includes all the files that overrides ionic's.
+
+// The idea is to replicate all ionic sass partials that need changes in this
+// same folder and import them all here.
+// Except for the variables partial that must be imported before ionic styles,
+// they are imported at the top of the ionic.app.scss file.
+
+@import
+	"bar",
+    "friends",
+	"items",
+	"list",
+    "servico",
+    "single",
+	"timeline",
+	"typography",
+	"utils"
+	;

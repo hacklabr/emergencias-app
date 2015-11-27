@@ -1,0 +1,32 @@
+
+/**
+ * Utility Classes and placeholders
+ * --------------------------------------------------
+ */
+
+ %center-block {
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+%secondary-font {
+    font-family: $font-family-secondary;
+    font-size: 12px;
+    text-transform: uppercase;
+}
+
+.platform-ios.platform-cordova {
+  // iOS has a status bar which sits on top of the header.
+  // Bump down everything to make room for it. However, if
+  // if its in Cordova, and set to fullscreen, then disregard the bump.
+  &:not(.fullscreen) {
+    .espacinho {
+	  margin-top: $ios-statusbar-height;
+	}
+  }
+}
+
+#map_canvas .map_options_button {
+    min-height: inherit !important;
+    min-width: inherit !important;
+}

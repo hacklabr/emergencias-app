@@ -1,0 +1,146 @@
+/**
+ * Items
+ * --------------------------------------------------
+ */
+
+// Menu items
+.menu {
+	.item {
+		background-color: transparent;
+		color: $brand-auxiliar;
+		border-color: darken($brand-accent, 10%);
+		border-left: none;
+		border-right: none;
+		@extend %secondary-font;
+		.icon {
+			font-size: 16px;
+			vertical-align: middle;
+			margin-right: 11px;
+		}
+	}
+	.item-divider {
+		color: darken($brand-accent, 20%);
+	}
+	.item-input {
+		padding-right: 10px;
+		input, .placeholder-icon, ::-webkit-input-placeholder {
+			color: #fff;
+		}
+		input {
+			border-bottom: 1px solid $gray-lighter;
+			&:focus {
+				border-bottom: 1px solid #fff;
+			}
+		}
+	}
+	.item-complex .item-content, .item-radio .item-content {
+		background-color: transparent;
+	}
+	.item-radio {
+		input {
+			&:checked ~ .item-content {
+				/* style the item content when its checked */
+				background: $brand-auxiliar;
+				color: $brand-primary;
+			}
+			&:checked ~ .radio-icon {
+			    /* show the checkmark icon when its checked */
+			    visibility: visible;
+			    color: $brand-primary;
+			}
+		}
+		.ion-checkmark {
+			font-size: 24px;
+			margin-right: 0;
+			&:before {
+				font-family: "ElegantIcons";
+				content: "\4e";
+			}
+		}
+	}
+	.item-icon-left .icon, .item-icon-right .icon {
+		font-size: 16px;
+	}
+	.toggle {
+		top: 19px;
+		.track {
+		background-color: darken($brand-accent, 20%);
+		border: none;
+		width: 40px;
+		height: 14px;
+		border-radius: 7px;
+		}
+		.handle {
+			top: 2px;
+			width: 20px;
+			height: 20px;
+			border-radius: 10px;
+			//background-color: lighten($brand-accent, 30%);
+		}
+	}
+	.item-time-range {
+		input {
+			display: inline-block;
+			background-color: $gray-darker;
+			color: white;
+			border-radius: 2px;
+			padding: 0 5px;
+			width: 60px;
+		}
+	}
+
+}
+
+.event-star {
+	width:32px;
+	padding-left:16px;
+	padding-right:32px;
+	height:32px;
+	right:0 !important;
+}
+
+// Programação items
+.list-programacao {
+	.item {
+		h2 {
+			font-size: 12px;
+			font-weight: bold;
+			line-height: 20px;
+			padding-left: 65px;
+			// TODO: necessary to put favorite star in list-programacao
+			padding-right: 30px;
+		}
+		.event-time {
+			position: absolute;
+			line-height: 20px;
+			border-right: 1px solid $gray-light;
+			padding-right: 5px;
+		}
+		time {
+			color: $vermelho;
+			vertical-align: top;
+			@extend %secondary-font;
+		}
+		.icon {
+			color: $vermelho;
+			line-height: 20px;
+			&.icon-accessory {
+				position: absolute;
+				top: 16px;
+				right: 16px;
+			}
+		}
+	}
+	.item-divider {
+		padding: 16px;
+		.item-content {
+			// background-color: #e9e9e9;
+			font-weight: bold;
+		}
+	}
+}
+
+//Modal items
+.modal .item-content {
+	font-weight: bold;
+}

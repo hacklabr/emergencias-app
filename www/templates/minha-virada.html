@@ -1,0 +1,65 @@
+<ion-view view-title="Minha Virada">
+  <ion-content>
+        <span ng-if="view.hasMessage">{{ message }}</span>
+        <article id="space-00" class="single">
+            <!--<img ng-class="{hide: !user_picture}" ng-src="{{ user_picture }}" />
+                <span>{{ user_name }}</span>
+            -->
+            <div ng-show="!connected">
+                <div class="card">
+                    <div class="item item-text-wrap">
+                        <p>Aqui você irá associar sua conta do Facebook à plataforma da Virada Cultural, tornando públicas algumas informações sobre seu acesso, como <strong>em quais eventos você pretende comparecer</strong>.</p>
+                        <p>Consulte também os <a href=#  onclick="window.open('http://viradacultural.prefeitura.sp.gov.br/2015/termos-de-uso/', '_system', 'location=yes'); return false;">Termos de uso</a> e a <a href=#  onclick="window.open('http://viradacultural.prefeitura.sp.gov.br/2015/politica-de-privacidade/', '_system', 'location=yes'); return false;">Política de privacidade</a></p>
+                    </div>
+                </div>
+
+                <div ng-show="!connected && initialized">
+                    <p ng-if="!terms_accepted">Deseja continuar?</p>
+                    <p ng-if="terms_accepted">Faça login com Facebook para continuar.</p>
+                </div>
+            </div>
+            <label class="card" ng-show="!connected && initialized">
+                <button class="button button-block button-positive"
+                        ng-if="!terms_accepted"
+                        ng-click="accept_terms()">
+                    Sim
+                </button>
+            </label>
+            <label class="card" ng-show="!connected && initialized">
+                <button class="button button-block ion-social-facebook button-positive icon-left"
+                        ng-if="terms_accepted"
+                        ng-click="login()">
+                    Facebook login
+                </button>
+            </label>
+            <div class="timeline clearfix" ng-if="initialized && connected" class="ng-hide">
+                <div class="event-group" ng-repeat="event in events">
+                    <div class="timeline-time" ng-if="event.duration === '24h00'">24 horas</div>
+                    <div class="timeline-time" ng-if="event.duration !== '24h00'">{{event.startsAt}}</div>
+                    <article class="event clearfix event-grid" ng-class="{'no-thumb' : !event.defaultImageThumb, 'evento-24h': event.duration === '24h00'}">
+                        <img ng-src="{{event.defaultImageThumb}}"/>
+                        <a href="#/virada/programacao/atracao/{{event.id}}">
+                            <div class="event-content clearfix">
+                                <h1>{{event.name}}</h1>
+                            </div>
+                        </a>
+                        <div class="friends-group js-lista-amigos">
+                            <a ng-repeat="friend in event.friends"
+                                href="#" class="friend" title="{{ friend.name }}">
+                                <img src="{{ friend.picture }}">
+                            </a>
+                        </div>
+                        <a class="icon active favorite favorite-wait favorite-event-{{event.id}} icon_star_alt"
+                           ng-click="minha_virada(event)">
+                        </a>
+                    </article>
+                </div>
+            </div>
+            <!-- .timeline -->
+            <!-- <div class="button button-icon button-icon-logout" ng-click="logout()">
+                sair
+            </div> -->
+        </article>
+        <!-- .single -->
+  </ion-content>
+</ion-view>

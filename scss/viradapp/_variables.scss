@@ -1,0 +1,60 @@
+// Viradapp's own variables and overrides.
+
+
+// Colors
+// -------------------------------
+
+$gray-darker:            lighten(#000, 20%) !default;   // #333
+$gray-dark:              lighten(#000, 60%) !default;   // #999
+$gray:                   lighten(#000, 80%) !default;   // #ccc
+$gray-light:             lighten(#000, 87%) !default;   // #dedede
+$gray-lighter:           lighten(#000, 95%) !default;   // #f2f2f2
+
+$preto: #101010 !default;
+$vermelho: #fb3f2a !default;
+$dark: $preto !default;
+$assertive: $vermelho !default;
+$stable: $gray-lighter !default;
+
+$brand-primary: $preto !default;
+$brand-accent: $vermelho !default;
+$brand-auxiliar: #fff !default;
+
+
+// Base
+// -------------------------------
+
+$font-family-sans-serif: "Exo", sans-serif !default;
+$font-family-secondary:   "Museo Sans", Verdana, sans-serif !default;
+
+$headings-font-weight:            bold !default;
+
+$base-background-color: $gray-lighter !default;
+$base-color: $gray-darker !default;
+
+$link-color: $brand-primary !default;
+$link-hover-color: $brand-accent !default;
+
+
+$bar-stable-bg: $stable !default;
+$bar-stable-text: $preto !default;
+
+// Tabs
+// -------------------------------
+
+$tabs-icon-size: 18px;
+
+
+// Items
+// -------------------------------
+
+$item-icon-accessory-color:       $vermelho !default;
+
+// Menus
+// -------------------------------
+
+$menu-bg:                         $brand-accent !default;
+$menu-width:                      275px !default;
+$menu-animation-speed:            200ms !default;
+
+$menu-side-shadow:                -1px 0px 2px rgba(0, 0, 0, 0.2), 1px 0px 2px rgba(0,0,0,0.2) !default;

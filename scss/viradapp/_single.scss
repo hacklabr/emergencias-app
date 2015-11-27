@@ -1,0 +1,49 @@
+
+/**
+* Single
+* --------------------------------------------------
+* Style for single pages (Palco, Minha Virada & Atração)
+*/
+.img-destacada-single-atracao {
+    max-width: 100%;
+}
+.single {
+    padding: $content-padding;
+    header {
+        text-align: center;
+        h1 {
+            font-size: 20px;
+            margin-top: 20px;
+            margin-bottom: 24px;
+        }
+    }
+    img.logo-virada-cultural {
+        width: 180px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    img.logo-smc {
+        width: 120px;
+        height: auto;
+        margin-bottom: 10px;
+    }
+    p {
+        img.logo-hacklab {
+            vertical-align: top;
+            height: 15px;
+        }
+        img.logo-instituto-tim {
+            vertical-align: top;
+            height: 18px;
+        }
+    }
+    footer {
+        .friends-group {
+            border-top: 1px solid $gray-light;
+            margin-bottom: 4*$padding-base-horizontal;
+            padding-top: $padding-base-horizontal;
+            line-height: 28px;
+            height: 30px+$padding-base-horizontal;
+        }
+    }
+}
