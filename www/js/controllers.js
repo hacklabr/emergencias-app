@@ -1355,7 +1355,8 @@ angular.module('emergencias.controllers', [])
     $scope.shareButtons = ['palco', 'atracao', 'minha_virada'];
 
     $scope.share = function(b){
-        var subject = "Virada Cultural 2015!";
+	// TODO EM
+        var subject = "Emergências 2015!";
         var message = "";
         var link = GlobalConfiguration.SHARE_URL;
         switch (b){
@@ -1371,7 +1372,7 @@ angular.module('emergencias.controllers', [])
                 break;
             case 'minha_virada':
                 message = "Venha conferir a Minha Virada ";
-                link = link + "/minha-virada/##" + $localStorage.uid;
+                link = link + "/minhas-emergencias/##" + $localStorage.uid;
                 break;
         }
 

@@ -25,11 +25,11 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
-    .state('virada.minha-virada', {
-        url: '/programacao/minha-virada',
+    .state('virada.minhas-emergencias', {
+        url: '/programacao/minhas-emergencias',
         views: {
             'menu-view': {
-                templateUrl: 'templates/minha-virada.html',
+                templateUrl: 'templates/minhas-emergencias.html',
                 controller: 'MinhaViradaCtrl'
             },
         }
