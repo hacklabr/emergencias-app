@@ -7,10 +7,19 @@
         "files": {}
     },
     "installed_plugins": {
-        "cordova-plugin-console": {
+        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "br.com.hacklab"
         },
         "cordova-plugin-device": {
+            "PACKAGE_NAME": "br.com.hacklab"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "br.com.hacklab"
+        },
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "br.com.hacklab"
+        },
+        "cordova-plugin-splashscreen": {
             "PACKAGE_NAME": "br.com.hacklab"
         },
         "cordova-plugin-inappbrowser": {
@@ -19,16 +28,7 @@
         "cordova-plugin-network-information": {
             "PACKAGE_NAME": "br.com.hacklab"
         },
-        "cordova-plugin-splashscreen": {
-            "PACKAGE_NAME": "br.com.hacklab"
-        },
-        "cordova-plugin-whitelist": {
-            "PACKAGE_NAME": "br.com.hacklab"
-        },
         "cordova-plugin-x-socialsharing": {
-            "PACKAGE_NAME": "br.com.hacklab"
-        },
-        "ionic-plugin-keyboard": {
             "PACKAGE_NAME": "br.com.hacklab"
         },
         "plugin.google.maps": {

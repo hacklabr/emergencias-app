@@ -5,7 +5,7 @@ Se você já tem o npm instalado, basta fazer:
 
 * Instalar o ionic globalmente
 ```
-$ sudo npm -g install ionic
+$ sudo npm -g install ionic cordova
 ```
 
 * Clonar o repositório
@@ -32,7 +32,7 @@ $ ionic serve
 
 * Para rodar no navegador, adicione um proxy com
 ```
-$ gulp add-proxy 
+$ gulp add-proxy
 ```
 Ele vai te dar uma url padrão e abrir o navegador automaticamente! 
 
