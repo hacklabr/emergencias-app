@@ -21,7 +21,7 @@
 
 <script type="text/html" id="template-palco">
     <div class="item item-divider">
-        <div class="item-content" onclick="redirectFromListTo('#/virada/programacao/palco/<%= entity.id %>')">
+        <div class="item-content" onclick="redirectFromListTo('#/emergencias/programacao/palco/<%= entity.id %>')">
             <div class="item-complex">
                 <%= entity.name %>
             </div>
@@ -33,7 +33,7 @@
     <div class="item" >
         <div class="item-content">
             <div>
-                <a onclick="redirectFromListTo('#/virada/programacao/atracao/<%= entity.id %>')">
+                <a onclick="redirectFromListTo('#/emergencias/programacao/atracao/<%= entity.id %>')">
                     <div class="event-time">
                         <i class="icon icon_clock"></i>
                         <time class="ng-binding">
@@ -45,13 +45,13 @@
                     </h2>
                 </a>
                 <% if(entity.space){ %>
-                <small class="event-place"><a onclick="redirectFromListTo('#/virada/programacao/palco/<%= entity.space.id %>')"><i class="icon icon_pin"></i> <%= entity.space.name %></a></small>
+                <small class="event-place"><a onclick="redirectFromListTo('#/emergencias/programacao/palco/<%= entity.space.id %>')"><i class="icon icon_pin"></i> <%= entity.space.name %></a></small>
                 <% } %>
 
             </div>
             <% if (connected) { %>
-                <a href=# class="js-minhas-emergencias" onclick="minha_virada(this.parentElement.parentElement.event);">
-                    <% if (entity.in_minha_virada){ %>
+                <a href=# class="js-meu-percurso" onclick="meu_percurso(this.parentElement.parentElement.event);">
+                    <% if (entity.in_meu_percurso){ %>
                     <i class="icon icon-accessory event-star icon_star"></i>
                     <% } else { %>
                     <i class="icon icon-accessory event-star icon_star_alt"></i>

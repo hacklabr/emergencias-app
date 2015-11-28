@@ -1,5 +1,5 @@
 angular.module('emergencias.controllers', [])
-.controller('PalcoCtrl', function($rootScope, $scope, $stateParams, Virada, Conn){
+.controller('PalcoCtrl', function($rootScope, $scope, $stateParams, Emergencias, Conn){
     $scope.$on('$ionicView.beforeEnter', function(){
         $rootScope.curr = 'palco';
     });
@@ -9,7 +9,7 @@ angular.module('emergencias.controllers', [])
     });
 
     if($stateParams.palco){
-        Virada.getPalcoEvents($stateParams.palco)
+        Emergencias.getPalcoEvents($stateParams.palco)
         .then(function(data){
             $rootScope.palco = data;
             $scope.space = data;
@@ -20,7 +20,7 @@ angular.module('emergencias.controllers', [])
     }
 })
 
-.controller('AtracaoCtrl', function($rootScope, $scope, $stateParams, Virada, MinhaVirada, Date, $ionicModal, $state){
+.controller('AtracaoCtrl', function($rootScope, $scope, $stateParams, Emergencias, MeuPercurso, Date, $ionicModal, $state){
     $scope.$on('$ionicView.beforeEnter', function(){
         $rootScope.curr = 'atracao';
     });
@@ -35,7 +35,7 @@ angular.module('emergencias.controllers', [])
 
     $scope.LL = Date.LL;
     if($stateParams.atracao){
-        Virada.get($stateParams.atracao)
+        Emergencias.get($stateParams.atracao)
         .then(function(data){
             $rootScope.atracao = data;
             $scope.atracao = data;
@@ -46,7 +46,7 @@ angular.module('emergencias.controllers', [])
             }
         });
     } else {
-        $state.go("virada.programacao()")
+        $state.go("emergencias.programacao()")
     }
 
     $ionicModal.fromTemplateUrl('friends-modal.html', {
@@ -69,7 +69,7 @@ angular.module('emergencias.controllers', [])
     });
 
 })
-.controller('ButtonsCtrl', function($scope, $ionicSideMenuDelegate, $rootScope, Virada, MinhaVirada, $ionicGesture){
+.controller('ButtonsCtrl', function($scope, $ionicSideMenuDelegate, $rootScope, Emergencias, MeuPercurso, $ionicGesture){
     ionic.Platform.ready(function(){
         $ionicGesture.on('swiperight', function(){
 
@@ -93,7 +93,7 @@ angular.module('emergencias.controllers', [])
         }
     });
 })
-.controller('FilterCtrl', function($rootScope, $scope, $stateParams, $filter, Programacao, Virada, $ionicModal, $timeout, $ionicSideMenuDelegate, Date, Filter, ListState) {
+.controller('FilterCtrl', function($rootScope, $scope, $stateParams, $filter, Programacao, Emergencias, $ionicModal, $timeout, $ionicSideMenuDelegate, Date, Filter, ListState) {
     var config = {
         duration : Date.oneDay(),
         start: Date.start(),
@@ -177,7 +177,7 @@ angular.module('emergencias.controllers', [])
      *
      */
     function init (){
-        Virada.spaces().then(function(data){
+        Emergencias.spaces().then(function(data){
             if(data.length() == 0) {
                 $rootScope.view.sorted = 'A';
             }
@@ -200,7 +200,7 @@ angular.module('emergencias.controllers', [])
                     visible: false
                 };
             }
-            Virada.getPalcos().then(function(spaces_data){
+            Emergencias.getPalcos().then(function(spaces_data){
                 var i = 0;
                 var count = 0;
                 var d = data.async(2).tap(function(space){
@@ -219,7 +219,7 @@ angular.module('emergencias.controllers', [])
                     $rootScope.lespaces = a;
                     spaces = Lazy(a);
 
-                    Virada.events().then(function(data){
+                    Emergencias.events().then(function(data){
                         events = data;
                         if(data.length() == 0){ //Nothing to do!
                             $rootScope.hasData = false;
@@ -547,7 +547,7 @@ angular.module('emergencias.controllers', [])
         //$scope.loadMore();
     });
 })
-.controller('ProgramacaoCtrl', function($rootScope, $scope, Virada, MinhaVirada, $localStorage) {
+.controller('ProgramacaoCtrl', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {
     var eventsContainer = document.getElementById('programacao-container');
     var inscroll = false;
 
@@ -581,8 +581,8 @@ angular.module('emergencias.controllers', [])
         $rootScope.renderList();
     });
 
-    window.minha_virada = function(event){
-        $rootScope.minha_virada(event);
+    window.meu_percurso = function(event){
+        $rootScope.meu_percurso(event);
     };
 
 
@@ -594,13 +594,13 @@ angular.module('emergencias.controllers', [])
     };
 
     $rootScope.$on('$ionicView.beforeEnter', function(e,state){
-        if(state.stateId === 'virada.programacao' && window.listScrollTop){
+        if(state.stateId === 'emergencias.programacao' && window.listScrollTop){
             programacaoContent.style.marginTop = -window.listScrollTop + 'px';
         }
     });
 
     $rootScope.$on('$ionicView.enter', function(e,state){
-        if(state.stateId === 'virada.programacao' && window.listScrollTop){
+        if(state.stateId === 'emergencias.programacao' && window.listScrollTop){
             programacaoContent.style.marginTop = 0;
             programacaoContent.scrollTop = window.listScrollTop;
         }
@@ -647,7 +647,7 @@ angular.module('emergencias.controllers', [])
             eventsContainer.appendChild(el);
 
             if (!entity.watching){
-                $rootScope.$watch(function(){ return entity.in_minha_virada; }, function(){
+                $rootScope.$watch(function(){ return entity.in_meu_percurso; }, function(){
                     Resig.reRenderElement(template, data);
                 });
             }
@@ -676,9 +676,9 @@ angular.module('emergencias.controllers', [])
     });
 
     $rootScope.$on('user_data_loaded', function(ev, user) {
-        Virada.events().then(function(events){
+        Emergencias.events().then(function(events){
             if (user.events && user.events.length > 0) {
-                MinhaVirada.getFriendsOnEvents().then(function(friendsOnEvents){
+                MeuPercurso.getFriendsOnEvents().then(function(friendsOnEvents){
                     if(!friendsOnEvents){
                         $rootScope.connected = false;
                         return false;
@@ -686,7 +686,7 @@ angular.module('emergencias.controllers', [])
                     Lazy(user.events).tap(function(id){
                         var event = events.findWhere({id : id});
                         if(typeof event !== 'undefined'){
-                            event.in_minha_virada = true;
+                            event.in_meu_percurso = true;
                             if(typeof friendsOnEvents[id] !== 'undefined'){
                                 var f = Lazy(friendsOnEvents[id]);
                                 event.allFriends = f.toArray();
@@ -703,7 +703,7 @@ angular.module('emergencias.controllers', [])
 })
 
 
-.controller('SocialCtrl', function($scope, $rootScope, Virada, MinhaVirada,
+.controller('SocialCtrl', function($scope, $rootScope, Emergencias, MeuPercurso,
                                    MapState, $state, $ionicPopup, $ionicPopover,
                                    $ionicModal, $timeout, $interval, $log,
                                    $localStorage, GlobalConfiguration) {
@@ -808,11 +808,11 @@ angular.module('emergencias.controllers', [])
         function getMyLocation (location){
             // TODO mover camera para location do user
             if ($scope.view.sendPosition)
-                return MinhaVirada.updateLocation(location);
+                return MeuPercurso.updateLocation(location);
         }
 
         function loadFriends() {
-            MinhaVirada.getFriends().then(function(data){
+            MeuPercurso.getFriends().then(function(data){
                 if(data){
                     Lazy(data).async(2).tap(function(friend){
                         if(friend.lat && friend.long){
@@ -899,7 +899,7 @@ angular.module('emergencias.controllers', [])
                 });
 
                 Lazy(servicesNames).each(function(name){
-                    MinhaVirada.getService(name).then(function(data){
+                    MeuPercurso.getService(name).then(function(data){
                         if(data){
                             $scope.$emit("service_loaded", { data: data, name: name });
                         }
@@ -945,7 +945,7 @@ angular.module('emergencias.controllers', [])
                     showServices();
                 });
 
-                if(MinhaVirada.hasUser()){
+                if(MeuPercurso.hasUser()){
                     loadFriends()
                     friends_reload_interval = $interval(function() {
                         loadFriends();
@@ -1041,7 +1041,7 @@ angular.module('emergencias.controllers', [])
             });
             confirmPopup.then(function(res) {
                 if(res) {
-                    $state.go('virada.palco-detail',
+                    $state.go('emergencias.palco-detail',
                               {palco : space.id});
                     map.setClickable(true);
                 } else {
@@ -1145,11 +1145,11 @@ angular.module('emergencias.controllers', [])
             $scope.view.sendPosition = true;
             $scope.view.terms_agreed = true;
             $scope.closePopover();
-            MinhaVirada.connect();
+            MeuPercurso.connect();
         }
     });
 })
-.controller('MinhaViradaCtrl', function($rootScope, $scope, $http, $location, $timeout, Virada, MinhaVirada, GlobalConfiguration, $localStorage, $ionicLoading, Date){
+.controller('MeuPercursoCtrl', function($rootScope, $scope, $http, $location, $timeout, Emergencias, MeuPercurso, GlobalConfiguration, $localStorage, $ionicLoading, Date){
 
     $scope.GlobalConfiguration = GlobalConfiguration;
 
@@ -1162,7 +1162,7 @@ angular.module('emergencias.controllers', [])
     };
 
     $scope.logout = function(){
-        MinhaVirada.logout();
+        MeuPercurso.logout();
     }
 
     $rootScope.$on('logged_out', function(ev){
@@ -1171,7 +1171,7 @@ angular.module('emergencias.controllers', [])
 
 
     $scope.$on('$ionicView.beforeEnter', function(){
-        $rootScope.curr = 'minha_virada';
+        $rootScope.curr = 'meu_percurso';
     });
 
     $scope.$on('$ionicView.beforeLeave', function(){
@@ -1208,7 +1208,7 @@ angular.module('emergencias.controllers', [])
         $rootScope.$emit('initialized');
     } else {
         // Test if token is valid
-        MinhaVirada.init($localStorage.accessToken, $localStorage.uid)
+        MeuPercurso.init($localStorage.accessToken, $localStorage.uid)
         .then(function(data){
             if(!data){
                 $rootScope.$emit('initialized');
@@ -1217,7 +1217,7 @@ angular.module('emergencias.controllers', [])
     }
 
     $scope.login = function(){
-        MinhaVirada.connect();
+        MeuPercurso.connect();
     }
 
     $rootScope.$on('fb_app_connected', function(ev, userData) {
@@ -1259,15 +1259,15 @@ angular.module('emergencias.controllers', [])
         }
     }
     function fillEvents(user){
-        Virada.events().then(function(events){
+        Emergencias.events().then(function(events){
             if (user.events && user.events.length > 0) {
                 $scope.hasEvents = true;
-                MinhaVirada.getFriendsOnEvents().then(function(friendsOnEvents){
+                MeuPercurso.getFriendsOnEvents().then(function(friendsOnEvents){
                     newevents = [];
                     Lazy(user.events).tap(function(id){
                         var event = events.findWhere({id : id});
                         if(typeof event !== 'undefined'){
-                            event.in_minha_virada = true;
+                            event.in_meu_percurso = true;
                             if(typeof friendsOnEvents[id] !== 'undefined'){
                                 var f = Lazy(friendsOnEvents[id]);
                                 event.allFriends = f.toArray();
@@ -1297,11 +1297,11 @@ angular.module('emergencias.controllers', [])
         fillEvents(data);
     }
 })
-.controller('AppCtrl', function($scope, $rootScope, $localStorage, MinhaVirada, $ionicHistory, $cordovaSocialSharing, GlobalConfiguration){
+.controller('AppCtrl', function($scope, $rootScope, $localStorage, MeuPercurso, $ionicHistory, $cordovaSocialSharing, GlobalConfiguration){
     $scope.anon = true;
     if($localStorage.uid){
         $scope.anon = false;
-        MinhaVirada.loadUserData($localStorage.uid).then(function(userData){
+        MeuPercurso.loadUserData($localStorage.uid).then(function(userData){
             if(userData){
                 $localStorage.user = userData;
                 $rootScope.connected = $localStorage.hasOwnProperty("accessToken") === true;
@@ -1313,8 +1313,8 @@ angular.module('emergencias.controllers', [])
         $rootScope.connected = true;
     });
 
-    $rootScope.minha_virada = function(event){
-        // Toogle event.in_minha_virada.
+    $rootScope.meu_percurso = function(event){
+        // Toogle event.in_meu_percurso.
         var eventId;
 
         if(typeof event === 'number'){
@@ -1325,34 +1325,34 @@ angular.module('emergencias.controllers', [])
 
         if($localStorage.hasOwnProperty("accessToken") === false ||
            $localStorage.hasOwnProperty("uid") === false) {
-            MinhaVirada.connect();
+            MeuPercurso.connect();
         } else {
-            if(!MinhaVirada.hasUser()){
-                MinhaVirada
+            if(!MeuPercurso.hasUser()){
+                MeuPercurso
                 .init($localStorage.accessToken, $localStorage.uid)
                 .then(function(connected){
                     if(connected){
-                        event.in_minha_virada =  MinhaVirada.toogle(eventId);
+                        event.in_meu_percurso =  MeuPercurso.toogle(eventId);
                     } else {
-                        MinhaVirada.connect().then(function(data){
+                        MeuPercurso.connect().then(function(data){
                             if(data){
-                                event.in_minha_virada =
-                                    MinhaVirada.toogle(eventId);
+                                event.in_meu_percurso =
+                                    MeuPercurso.toogle(eventId);
                             }
                         });
                     }
                 });
             } else {
-                event.in_minha_virada = MinhaVirada.toogle(eventId);
+                event.in_meu_percurso = MeuPercurso.toogle(eventId);
             }
         }
     }
 
-    $rootScope.is_in_minha_virada = function(eventId){
-        return MinhaVirada.hasEvent(eventId);
+    $rootScope.is_in_meu_percurso = function(eventId){
+        return MeuPercurso.hasEvent(eventId);
     }
 
-    $scope.shareButtons = ['palco', 'atracao', 'minha_virada'];
+    $scope.shareButtons = ['palco', 'atracao', 'meu_percurso'];
 
     $scope.share = function(b){
 	// TODO EM
@@ -1370,9 +1370,9 @@ angular.module('emergencias.controllers', [])
                     + $rootScope.atracao.name;
                 link = link + "/programacao/atracao/##" + $rootScope.atracao.id;
                 break;
-            case 'minha_virada':
+            case 'meu_percurso':
                 message = "Venha conferir a Minha Virada ";
-                link = link + "/minhas-emergencias/##" + $localStorage.uid;
+                link = link + "/meu-percurso/##" + $localStorage.uid;
                 break;
         }
 

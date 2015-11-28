@@ -1,6 +1,6 @@
 angular.module('emergencias.services', [])
 
-.factory('Virada', function($http, GlobalConfiguration, $cordovaFile, $ionicPlatform, MinhaVirada, $q, $cacheFactory) {
+.factory('Emergencias', function($http, GlobalConfiguration, $cordovaFile, $ionicPlatform, MeuPercurso, $q, $cacheFactory) {
     var conf = {
         assets : "/assets/old/",
         spaces_data : {

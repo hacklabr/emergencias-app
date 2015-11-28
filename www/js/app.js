@@ -1,4 +1,4 @@
-var emergencias = angular.module("emergencias", ['ionic', 'rzModule', 'emergencias.wrappers', 'emergencias.controllers', 'emergencias.services', 'emergencias.config', 'emergencias.minha_virada', 'emergencias.programacao', 'ngStorage', 'ngCordova']);
+var emergencias = angular.module("emergencias", ['ionic', 'rzModule', 'emergencias.wrappers', 'emergencias.controllers', 'emergencias.services', 'emergencias.config', 'emergencias.meu_percurso', 'emergencias.programacao', 'ngStorage', 'ngCordova']);
 
 emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
     //$ionicConfigProvider.scrolling.jsScrolling(false);
@@ -7,15 +7,15 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
     $compileProvider.aHrefSanitizationWhitelist(/^\s*(https?|file|tel|geo|ms-appx|x-wmapp0):/);
 
     $stateProvider
-    .state('virada', {
-        url: "/virada",
+    .state('emergencias', {
+        url: "/emergencias",
         abstract: true,
         templateUrl: 'templates/menu.html',
         // template: "<ion-nav-view name='template' />",
         controller: 'AppCtrl'
     })
 
-    .state('virada.programacao', {
+    .state('emergencias.programacao', {
         url: '/programacao',
         views: {
             'menu-view': {
@@ -25,17 +25,17 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
-    .state('virada.minhas-emergencias', {
-        url: '/programacao/minhas-emergencias',
+    .state('emergencias.meu-percurso', {
+        url: '/programacao/meu-percurso',
         views: {
             'menu-view': {
-                templateUrl: 'templates/minhas-emergencias.html',
-                controller: 'MinhaViradaCtrl'
+                templateUrl: 'templates/meu-percurso.html',
+                controller: 'MeuPercursoCtrl'
             },
         }
     })
 
-    .state('virada.atracao-detail', {
+    .state('emergencias.atracao-detail', {
         url: '/programacao/atracao/:atracao',
         views: {
             'menu-view': {
@@ -45,7 +45,7 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
-    .state('virada.palco-detail', {
+    .state('emergencias.palco-detail', {
         url: '/programacao/palco/:palco',
         views: {
             'menu-view': {
@@ -55,7 +55,7 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
-    .state('virada.about', {
+    .state('emergencias.about', {
         url: '/programacao/sobre',
         views: {
             'menu-view': {
@@ -64,8 +64,8 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
-    .state('virada.social', {
-        url: '/virada/social',
+    .state('emergencias.social', {
+        url: '/emergencias/social',
         views: {
             'menu-view': {
                 templateUrl: 'templates/social.html',
@@ -74,6 +74,6 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     });
 
-    $urlRouterProvider.otherwise('/virada/programacao');
+    $urlRouterProvider.otherwise('/emergencias/programacao');
 });
 

@@ -51,6 +51,7 @@ angular.module("emergencias.programacao", [])
 
 })
 .filter('lefilter', function(){
+    // TODO EM
     var projects = {
         '865': 'Virada Coral',
         '857': 'Viradinha',

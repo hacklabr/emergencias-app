@@ -1,5 +1,5 @@
-angular.module("emergencias.minha_virada", [])
-.factory('MinhaVirada', function ($window, GlobalConfiguration, $cordovaOauth, $localStorage, $http, $rootScope, $ionicPlatform, $q, User){
+angular.module("emergencias.meu_percurso", [])
+.factory('MeuPercurso', function ($window, GlobalConfiguration, $cordovaOauth, $localStorage, $http, $rootScope, $ionicPlatform, $q, User){
 
     var user = new User();
     var config = {
@@ -187,7 +187,7 @@ angular.module("emergencias.minha_virada", [])
 
         return $http
         .get(GlobalConfiguration.SOCIAL_API_URL
-             + '/minhavirada/?uid='
+             + '/meupercurso/?uid='
              + uid)
         .then(function(data){
             // Se não existe usuário ou não está logado,
@@ -215,7 +215,7 @@ angular.module("emergencias.minha_virada", [])
     function reloadUserData(uid) {
         return $http
         .get(GlobalConfiguration.SOCIAL_API_URL
-             + '/minhavirada/?uid='
+             + '/meupercurso/?uid='
              + uid)
         .then(function(data){
             if(typeof data.data.events !== 'undefined'){
@@ -243,7 +243,7 @@ angular.module("emergencias.minha_virada", [])
         console.log("--- Saving data ---");
         console.log(userJSON.events);
         console.log("--- End ---");
-        var url = GlobalConfiguration.SOCIAL_API_URL + '/minhavirada/'
+        var url = GlobalConfiguration.SOCIAL_API_URL + '/meupercurso/'
         var options = {
             headers : {
                 'Content-Type': 'application/json; charset=UTF-8;'
@@ -283,13 +283,13 @@ angular.module("emergencias.minha_virada", [])
 
             if (has_event >= 0 ) { // o indice pode ser 0
                 user.events.splice(has_event, 1);
-                is_in_minha_virada = false;
+                is_in_meu_percurso = false;
             } else {
                 user.events.push(eventId);
-                is_in_minha_virada = true;
+                is_in_meu_percurso = true;
             }
             save(prepareJSON());
-            return is_in_minha_virada;
+            return is_in_meu_percurso;
         }
     };
 
@@ -480,13 +480,13 @@ angular.module("emergencias.minha_virada", [])
         return false;
     };
 
-    // FIXME MinhaVirada should not touch events
+    // FIXME MeuPercurso should not touch events
     var fillEvents = function (events){
         if (user.events && user.events.length > 0) {
             Lazy(user.events).tap(function(id){
                 var event = events.findWhere({id : id});
                 if(typeof event !== 'undefined'){
-                    event.in_minha_virada = true;
+                    event.in_meu_percurso = true;
                 }
             }).each(Lazy.noop);
         };

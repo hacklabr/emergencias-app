@@ -19,7 +19,7 @@
                 <div class="card" ng-if="!connected">
                     <div class="item item-text-wrap">
                         Conecte-se em
-                        <a ui-sref="virada.minhas-emergencias()">Minha Virada</a>
+                        <a ui-sref="emergencias.meu-percurso()">Minha Virada</a>
                         para ver seus amigos!
                     </div>
                 </div>
@@ -37,7 +37,7 @@
             </div>
             <div class="servico">
                 <p>
-                    <span><span class="label">Local:</span> <a href="#/virada/programacao/palco/{{space.id}}">{{space.name}}</a><br></span>
+                    <span><span class="label">Local:</span> <a href="#/emergencias/programacao/palco/{{space.id}}">{{space.name}}</a><br></span>
                     <span><span class="label">Endereço:</span> {{space.endereco}}<br></span>
                     <span><span class="label">Data:</span> {{ LL(atracao.startsOn) }}<br></span>
                     <span><span class="label">Horário:</span> {{atracao.startsAt}}<br></span>
