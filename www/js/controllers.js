@@ -1,4 +1,12 @@
 angular.module('emergencias.controllers', [])
+
+.controller('TrackCtrl', function($rootScope, $scope, $stateParams, Emergencias, Conn){
+    console.log(Emergencias.tracks)
+    Emergencias.tracks().success(function(result) {
+	$scope.tracks = result
+    });
+})
+
 .controller('PlaceCtrl', function($rootScope, $scope, $stateParams, Emergencias, Conn){
     $scope.$on('$ionicView.beforeEnter', function(){
         $rootScope.curr = 'place';

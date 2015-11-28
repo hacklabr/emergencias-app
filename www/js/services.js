@@ -128,6 +128,11 @@ angular.module('emergencias.services', [])
 
 
     return {
+	tracks: function() {
+	    var url = 'http://localhost:8000/tracks.json';
+	    return $http.get(url)
+	},
+
         events: function() {
             return data_source.then(function(data){
                 return data.events;

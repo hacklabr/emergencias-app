@@ -1,0 +1,24 @@
+<ion-view view-title="Encontros de Redes">
+    <ion-content id="redes-content" overflow-scroll="true">
+      <!-- <div g-hide="renderDone">
+            <article class="single">
+                <p>&nbsp;</p>
+                <p class="text-center">
+                    <ion-spinner ng-show="!repeatDone" icon="dots" class=""></ion-spinner>
+                </p>
+            </article>
+        </div>
+      -->
+        <div g-show="renderDone" class="list list-programacao">
+            <div class="list">
+                <div class="collection-repeat-container" >
+                    <div id="redes-container">
+		      <div ng-repeat="track in tracks">
+			{{track.name}}
+		      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>

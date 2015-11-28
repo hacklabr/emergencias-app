@@ -25,6 +25,16 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
+    .state('emergencias.redes', {
+	url: '/redes',
+	views: {
+            'menu-view': {
+		templateUrl: 'templates/redes.html',
+		controller: 'TrackCtrl'
+            },
+	}
+    })
+
     .state('emergencias.meu-percurso', {
         url: '/programacao/meu-percurso',
         views: {
