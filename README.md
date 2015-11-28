@@ -15,7 +15,7 @@ $ git clone https://github.com/hacklabr/emergencias-app.git
 
 * Fazer o build padrão
 ```
-$ cd viradapp
+$ cd emergencias-app
 $ npm install
 $ gulp install # runs bower install
 ```
