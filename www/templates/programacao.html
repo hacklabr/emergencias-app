@@ -19,9 +19,9 @@
         </div>
 
 
-<script type="text/html" id="template-palco">
+<script type="text/html" id="template-place">
     <div class="item item-divider">
-        <div class="item-content" onclick="redirectFromListTo('#/emergencias/programacao/palco/<%= entity.id %>')">
+        <div class="item-content" onclick="redirectFromListTo('#/emergencias/programacao/place/<%= entity.id %>')">
             <div class="item-complex">
                 <%= entity.name %>
             </div>
@@ -45,7 +45,7 @@
                     </h2>
                 </a>
                 <% if(entity.space){ %>
-                <small class="event-place"><a onclick="redirectFromListTo('#/emergencias/programacao/palco/<%= entity.space.id %>')"><i class="icon icon_pin"></i> <%= entity.space.name %></a></small>
+                <small class="event-place"><a onclick="redirectFromListTo('#/emergencias/programacao/place/<%= entity.space.id %>')"><i class="icon icon_pin"></i> <%= entity.space.name %></a></small>
                 <% } %>
 
             </div>

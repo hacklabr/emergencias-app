@@ -6,10 +6,10 @@
     </article>
 </div>
 <ion-list ng-repeat="space in ledata" class="list list-programacao">
-    <ion-item ng-if="space.name" ui-sref="emergencias.palco-detail({palco : space.id })" class="item item-divider" >
+    <ion-item ng-if="space.name" ui-sref="emergencias.place-detail({place : space.id })" class="item item-divider" >
         {{ space.name }}
         <h3>
-            {{ space.palco.endereco }}
+            {{ space.place.endereco }}
         </h3>
     </ion-item>
     <ion-item ng-class="{active: event.in_meu_percurso}" class="item item-complex"

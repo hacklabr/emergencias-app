@@ -156,23 +156,23 @@ angular.module('emergencias.services', [])
                 });
             });
         },
-        getPalcos: function(){
+        getPlaces: function(){
             return data_source.then(function(data){
                 return data.spaces_data.then(function(spaces){
                     return spaces;
                 });
             });
         },
-        getPalcoEvents: function(palco_id) {
+        getPlaceEvents: function(place_id) {
             return data_source.then(function(data){
                 return data.spaces_data.then(function(spaces){
                     var space = spaces.findWhere({
-                        id : parseInt(palco_id)
+                        id : parseInt(place_id)
                     });
                     return data.events.then(function(events){
                         var time = Date.now();
                         space.events = events.where({
-                            spaceId : parseInt(palco_id)
+                            spaceId : parseInt(place_id)
                         }).filter(function(ev){
                             // TODO Show only events in the future
                             // Here is just the basic idea!

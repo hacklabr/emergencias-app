@@ -1,17 +1,17 @@
 angular.module('emergencias.controllers', [])
-.controller('PalcoCtrl', function($rootScope, $scope, $stateParams, Emergencias, Conn){
+.controller('PlaceCtrl', function($rootScope, $scope, $stateParams, Emergencias, Conn){
     $scope.$on('$ionicView.beforeEnter', function(){
-        $rootScope.curr = 'palco';
+        $rootScope.curr = 'place';
     });
 
     $scope.$on('$ionicView.beforeLeave', function(){
         $rootScope.curr = false;
     });
 
-    if($stateParams.palco){
-        Emergencias.getPalcoEvents($stateParams.palco)
+    if($stateParams.place){
+        Emergencias.getPlaceEvents($stateParams.place)
         .then(function(data){
-            $rootScope.palco = data;
+            $rootScope.place = data;
             $scope.space = data;
             $scope.spaceEvents = data.events;
         });
@@ -200,7 +200,7 @@ angular.module('emergencias.controllers', [])
                     visible: false
                 };
             }
-            Emergencias.getPalcos().then(function(spaces_data){
+            Emergencias.getPlaces().then(function(spaces_data){
                 var i = 0;
                 var count = 0;
                 var d = data.async(2).tap(function(space){
@@ -629,7 +629,7 @@ angular.module('emergencias.controllers', [])
             var show = true;
 
             if(entity.location){
-                template = 'template-palco';
+                template = 'template-place';
             }else{
                 template = 'template-evento';
 
@@ -722,7 +722,7 @@ angular.module('emergencias.controllers', [])
                 sendPosition : false,
                 options : {
                     friends: false ,
-                    palcos: false ,
+                    places: false ,
                     services: true
                 },
                 terms_agreed: false
@@ -773,8 +773,8 @@ angular.module('emergencias.controllers', [])
             }
         });
 
-        $scope.$watch('view.options.palcos', function(newValue, oldValue) {
-            showPalcos();
+        $scope.$watch('view.options.places', function(newValue, oldValue) {
+            showPlaces();
         });
 
 
@@ -895,7 +895,7 @@ angular.module('emergencias.controllers', [])
                     }
                 }).toArray()
                 .then(function(){
-                    showPalcos();
+                    showPlaces();
                 });
 
                 Lazy(servicesNames).each(function(name){
@@ -954,7 +954,7 @@ angular.module('emergencias.controllers', [])
             }
             // function onCameraChange(){
             //     map.getVisibleRegion(function(latLngBounds) {
-            //         showPalcos(latLngBounds);
+            //         showPlaces(latLngBounds);
             //         showFriends(latLngBounds);
             //         showServices(latLngBounds);
             //     });
@@ -962,13 +962,13 @@ angular.module('emergencias.controllers', [])
             // var isContained = latLngBounds.contains(friend.map.position);
         }
 
-        function showPalcos(){
+        function showPlaces(){
             for(var i = 0; i < spaces.length; i++){
                 space = spaces[i];
                 if(typeof space !== 'undefined' &&
                         typeof space.data !== 'undefined'&&
                         typeof space.marker !== 'undefined'){
-                    if( $scope.view.options.palcos){
+                    if( $scope.view.options.places){
                         if(!space.marker.isVisible()){
                             space.marker.setVisible(true);
                         }
@@ -1033,7 +1033,7 @@ angular.module('emergencias.controllers', [])
                 buttons: [
                     { text: 'Voltar' },
                     {
-                        text: '<b>Ver palco</b>',
+                        text: '<b>Ver Espaço</b>',
                         type: 'button-assertive',
                         onTap: function (){return true;}
                     }
@@ -1041,8 +1041,8 @@ angular.module('emergencias.controllers', [])
             });
             confirmPopup.then(function(res) {
                 if(res) {
-                    $state.go('emergencias.palco-detail',
-                              {palco : space.id});
+                    $state.go('emergencias.place-detail',
+                              {place : space.id});
                     map.setClickable(true);
                 } else {
                     map.setClickable(true);
@@ -1069,7 +1069,7 @@ angular.module('emergencias.controllers', [])
         $scope.closeModal = function() {
             if(typeof map !== 'undefined'){
                 map.setClickable(true);
-                showPalcos();
+                showPlaces();
                 showServices();
                 showFriends();
             }
@@ -1352,7 +1352,7 @@ angular.module('emergencias.controllers', [])
         return MeuPercurso.hasEvent(eventId);
     }
 
-    $scope.shareButtons = ['palco', 'atracao', 'meu_percurso'];
+    $scope.shareButtons = ['place', 'atracao', 'meu_percurso'];
 
     $scope.share = function(b){
 	// TODO EM
@@ -1360,10 +1360,10 @@ angular.module('emergencias.controllers', [])
         var message = "";
         var link = GlobalConfiguration.SHARE_URL;
         switch (b){
-            case 'palco':
-                message = "Venha conferir as atrações do Palco "
-                    + $rootScope.palco.name;
-                link = link + "/programacao/local/##" + $rootScope.palco.id;
+            case 'place':
+                message = "Venha conferir as atrações do Espaço "
+                    + $rootScope.place.name;
+                link = link + "/programacao/local/##" + $rootScope.place.id;
                 break;
             case 'atracao':
                 message = "Venha conferir a atração "

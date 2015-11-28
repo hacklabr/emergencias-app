@@ -45,12 +45,12 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
-    .state('emergencias.palco-detail', {
-        url: '/programacao/palco/:palco',
+    .state('emergencias.place-detail', {
+        url: '/programacao/place/:place',
         views: {
             'menu-view': {
-                templateUrl: 'templates/palco-detail.html',
-                controller: 'PalcoCtrl'
+                templateUrl: 'templates/place-detail.html',
+                controller: 'PlaceCtrl'
             }
         }
     })
