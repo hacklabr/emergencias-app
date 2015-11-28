@@ -708,6 +708,12 @@ angular.module('viradapp.controllers', [])
                                    $ionicModal, $timeout, $interval, $log,
                                    $localStorage, GlobalConfiguration) {
 
+    $scope.GlobalConfiguration = GlobalConfiguration;
+
+    $scope.openWindow = function (url) {
+        window.open(url, '_system', 'location=yes');
+    };
+
     ionic.Platform.ready(function () {
         if($localStorage.hasOwnProperty('mapOptions') === true){
             $scope.view = $localStorage.mapOptions;
@@ -1144,6 +1150,13 @@ angular.module('viradapp.controllers', [])
     });
 })
 .controller('MinhaViradaCtrl', function($rootScope, $scope, $http, $location, $timeout, Virada, MinhaVirada, GlobalConfiguration, $localStorage, $ionicLoading, Date){
+
+    $scope.GlobalConfiguration = GlobalConfiguration;
+
+    $scope.openWindow = function (url) {
+        window.open(url, '_system', 'location=yes');
+    };
+
     $scope.view = {
         hasMessage : false
     };
