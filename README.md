@@ -5,7 +5,7 @@ Se você já tem o npm instalado, basta fazer:
 
 * Instalar o ionic globalmente
 ```
-$ sudo npm -g install ionic cordova
+$ sudo npm -g install cordova ionic bower
 ```
 
 * Clonar o repositório
@@ -16,8 +16,8 @@ $ git clone https://github.com/hacklabr/emergencias-app.git
 * Fazer o build padrão
 ```
 $ cd emergencias-app
-$ npm install
-$ gulp install # runs bower install
+$ ionic state reset
+$ bower install
 ```
 
 * Fazer o setup SASS
