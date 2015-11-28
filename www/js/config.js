@@ -1,4 +1,4 @@
-angular.module("viradapp.config", [])
+angular.module("emergencias.config", [])
 .factory('Conn', function(){
     CONN = "DEFAULT";
 
@@ -7,7 +7,7 @@ angular.module("viradapp.config", [])
     var connChangeHandler = function(conn){
         if(window.Connection) {
             if(Connection.NONE == conn.type){
-                viradapp.value('CONN', Connection.NONE);
+                emergencias.value('CONN', Connection.NONE);
             } else if(Connection.ETHERNET == conn.type
                 || Connection.WIFI == conn.type
                     || Connection.CELL_4G){

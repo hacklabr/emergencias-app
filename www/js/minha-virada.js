@@ -1,4 +1,4 @@
-angular.module("viradapp.minha_virada", [])
+angular.module("emergencias.minha_virada", [])
 .factory('MinhaVirada', function ($window, GlobalConfiguration, $cordovaOauth, $localStorage, $http, $rootScope, $ionicPlatform, $q, User){
 
     var user = new User();

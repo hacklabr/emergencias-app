@@ -1,4 +1,4 @@
-angular.module('viradapp.controllers', [])
+angular.module('emergencias.controllers', [])
 .controller('PalcoCtrl', function($rootScope, $scope, $stateParams, Virada, Conn){
     $scope.$on('$ionicView.beforeEnter', function(){
         $rootScope.curr = 'palco';

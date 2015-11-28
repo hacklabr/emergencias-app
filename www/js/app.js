@@ -1,6 +1,6 @@
-var viradapp = angular.module("viradapp", ['ionic', 'rzModule', 'viradapp.wrappers', 'viradapp.controllers', 'viradapp.services', 'viradapp.config', 'viradapp.minha_virada', 'viradapp.programacao', 'ngStorage', 'ngCordova']);
+var emergencias = angular.module("emergencias", ['ionic', 'rzModule', 'emergencias.wrappers', 'emergencias.controllers', 'emergencias.services', 'emergencias.config', 'emergencias.minha_virada', 'emergencias.programacao', 'ngStorage', 'ngCordova']);
 
-viradapp.config(function($stateProvider, $httpProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
+emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
     //$ionicConfigProvider.scrolling.jsScrolling(false);
     $httpProvider.defaults.cache = true;
 

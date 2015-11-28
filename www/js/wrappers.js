@@ -1,4 +1,4 @@
-angular.module("viradapp.wrappers", [])
+angular.module("emergencias.wrappers", [])
 
 .factory('Lazy', ['$window', function ($window){
     return $window.Lazy;

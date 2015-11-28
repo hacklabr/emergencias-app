@@ -1,4 +1,4 @@
-angular.module('viradapp.services', [])
+angular.module('emergencias.services', [])
 
 .factory('Virada', function($http, GlobalConfiguration, $cordovaFile, $ionicPlatform, MinhaVirada, $q, $cacheFactory) {
     var conf = {
