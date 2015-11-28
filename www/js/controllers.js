@@ -20,9 +20,9 @@ angular.module('emergencias.controllers', [])
     }
 })
 
-.controller('AtracaoCtrl', function($rootScope, $scope, $stateParams, Emergencias, MeuPercurso, Date, $ionicModal, $state){
+.controller('EventCtrl', function($rootScope, $scope, $stateParams, Emergencias, MeuPercurso, Date, $ionicModal, $state){
     $scope.$on('$ionicView.beforeEnter', function(){
-        $rootScope.curr = 'atracao';
+        $rootScope.curr = 'event';
     });
 
     $scope.$on('$ionicView.beforeLeave', function(){
@@ -34,11 +34,11 @@ angular.module('emergencias.controllers', [])
     }
 
     $scope.LL = Date.LL;
-    if($stateParams.atracao){
-        Emergencias.get($stateParams.atracao)
+    if($stateParams.event){
+        Emergencias.get($stateParams.event)
         .then(function(data){
-            $rootScope.atracao = data;
-            $scope.atracao = data;
+            $rootScope.event = data;
+            $scope.event = data;
             $scope.space = data.space;
             if(data.allFriends){
                 $scope.view.delta = data.allFriends.length - data.friends.length;
@@ -1352,7 +1352,7 @@ angular.module('emergencias.controllers', [])
         return MeuPercurso.hasEvent(eventId);
     }
 
-    $scope.shareButtons = ['place', 'atracao', 'meu_percurso'];
+    $scope.shareButtons = ['place', 'event', 'meu_percurso'];
 
     $scope.share = function(b){
 	// TODO EM
@@ -1365,10 +1365,10 @@ angular.module('emergencias.controllers', [])
                     + $rootScope.place.name;
                 link = link + "/programacao/local/##" + $rootScope.place.id;
                 break;
-            case 'atracao':
+            case 'event':
                 message = "Venha conferir a atração "
-                    + $rootScope.atracao.name;
-                link = link + "/programacao/atracao/##" + $rootScope.atracao.id;
+                    + $rootScope.event.name;
+                link = link + "/programacao/event/##" + $rootScope.event.id;
                 break;
             case 'meu_percurso':
                 message = "Venha conferir a Minha Virada ";

@@ -14,7 +14,7 @@
     </ion-item>
     <ion-item ng-class="{active: event.in_meu_percurso}" class="item item-complex"
         ng-repeat="event in space.events"
-        href="#/emergencias/programacao/atracao/{{event.id}}" >
+        href="#/emergencias/programacao/event/{{event.id}}" >
         <div class="event-time">
             <i class="icon icon_clock"></i>
             <time>
@@ -31,7 +31,7 @@
     </ion-item>
     <!-- <div class="item" ng-repeat="event in space.events">
         <div>
-            <a href="#/emergencias/programacao/atracao/{{event.id}}" class="item-content">
+            <a href="#/emergencias/programacao/event/{{event.id}}" class="item-content">
                 <div class="event-time">
                     <i class="icon icon_clock"></i>
                     <time>

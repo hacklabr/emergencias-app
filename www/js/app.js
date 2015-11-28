@@ -35,12 +35,12 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
-    .state('emergencias.atracao-detail', {
-        url: '/programacao/atracao/:atracao',
+    .state('emergencias.event-detail', {
+        url: '/programacao/event/:event',
         views: {
             'menu-view': {
-                templateUrl: 'templates/atracao-detail.html',
-                controller: 'AtracaoCtrl'
+                templateUrl: 'templates/event-detail.html',
+                controller: 'EventCtrl'
             }
         }
     })
