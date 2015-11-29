@@ -7,14 +7,14 @@
 	      <div class="item" ng-repeat="event in events">
 		<div class="item-content">
 		  <div>
-		    <a onclick="redirectFromListTo('#/emergencias/event/{{event.id}}')">
+		    <a ui-sref="emergencias.event-detail({event:event.id})">
 		      <div class="event-time">
 			<i class="icon icon_clock"></i>
                           <time>{{event.startsAt}}</time>
 		      </div>
 		      <h2>{{event.name}}</h2>
 		    </a>
-                    <small class="event-place"><a onclick="redirectFromListTo('#/emergencias/place/{{event.place.id}}"><i class="icon icon_pin"></i> {{event.place.name}}</a>
+                    <small class="event-place"><a><i class="icon icon_pin"></i> {{event.place.name}}</a>
 		      <span class="event-track" ng-if="event.track"><i class="icon_hashtag"></i> {{event.track}}</span>
 		      <span class="event-type" ng-if="event.type">
 			<i class="icon icon_chat"></i> 
@@ -25,7 +25,7 @@
 		      <i class="icon icon_group"></i>
 		      <small class="event-speakers">
 			
-			<a onclick="redirectFromListTo('#/emergencias/speaker/{{speaker.id}}" ng-repeat="speaker in event.speakers"> {{speaker.name}}<span ng-if="!$last">, </span></a>
+			<a ng-repeat="speaker in event.speakers"> {{speaker.name}}<span ng-if="!$last">, </span></a>
 			<a href=# class="js-meu-percurso" onclick="meu_percurso(this.parentElement.parentElement.event);">
 			  <i ng-class="{'icon_star':event.in_meu_percurso,'icon_star_alt':!event.in_meu_percurso}" class="icon icon-accessory event-star"></i>
 			</a>
