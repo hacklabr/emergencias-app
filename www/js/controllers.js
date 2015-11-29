@@ -23,8 +23,14 @@ angular.module('emergencias.controllers', [])
 	     'name': 'Circo Voador'
 	 },
 	 'speakers': [
-	     'Concita Guarani Kaiowá', 'Ivana Bentes', 'Elen Oléria', 'Carina Vitral', 'Ana Paula Lisboa',
-	     'Dona Neide', 'Monique Prada', 'Beatriz Cerqueira'
+	     {'name': 'Concita Guarani Kaiowá' },
+	     {'name': 'Ivana Bentes' },
+	     {'name': 'Elen Oléria' },
+	     {'name': 'Carina Vitral' },
+	     {'name': 'Ana Paula Lisboa' },
+	     {'name': 'Dona Neide' }, 
+	     {'name': 'Monique Prada' }, 
+	     {'name': 'Beatriz Cerqueira' }
 	 ],
 	 'type': 'Mesa de Debate',
 	 'in_meu_percurso': true
@@ -38,8 +44,12 @@ angular.module('emergencias.controllers', [])
 	     'name': 'Circo Voador'
 	 },
 	 'speakers': [
-	     'Juca Ferreira', 'Jandira Feghali', 'Gilberto Gil', 'Lawrence Lessig', 'Constanza Moreira',
-	     'Jean Willys'
+	     {'name': 'Juca Ferreira' },
+	     {'name': 'Jandira Feghali' },
+	     {'name': 'Gilberto Gil' },
+	     {'name': 'Lawrence Lessig' },
+	     {'name': 'Constanza Moreira' },
+	     {'name': 'Jean Willys' }
 	 ],
 	 'type': 'Mesa de Debate',
 	 'in_meu_percurso': false
@@ -52,8 +62,7 @@ angular.module('emergencias.controllers', [])
 	     'name': 'Circo Voador'
 	 },
 	 'speakers': [
-	     'Gilberto Gil', 'Grupo Fulniôs', 'Círculo das Águas Povos de Terreiro', 'Amy Secada',
-	     'Ana Tijoux | CHI', 'Ellen Oléria'
+	     { 'name': 'Gilberto Gil'}, { 'name': 'Grupo Fulniôs'}, { 'name': 'Círculo das Águas Povos de Terreiro'}, { 'name': 'Amy Secada' }, { 'name': 'Ana Tijoux | CHI'}, { 'name': 'Ellen Oléria' }
 	 ],
 	 'type': 'Festa',
 	 'track': 'Povos de Terreiro',
