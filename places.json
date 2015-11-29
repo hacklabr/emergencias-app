@@ -1,1 +1,11 @@
-[ {"track": true, "room": "Bar do z\u00e9", "id": 7, "name": "Rocinha"} ]
+[
+    {
+	"id": 1,
+	"name": "Circo Voador",
+	"track": false
+    },
+    {
+	"id": 2,
+	"name": "Quinta da Boa Vista"
+    }
+]
