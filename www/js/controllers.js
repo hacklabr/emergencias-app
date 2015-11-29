@@ -13,72 +13,9 @@ angular.module('emergencias.controllers', [])
 })
 
 .controller('ProgramacaoCtrl', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {
-    $scope.events = [
-	{'id': 1,
-	 'name': 'Mesa de Abertura - Ato Mulheres',
-	 'startsAt': '07/12 15h30',
-	 'endsAt': '17h30',
-	 'place': {
-	     'id': 1,
-	     'name': 'Circo Voador'
-	 },
-	 'speakers': [
-	     {'name': 'Concita Guarani Kaiowá' },
-	     {'name': 'Ivana Bentes' },
-	     {'name': 'Elen Oléria' },
-	     {'name': 'Carina Vitral' },
-	     {'name': 'Ana Paula Lisboa' },
-	     {'name': 'Dona Neide' }, 
-	     {'name': 'Monique Prada' }, 
-	     {'name': 'Beatriz Cerqueira' }
-	 ],
-	 'type': 'Mesa de Debate',
-	 'in_meu_percurso': true
-	},
-	{'id': 2,
-	 'name': 'As Aventuras Políticas do Século XXI',
-	 'startsAt': '07/12 17h30',
-	 'endsAt': '20h30',
-	 'place': {
-	     'id': 1,
-	     'name': 'Circo Voador'
-	 },
-	 'speakers': [
-	     {'name': 'Juca Ferreira' },
-	     {'name': 'Jandira Feghali' },
-	     {'name': 'Gilberto Gil' },
-	     {'name': 'Lawrence Lessig' },
-	     {'name': 'Constanza Moreira' },
-	     {'name': 'Jean Willys' }
-	 ],
-	 'type': 'Mesa de Debate',
-	 'in_meu_percurso': false
-	},
-	{'id': 3,
-	 'name': 'Festa de Abertura',
-	 'startsAt': '07/12 21h30',
-	 'place': {
-	     'id': 1,
-	     'name': 'Circo Voador'
-	 },
-	 'speakers': [
-	     { 'name': 'Gilberto Gil'}, { 'name': 'Grupo Fulniôs'}, { 'name': 'Círculo das Águas Povos de Terreiro'}, { 'name': 'Amy Secada' }, { 'name': 'Ana Tijoux | CHI'}, { 'name': 'Ellen Oléria' }
-	 ],
-	 'type': 'Festa',
-	 'track': 'Povos de Terreiro',
-	 'in_meu_percurso': true
-	},
-	{'id': 4,
-	 'name': 'Café da Manhã',
-	 'startsAt': '08/12 8h00',
-	 'endsAt': '9h00',
-	 'place': {
-	     'id': 2,
-	     'name': 'Quinta da Boa Vista'
-	 },
-	 'in_meu_percurso': true
-	},
-    ]
+    Emergencias.events().success(function(data) {
+	$scope.events = data
+    })
 })
 
 .controller('FilterCtrl', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {

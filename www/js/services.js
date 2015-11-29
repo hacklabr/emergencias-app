@@ -134,9 +134,8 @@ angular.module('emergencias.services', [])
 	},
 
         events: function() {
-            return data_source.then(function(data){
-                return data.events;
-            });
+	    var url = 'http://localhost:8000/events.json';
+	    return $http.get(url)
         },
         spaces: function() {
             return data_source.then(function(data){

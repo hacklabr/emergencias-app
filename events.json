@@ -1,1 +1,67 @@
-[{"speakers": [{"bio": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum placerat mi, non tempor augue facilisis ut. Sed tempor ligula quis massa gravida aliquam. Vestibulum finibus risus convallis, euismod nunc ut, imperdiet nisi. Integer non elit id turpis hendrerit gravida. ", "name": "Leandro dal B\u00f3", "id": 11}], "end": "2015-12-07T11:00:00", "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vestibulum placerat mi, non tempor augue facilisis ut. Sed tempor ligula quis massa gravida aliquam. Vestibulum finibus risus convallis, euismod nunc ut, imperdiet nisi. Integer non elit id turpis hendrerit gravida. Vivamus ultricies est sit amet varius volutpat. Morbi ac massa faucibus, scelerisque velit in, mattis augue. Suspendisse potenti. Sed vitae mollis augue. Donec a ex tincidunt, convallis orci eget, sollicitudin magna. Fusce ut mi velit. In in orci ultrices, fringilla est eget, facilisis urna.", "trackId": 9, "start": "2015-12-07T10:00:00", "placeId": 7, "date": "2015-12-07", "id": 3, "name": "C\u00edrculo de debate Culturas Ind\u00edgenas"}]
+[
+	{"id": 1,
+	 "name": "Mesa de Abertura - Ato Mulheres",
+	 "startsAt": "07/12 15h30",
+	 "endsAt": "17h30",
+	 "place": {
+	     "id": 1,
+	     "name": "Circo Voador"
+	 },
+	 "speakers": [
+	     {"name": "Concita Guarani Kaiowá" },
+	     {"name": "Ivana Bentes" },
+	     {"name": "Elen Oléria" },
+	     {"name": "Carina Vitral" },
+	     {"name": "Ana Paula Lisboa" },
+	     {"name": "Dona Neide" },
+	     {"name": "Monique Prada" },
+	     {"name": "Beatriz Cerqueira" }
+	 ],
+	 "type": "Mesa de Debate",
+	 "in_meu_percurso": true
+	},
+	{"id": 2,
+	 "name": "As Aventuras Políticas do Século XXI",
+	 "startsAt": "07/12 17h30",
+	 "endsAt": "20h30",
+	 "place": {
+	     "id": 1,
+	     "name": "Circo Voador"
+	 },
+	 "speakers": [
+	     {"name": "Juca Ferreira" },
+	     {"name": "Jandira Feghali" },
+	     {"name": "Gilberto Gil" },
+	     {"name": "Lawrence Lessig" },
+	     {"name": "Constanza Moreira" },
+	     {"name": "Jean Willys" }
+	 ],
+	 "type": "Mesa de Debate",
+	 "in_meu_percurso": false
+	},
+	{"id": 3,
+	 "name": "Festa de Abertura",
+	 "startsAt": "07/12 21h30",
+	 "place": {
+	     "id": 1,
+	     "name": "Circo Voador"
+	 },
+	 "speakers": [
+	     { "name": "Gilberto Gil"}, { "name": "Grupo Fulniôs"}, { "name": "Círculo das Águas Povos de Terreiro"}, { "name": "Amy Secada" }, { "name": "Ana Tijoux | CHI"}, { "name": "Ellen Oléria" }
+	 ],
+	 "type": "Festa",
+	 "track": "Povos de Terreiro",
+	 "in_meu_percurso": true
+	},
+	{"id": 4,
+	 "name": "Café da Manhã",
+	 "startsAt": "08/12 8h00",
+	 "endsAt": "9h00",
+	 "place": {
+	     "id": 2,
+	     "name": "Quinta da Boa Vista"
+	 },
+	 "in_meu_percurso": true
+	}
+]
+
