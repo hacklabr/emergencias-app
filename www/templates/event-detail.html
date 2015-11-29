@@ -9,11 +9,26 @@
                 <h1>{{ event.name }}</h1>
             </header>
             <div class="post-content clearfix">
-                <p>{{event.shortDescription}}</p>
-            </div>
-            <div class="post-content clearfix">
                 <p>{{event.description}}</p>
             </div>
+            <div class="servico">
+                <p>
+                    <span><span class="label">Horário:</span> {{event.startsAt}}<br></span>
+                    <span><span class="label">Local:</span> <a href="#/emergencias/programacao/place/{{space.id}}">{{event.place.name}}</a><br></span>
+                    <span><span class="label">Endereço:</span> {{event.place.endereco}}<br></span>
+                    <span ng-if='event.terms.linguagem.length > 0'><span class="label">Linguagem:</span> {{event.terms.linguagem.join(', ')}} <br></span>
+                </p>
+                <!--                 <p>
+                    <a target="_blank" class="button button-small button-assertive" href="{{ mapUrl }}">
+                        <span class="icon icon_pin"></span> Ver no mapa
+                    </a>
+                    </p>-->
+            </div>
+	    <div class="speaker" ng-repeat="speaker in event.speakers">
+	      <img ng-if="speaker.photo" src="{{speaker.photo}}"/>
+	      <h2>{{speaker.name}}</h2>
+	      <p ng-if="speaker.bio">{{speaker.bio}}</p>
+	    </div>
             <!-- .post-content -->
             <footer>
                 <div class="card" ng-if="!connected">
@@ -34,22 +49,6 @@
                     </a><!-- link pra modal com lista de todos amigos quando exceder 3 amigos-->
                 </div>
             </footer>
-            </div>
-            <div class="servico">
-                <p>
-                    <span><span class="label">Local:</span> <a href="#/emergencias/programacao/place/{{space.id}}">{{space.name}}</a><br></span>
-                    <span><span class="label">Endereço:</span> {{space.endereco}}<br></span>
-                    <span><span class="label">Data:</span> {{ LL(event.startsOn) }}<br></span>
-                    <span><span class="label">Horário:</span> {{event.startsAt}}<br></span>
-                    <span ng-if='event.terms.linguagem.length > 0'><span class="label">Linguagem:</span> {{event.terms.linguagem.join(', ')}} <br></span>
-                    <span ng-if='event.classificacaoEtaria'><span class="label">Classificação:</span> {{event.classificacaoEtaria}}<br></span>
-                    <span ng-if='event.acessibilidade.length > 0'><span class="label">Acessibilidade:</span> {{event.acessibilidade.join(', ')}}<br></span>
-                </p>
-                <!--                 <p>
-                    <a target="_blank" class="button button-small button-assertive" href="{{ mapUrl }}">
-                        <span class="icon icon_pin"></span> Ver no mapa
-                    </a>
-                    </p>-->
             </div>
         </article>
         <!-- .single -->
