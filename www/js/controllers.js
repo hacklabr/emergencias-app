@@ -1,10 +1,78 @@
 angular.module('emergencias.controllers', [])
 
 .controller('TrackCtrl', function($rootScope, $scope, $stateParams, Emergencias, Conn){
-    console.log(Emergencias.tracks)
-    Emergencias.tracks().success(function(result) {
-	$scope.tracks = result
-    });
+    $scope.tracks = [
+	{ 'name': 'Hackers' },
+	{ 'name': 'Feminismos' },
+	{ 'name': 'Resistência Urbana na América Latina' },
+	{ 'name': 'Redes, Movimentos e Entidades de Artes Cênicas' },
+	{ 'name': 'Cultura e Infância' },
+	{ 'name': 'Indigenas' },
+	{ 'name': 'LGBT' },
+    ]
+})
+
+.controller('ProgramacaoCtrl', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {
+    $scope.events = [
+	{'id': 1,
+	 'name': 'Mesa de Abertura - Ato Mulheres',
+	 'startsAt': '07/12 15h30',
+	 'endsAt': '17h30',
+	 'place': {
+	     'id': 1,
+	     'name': 'Circo Voador'
+	 },
+	 'speakers': [
+	     'Concita Guarani Kaiowá', 'Ivana Bentes', 'Elen Oléria', 'Carina Vitral', 'Ana Paula Lisboa',
+	     'Dona Neide', 'Monique Prada', 'Beatriz Cerqueira'
+	 ],
+	 'type': 'Mesa de Debate',
+	 'in_meu_percurso': true
+	},
+	{'id': 2,
+	 'name': 'As Aventuras Políticas do Século XXI',
+	 'startsAt': '07/12 17h30',
+	 'endsAt': '20h30',
+	 'place': {
+	     'id': 1,
+	     'name': 'Circo Voador'
+	 },
+	 'speakers': [
+	     'Juca Ferreira', 'Jandira Feghali', 'Gilberto Gil', 'Lawrence Lessig', 'Constanza Moreira',
+	     'Jean Willys'
+	 ],
+	 'type': 'Mesa de Debate',
+	 'in_meu_percurso': false
+	},
+	{'id': 3,
+	 'name': 'Festa de Abertura',
+	 'startsAt': '07/12 21h30',
+	 'place': {
+	     'id': 1,
+	     'name': 'Circo Voador'
+	 },
+	 'speakers': [
+	     'Gilberto Gil', 'Grupo Fulniôs', 'Círculo das Águas Povos de Terreiro', 'Amy Secada',
+	     'Ana Tijoux | CHI', 'Ellen Oléria'
+	 ],
+	 'type': 'Festa',
+	 'track': 'Povos de Terreiro',
+	 'in_meu_percurso': true
+	},
+	{'id': 4,
+	 'name': 'Café da Manhã',
+	 'startsAt': '08/12 8h00',
+	 'endsAt': '9h00',
+	 'place': {
+	     'id': 2,
+	     'name': 'Quinta da Boa Vista'
+	 },
+	 'in_meu_percurso': true
+	},
+    ]
+})
+
+.controller('FilterCtrl', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {
 })
 
 .controller('PlaceCtrl', function($rootScope, $scope, $stateParams, Emergencias, Conn){
@@ -101,7 +169,7 @@ angular.module('emergencias.controllers', [])
         }
     });
 })
-.controller('FilterCtrl', function($rootScope, $scope, $stateParams, $filter, Programacao, Emergencias, $ionicModal, $timeout, $ionicSideMenuDelegate, Date, Filter, ListState) {
+.controller('FilterCtrlOld', function($rootScope, $scope, $stateParams, $filter, Programacao, Emergencias, $ionicModal, $timeout, $ionicSideMenuDelegate, Date, Filter, ListState) {
     var config = {
         duration : Date.oneDay(),
         start: Date.start(),
@@ -555,7 +623,7 @@ angular.module('emergencias.controllers', [])
         //$scope.loadMore();
     });
 })
-.controller('ProgramacaoCtrl', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {
+.controller('ProgramacaoCtrlOld', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {
     var eventsContainer = document.getElementById('programacao-container');
     var inscroll = false;
 

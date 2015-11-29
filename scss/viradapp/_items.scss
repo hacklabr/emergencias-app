@@ -8,7 +8,7 @@
 	.item {
 		background-color: transparent;
 		color: $brand-auxiliar;
-		border-color: darken($brand-accent, 10%);
+		border-color: RGBA(255, 255, 255, 0.3);
 		border-left: none;
 		border-right: none;
 		@extend %secondary-font;
@@ -18,6 +18,11 @@
 			margin-right: 11px;
 		}
 	}
+	.subitem {
+	    padding-left: 6em;
+	    padding-top: 0.75em;
+	    height: 3em;
+	}	
 	.item-divider {
 		color: darken($brand-accent, 20%);
 	}
@@ -106,7 +111,7 @@
 			font-size: 12px;
 			font-weight: bold;
 			line-height: 20px;
-			padding-left: 65px;
+			padding-left: 100px;
 			// TODO: necessary to put favorite star in list-programacao
 			padding-right: 30px;
 		}
