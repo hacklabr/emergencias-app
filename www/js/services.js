@@ -1,9 +1,9 @@
 app = angular.module('emergencias.services', [])
 
-app.factory('Events', function($http) {
+app.factory('Events', function($http, GlobalConfiguration) {
     return {
         query: function(){
-            var url = 'http://localhost:8100/data/events.json';
+            var url = GlobalConfiguration.BASE_URL + '/events.json';
     	    return $http.get(url)
         }
     };
@@ -138,7 +138,7 @@ app.factory('Emergencias', function($http, GlobalConfiguration, $cordovaFile, $i
 
     return {
 	tracks: function() {
-	    var url = 'http://localhost:8100/data/tracks.json';
+	    var url = GlobalConfiguration.BASE_URL + '/tracks.json';
 	    return $http.get(url)
 	},
 
