@@ -12,10 +12,10 @@ angular.module('emergencias.controllers', [])
     ]
 })
 
-.controller('ProgramacaoCtrl', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {
-    Emergencias.events().success(function(data) {
-	$scope.events = data
-    })
+.controller('ProgramacaoCtrl', function($rootScope, $scope, Events, Emergencias, MeuPercurso, $localStorage) {
+    Events.query().success(function(data) {
+	       $scope.events = data
+    });
 })
 
 .controller('FilterCtrl', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {

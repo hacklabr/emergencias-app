@@ -1,6 +1,15 @@
-angular.module('emergencias.services', [])
+app = angular.module('emergencias.services', [])
 
-.factory('Emergencias', function($http, GlobalConfiguration, $cordovaFile, $ionicPlatform, MeuPercurso, $q, $cacheFactory) {
+app.factory('Events', function($http) {
+    return {
+        query: function(){
+            var url = 'http://localhost:8100/data/events.json';
+    	    return $http.get(url)
+        }
+    };
+});
+
+app.factory('Emergencias', function($http, GlobalConfiguration, $cordovaFile, $ionicPlatform, MeuPercurso, $q, $cacheFactory) {
     var conf = {
         assets : "/assets/old/",
         spaces_data : {
@@ -129,14 +138,10 @@ angular.module('emergencias.services', [])
 
     return {
 	tracks: function() {
-	    var url = 'http://localhost:8000/tracks.json';
+	    var url = 'http://localhost:8100/data/tracks.json';
 	    return $http.get(url)
 	},
 
-        events: function() {
-	    var url = 'http://localhost:8000/events.json';
-	    return $http.get(url)
-        },
         spaces: function() {
             return data_source.then(function(data){
                 console.log(data);
