@@ -1,10 +1,46 @@
 app = angular.module('emergencias.services', [])
 
-app.factory('Events', function($http) {
+app.factory('Event', function($http) {
+
+    var events_data = undefined;
+    var url = 'http://localhost:8100/data/events.json';
+
     return {
-        query: function(){
-            var url = 'http://localhost:8100/data/events.json';
-    	    return $http.get(url)
+        query: function() {
+    	    return $http.get(url, {cache : true}).then(function(events) {
+                events_data = events.data;
+                return events_data;
+            });
+        },
+        get: function(id) {
+            return $http.get(url, {cache : true}).then(function(events) {
+                var event_data;
+                events.data.forEach(function(event){
+                    if (event.id == id) {
+                        event_data = event;
+                    }
+                });
+                return event_data;
+            });
+            // if (events_data === undefined) {
+            //     return $http.get(url, {cache : true}).then(function(events) {
+            //         var event_data;
+            //         events.data.forEach(function(event){
+            //             if (event.id == id) {
+            //                 event_data = event;
+            //             }
+            //         });
+            //         return event_data;
+            //     });
+            // } else {
+            //     var event_data;
+            //     events_data.forEach(function(event){
+            //         if (event.id == id) {
+            //             event_data = event;
+            //         }
+            //     });
+            //     return event_data;
+            // }
         }
     };
 });

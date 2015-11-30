@@ -12,8 +12,8 @@ angular.module('emergencias.controllers', [])
     ]
 })
 
-.controller('ProgramacaoCtrl', function($rootScope, $scope, Events, Emergencias, MeuPercurso, $localStorage) {
-    Events.query().success(function(data) {
+.controller('ProgramacaoCtrl', function($rootScope, $scope, Event, Emergencias, MeuPercurso, $localStorage) {
+    Event.query().then(function(data) {
 	       $scope.events = data
     });
 })
@@ -42,7 +42,7 @@ angular.module('emergencias.controllers', [])
     }
 })
 
-.controller('EventCtrl', function($rootScope, $scope, $stateParams, Emergencias, MeuPercurso, Date, $ionicModal, $state){
+.controller('EventCtrl', function($rootScope, $scope, $stateParams, Emergencias, Event, MeuPercurso, Date, $ionicModal, $state){
     $scope.$on('$ionicView.beforeEnter', function(){
         $rootScope.curr = 'event';
     });
@@ -57,53 +57,37 @@ angular.module('emergencias.controllers', [])
 
     $scope.LL = Date.LL;
     if($stateParams.event){
-	data = {
-	    'id': 1,
-	    'name': 'Mesa de Abertura - Ato Mulheres',
-	    "description": "Confraternização de abertura que marca o início do Emergências com uma programação artística que representa a diversidade cultural da América Latina. Um apanhado forte da cultura popular do país, trazendo nomes consagrados da música brasileira, enfatizando a cultura popular nacional, de matriz africana e indígena, além de uma atração potente feminina representando a latino-américa e a clássica intervenção do passinho, com um dos grupos mais importantes do Brasil.",
-	    'startsAt': '07/12 15h30',
-	    'endsAt': '17h30',
-	    'place': {
-		'id': 1,
-		'name': 'Circo Voador'
-	    },
-	    'speakers': [
-		{'name': 'Juca Ferreira',
-		 "photo": "http://emergencias.cultura.gov.br/wp-content/uploads/2015/10/juca-300x240.jpg",
-		 "bio": "João Luiz Silva Ferreira, mais conhecido como Juca Ferreira é um sociólogo e político brasileiro. Juca Ferreira nasceu na Bahia, é sociólogo e dedicou sua trajetória profissional à vida política e às ações culturais e ambientais." },
-		{'name': 'Ivana Bentes' },
-	    ],
-	    'type': 'Mesa de Debate',
-	    'in_meu_percurso': true
-	},
-        $rootScope.event = data;
-        $scope.event = data;
-        if(data.allFriends){
-            $scope.view.delta = data.allFriends.length - data.friends.length;
-            $scope.view.hasMore = true;
-        }
+
+        Event.get($stateParams.event).then(function (data) {
+            $rootScope.event = data;
+            $scope.event = data;
+        });
+        // if(data.allFriends){
+        //     $scope.view.delta = data.allFriends.length - data.friends.length;
+        //     $scope.view.hasMore = true;
+        // }
     } else {
         $state.go("emergencias.programacao()")
     }
 
-    $ionicModal.fromTemplateUrl('friends-modal.html', {
-        scope: $scope,
-        animation: 'slide-in-up'
-    }).then(function(modal) {
-        $scope.modal = modal;
-    });
+    // $ionicModal.fromTemplateUrl('friends-modal.html', {
+    //     scope: $scope,
+    //     animation: 'slide-in-up'
+    // }).then(function(modal) {
+    //     $scope.modal = modal;
+    // });
 
-    $scope.openModal = function() {
-        $scope.modal.show();
-    };
-
-    $scope.closeModal = function() {
-        $scope.modal.hide();
-    };
-
-    $scope.$on('$destroy', function() {
-        $scope.modal.remove();
-    });
+    // $scope.openModal = function() {
+    //     $scope.modal.show();
+    // };
+    //
+    // $scope.closeModal = function() {
+    //     $scope.modal.hide();
+    // };
+    //
+    // $scope.$on('$destroy', function() {
+    //     $scope.modal.remove();
+    // });
 
 })
 .controller('ButtonsCtrl', function($scope, $ionicSideMenuDelegate, $rootScope, Emergencias, MeuPercurso, $ionicGesture){
