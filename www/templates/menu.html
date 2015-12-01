@@ -9,9 +9,9 @@
                 </div>
             </ion-nav-buttons>
             <ion-nav-buttons side="right">
-                <div ng-if="programacao"
+                <!-- <div ng-if="programacao"
                      class="button icon ion-android-more-vertical" menu-toggle="right">
-                </div>
+                </div> -->
                 <!-- <div ng-repeat="b in shareButtons"
                     ng-if="!programacao && showMe(b)"
                     ng-click="share(b)" class="button icon social_share"></div> -->
@@ -70,14 +70,14 @@
     <ion-side-menu id="right-menu" ng-controller="FilterCtrl" side="right" is-enabled="programacao">
         <ion-content class="espacinho">
             <ion-list>
-                <div class="item item-input">
+                <!-- <div class="item item-input">
                     <i class="icon icon_search placeholder-icon"></i>
-                    <input ng-model="tempFilters.filters.query" ng-keydown="keyLog($event)" type="text" placeholder="Buscar">
-                </div>
+                    <input ng-model="search_text" type="text" placeholder="Buscar">
+                </div> -->
 
-                <ion-item class="item-divider">
+                <!-- <ion-item class="item-divider">
                     Filtrado por:
-                </ion-item>
+                </ion-item> -->
                 <!--<div class="item item-toggle">
                     <i class="icon icon_circle-slelected"></i>
                     Próximas a mim
@@ -88,7 +88,7 @@
                     </div>
                     </label>
                     </div>-->
-                <ion-item>
+                <!-- <ion-item>
                     <div ng-click="openModal()">
                         <i class="icon icon_pin"></i>
                         Locais
@@ -96,8 +96,8 @@
                             {{selectedSpaces}}
                         </span>
                     </div>
-                </ion-item>
-                <ion-item>
+                </ion-item> -->
+                <!-- <ion-item>
                     <div>
                         <i class="icon icon_clock"></i>
                         Horário
@@ -111,13 +111,13 @@
                                 rz-slider-step="1"></rzslider>
                         </article>
                     </div>
-                </ion-item>
+                </ion-item> -->
                 <!--<div class="item item-time-range">
                     <i class="icon icon_clock"></i>
                     Horário
                     </div>-->
 
-                <ion-item class="item-divider">
+                <!-- <ion-item class="item-divider">
                     Ordenado por:
                 </ion-item>
 
@@ -131,7 +131,7 @@
 
                 <ion-radio ng-model="tempFilters.view" ng-change="change(this)" ng-value="'H'">
                     <i class="icon icon_clock"></i> Horário
-                </ion-radio>
+                </ion-radio> -->
             </ion-list>
         </ion-content>
         <ion-footer-bar align-title="left" class="bar-light">
