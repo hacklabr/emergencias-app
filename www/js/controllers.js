@@ -13,12 +13,22 @@ angular.module('emergencias.controllers', [])
 })
 
 .controller('ProgramacaoCtrl', function($rootScope, $scope, Event, Emergencias, MeuPercurso, $localStorage) {
-    Event.query().then(function(data) {
-	       $scope.events = data
+    Event.all.then(function(events) {
+	       $scope.events = events
+    });
+
+    $scope.$on('$ionicView.beforeEnter', function(){
+        $rootScope.programacao = true;
+    });
+
+    $scope.$on('$ionicView.beforeLeave', function(){
+        // console.log(config);
+        $rootScope.programacao = false;
     });
 })
 
 .controller('FilterCtrl', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {
+    $scope.search_text = '';
 })
 
 .controller('PlaceCtrl', function($rootScope, $scope, $stateParams, Emergencias, Conn){
@@ -58,9 +68,9 @@ angular.module('emergencias.controllers', [])
     $scope.LL = Date.LL;
     if($stateParams.event){
 
-        Event.get($stateParams.event).then(function (data) {
-            $rootScope.event = data;
-            $scope.event = data;
+        Event.get($stateParams.event).then(function (event) {
+            $rootScope.event = event;
+            $scope.event = event;
         });
         // if(data.allFriends){
         //     $scope.view.delta = data.allFriends.length - data.friends.length;

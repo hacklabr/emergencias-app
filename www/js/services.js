@@ -1,49 +1,106 @@
 app = angular.module('emergencias.services', [])
 
-app.factory('Event', function($http) {
+app.service('Util', function() {
+    this.index_obj = function(obj_list) {
+        var indexed_obj = {};
+        obj_list.forEach(function(obj) {
+            indexed_obj[obj.id] = obj;
+        });
+        return indexed_obj;
+    }
+})
 
-    var events_data = undefined;
-    var url = 'http://localhost:8100/data/events.json';
+app.service('Space', function($http, GlobalConfiguration, Util) {
 
-    return {
-        query: function() {
-    	    return $http.get(url, {cache : true}).then(function(events) {
-                events_data = events.data;
-                return events_data;
-            });
-        },
-        get: function(id) {
-            return $http.get(url, {cache : true}).then(function(events) {
-                var event_data;
-                events.data.forEach(function(event){
-                    if (event.id == id) {
-                        event_data = event;
-                    }
-                });
-                return event_data;
-            });
-            // if (events_data === undefined) {
-            //     return $http.get(url, {cache : true}).then(function(events) {
-            //         var event_data;
-            //         events.data.forEach(function(event){
-            //             if (event.id == id) {
-            //                 event_data = event;
-            //             }
-            //         });
-            //         return event_data;
-            //     });
-            // } else {
-            //     var event_data;
-            //     events_data.forEach(function(event){
-            //         if (event.id == id) {
-            //             event_data = event;
-            //         }
-            //     });
-            //     return event_data;
-            // }
+    var language = 'pb';
+    this.url = GlobalConfiguration.BASE_URL + '/spaces-' + language + '.json';
+    this.spaces = $http.get(this.url, {cache : true});
+
+    this.all = this.spaces.then(function(data) {
+            return data.data;
         }
+    );
+
+    this.indexed_spaces = this.spaces.then(
+        function(spaces_data) {
+            return Util.index_obj(spaces_data.data);
+        }
+    )
+})
+
+app.service('Speaker', function($http, GlobalConfiguration, Util) {
+
+    var language = 'pb';
+    this.url = GlobalConfiguration.BASE_URL + '/speakers-' + language + '.json';
+
+    this.speakers = $http.get(this.url, {cache : true}).then(function(speakers_data) {
+        return speakers_data.data;
+    });
+
+    this.all = this.speakers.then(function(data) {
+            return data.data;
+        }
+    );
+
+    this.indexed_speakers = this.speakers.then(
+        function(speakers_data) {
+            return Util.index_obj(speakers_data);
+        }
+    );
+
+    this.get = function(speaker_id) {
+        return this.speakers.then(
+            function(indexed_speakers){
+                return indexed_speakers[speaker_id]
+            }
+        );
     };
-});
+})
+
+app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Util) {
+
+    var language = 'pb';
+    this.url = GlobalConfiguration.BASE_URL + '/events-' + language + '.json';
+    this.events = $http.get(this.url, {cache : true}).then(function(events_data) {
+        return events_data.data;
+    });
+
+    this.all = $q.all([this.events, Speaker.indexed_speakers, Space.indexed_spaces]).then(
+        function(data) {
+            events_data = data[0];
+            indexed_speakers = data[1];
+            indexed_spaces = data[2];
+            new_events_data = [];
+            events_data.forEach(function(event_data, i){
+                speakers = [];
+                event_data.speakers.forEach(function(speaker_id) {
+                    speakers.push(indexed_speakers[parseInt(speaker_id)]);
+                });
+                event_data.space = indexed_spaces[parseInt(event_data.spaceId)];
+                event_data.speakers = speakers;
+                event_data.tracks = event_data.terms.tracks;
+                event_data.types = event_data.terms.types;
+                // indexed_events[event_data.id] = event_data;
+                new_events_data.push(event_data);
+            });
+            return new_events_data;
+        }
+    );
+
+    this.indexed_events = this.all.then(
+        function(events_data) {
+            return Util.index_obj(events_data);
+        }
+    );
+    //
+    this.get = function(event_id) {
+        return this.indexed_events.then(
+            function(indexed_events){
+                return indexed_events[event_id]
+            }
+        );
+    };
+})
 
 app.factory('Emergencias', function($http, GlobalConfiguration, $cordovaFile, $ionicPlatform, MeuPercurso, $q, $cacheFactory) {
     var conf = {

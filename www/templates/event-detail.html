@@ -25,7 +25,7 @@
                     </p>-->
             </div>
 	    <div class="speaker" ng-repeat="speaker in event.speakers">
-	      <img ng-if="speaker.photo" src="{{speaker.photo}}"/>
+	      <img ng-if="speaker.photo" ng-src="{{speaker.photo}}">
 	      <h2>{{speaker.name}}</h2>
 	      <p ng-if="speaker.bio">{{speaker.bio}}</p>
 	    </div>
