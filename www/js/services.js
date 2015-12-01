@@ -231,7 +231,7 @@ app.factory('Emergencias', function($http, GlobalConfiguration, $cordovaFile, $i
 
     return {
 	tracks: function() {
-	    var url = 'http://localhost:8100/data/tracks.json';
+	    var url = GlobalConfiguration.BASE_URL + '/tracks.json';
 	    return $http.get(url)
 	},
 
