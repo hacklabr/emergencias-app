@@ -1,4 +1,16 @@
-var emergencias = angular.module("emergencias", ['ionic', 'rzModule', 'emergencias.wrappers', 'emergencias.controllers', 'emergencias.services', 'emergencias.config', 'emergencias.meu_percurso', 'emergencias.programacao', 'ngStorage', 'ngCordova']);
+var emergencias = angular.module("emergencias", [
+    'ionic',
+    'rzModule',
+    'emergencias.wrappers',
+    'emergencias.controllers',
+    'emergencias.services',
+    'emergencias.config',
+    'emergencias.meu_percurso',
+    'emergencias.programacao',
+    'ngStorage',
+    'ngCordova',
+    'angular.filter'
+]);
 
 emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
     //$ionicConfigProvider.scrolling.jsScrolling(false);
@@ -86,4 +98,3 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
 
     $urlRouterProvider.otherwise('/emergencias/programacao');
 });
-
