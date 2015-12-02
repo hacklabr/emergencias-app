@@ -4,9 +4,9 @@
         <div class="list">
           <div class="collection-repeat-container" >
             <div id="programacao-container">
-                <div ng-repeat="(date, events_group) in events | filter:filter.search_text | groupBy: 'startsOn'">
+                <div ng-repeat="(date, events_group) in events | filter:filter.search_text | orderBy:'startsOn' | groupBy: 'startsOn'">
                     <small class="event-place">{{ date }}</small>
-                    <div class="item" ng-repeat="event in events_group | orderBy:'-startsAt'">
+                    <div class="item" ng-repeat="event in events_group | orderBy:'startsAt'">
                         <div class="item-content">
                           <div>
                             <a ui-sref="emergencias.event-detail({event:event.id})">
