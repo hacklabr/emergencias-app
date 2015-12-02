@@ -1,0 +1,115 @@
+<ion-view view-title="Mesas de Debates">
+    <ion-content id="programacao-content" overflow-scroll="true">
+      <div g-show="renderDone" class="list list-programacao">
+        <div class="list">
+          <div class="collection-repeat-container" >
+            <div id="programacao-container">
+                <!-- <div ng-repeat="(date, events_group) in events | arrayFilter: 'tracks': ['Mesa de Debates', 'Festas']"> -->
+                <div ng-repeat="events in events | arrayFilter: 'tracks': ['Mesa de Debates']">
+                <!-- <div collection-repeat="(date, events_group) in events | arrayFilter: 'tracks': ['Mesa de Debates', 'Festas']"> -->
+                    <small class="event-place">{{ date }}</small>
+                    <!-- <div class="item" ng-repeat="event in events_group | orderBy:'startsAt'"> -->
+                        <div class="item-content">
+                          <div>
+                            <a ui-sref="emergencias.event-detail({event:event.id})">
+                              <div class="event-time">
+                                  <i class="icon icon_clock"></i>
+                                          <time>{{event.startsAt}}</time>
+                              </div>
+                              <h2>{{event.name}}</h2>
+                            </a>
+                            <small class="event-place"><a><i class="icon icon_pin"></i> {{event.space.name}}</a>
+                              <span class="event-track" ng-if="event.tracks"><i class="icon_hashtag"></i> {{event.tracks[0]}}</span>
+                              <span class="event-type" ng-if="event.type">
+                                  <i class="icon icon_chat"></i>
+                                  {{event.type[0]}}
+                              </span>
+                            </small>
+                            <div class="event-speakers-container" ng-if="event.speakers.length>0">
+                              <i class="icon icon_group"></i>
+                              <small class="event-speakers">
+                                <a ng-repeat="speaker in event.speakers"> {{speaker.name}}<span ng-if="!$last">, </span>
+                                </a>
+                                <!-- <a href=# class="js-meu-percurso" onclick="meu_percurso(this.parentElement.parentElement.event);">
+                                  <i ng-class="{'icon_star':event.in_meu_percurso,'icon_star_alt':!event.in_meu_percurso}" class="icon icon-accessory event-star"></i>
+                                </a> -->
+                              </small>
+                            </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ion-content>
+ </ion-view>
+<!-- <ion-view view-title="Programação">
+    <ion-content id="programacao-content" overflow-scroll="true">
+        <div ng-hide="renderDone">
+            <article class="single">
+                <p>&nbsp;</p>
+                <p class="text-center">
+                    <ion-spinner ng-show="!repeatDone" icon="dots" class=""></ion-spinner>
+                </p>
+            </article>
+        </div>
+        <div ng-show="renderDone" class="list list-programacao">
+            <div class="list">
+                <div class="collection-repeat-container" >
+                    <div id="programacao-container" ng-class="{'sorted-by-place': view.sorted === 'L'}">
+
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+<script type="text/html" id="template-place">
+    <div class="item item-divider">
+        <div class="item-content" onclick="redirectFromListTo('#/emergencias/programacao/place/<%= entity.id %>')">
+            <div class="item-complex">
+                <%= entity.name %>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script type="text/html" id="template-evento">
+    <div class="item" >
+        <div class="item-content">
+            <div>
+                <a onclick="redirectFromListTo('#/emergencias/programacao/event/<%= entity.id %>')">
+                    <div class="event-time">
+                        <i class="icon icon_clock"></i>
+                        <time class="ng-binding">
+                            <%= entity.startsAt %>
+                        </time>
+                    </div>
+                    <h2>
+                        <%= entity.name %>
+                    </h2>
+                </a>
+                <% if(entity.space){ %>
+                <small class="event-place"><a onclick="redirectFromListTo('#/emergencias/programacao/place/<%= entity.space.id %>')"><i class="icon icon_pin"></i> <%= entity.space.name %></a></small>
+                <% } %>
+
+            </div>
+            <% if (connected) { %>
+                <a href=# class="js-meu-percurso" onclick="meu_percurso(this.parentElement.parentElement.event);">
+                    <% if (entity.in_meu_percurso){ %>
+                    <i class="icon icon-accessory event-star icon_star"></i>
+                    <% } else { %>
+                    <i class="icon icon-accessory event-star icon_star_alt"></i>
+                    <% } %>
+                </a>
+            <% } else { %>
+                <i class="icon ion-chevron-right icon-accessory"></i>
+            <% } %>
+        </div>
+    </div>
+</script>
+    </ion-content>
+</ion-view>
+-->
