@@ -5,7 +5,8 @@
     "ionic": "driftyco/ionic-bower#1.1.1",
     "moment": "~2.10.6",
     "ngCordova": "*",
-    "angular-filter": "~0.5.8"
+    "angular-filter": "~0.5.8",
+    "ionic-platform-web-client": "~0.2.1"
   },
   "dependencies": {
     "lazy.js": "~0.4.0",

@@ -73,5 +73,13 @@
             "API_KEY_FOR_ANDROID": "AIzaSyC7rbKXEV0OqgTgqcLTzAV0zxiEYX_PBVY",
             "API_KEY_FOR_IOS": "AIzaSyADQRjMFkU0sXdr9hAJM9zifwkj3vBNIvU"
         }
+    },
+    "phonegap-plugin-push": {
+        "source": {
+            "type": "registry",
+            "id": "phonegap-plugin-push"
+        },
+        "is_top_level": true,
+        "variables": {}
     }
 }

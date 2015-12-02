@@ -34,6 +34,9 @@
         "plugin.google.maps": {
             "API_KEY_FOR_ANDROID": "AIzaSyC7rbKXEV0OqgTgqcLTzAV0zxiEYX_PBVY",
             "PACKAGE_NAME": "br.com.hacklab"
+        },
+        "phonegap-plugin-push": {
+            "PACKAGE_NAME": "br.com.hacklab"
         }
     },
     "dependent_plugins": {}

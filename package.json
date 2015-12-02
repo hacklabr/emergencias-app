@@ -31,7 +31,8 @@
       },
       "locator": "cordova-plugin-googlemaps@1.3.4",
       "id": "plugin.google.maps"
-    }
+    },
+    "phonegap-plugin-push@1.4.4" 
   ],
   "cordovaPlatforms": [
     "android"

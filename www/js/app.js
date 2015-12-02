@@ -1,5 +1,5 @@
 var emergencias = angular.module("emergencias", [
-    'ionic',
+    'ionic','ionic.service.core',
     'rzModule',
     'emergencias.wrappers',
     'emergencias.controllers',
@@ -107,4 +107,16 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
     // });
 
     $urlRouterProvider.otherwise('/emergencias/programacao');
-});
+})
+
+.run(function($ionicPlatform) {
+    $ionicPlatform.ready(function() {
+	var push = new Ionic.Push({
+	    "debug": true
+	});
+	
+	push.register(function(token) {
+	    console.log("Device token:",token.token);
+	});
+    });
+})
