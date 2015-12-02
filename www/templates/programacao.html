@@ -24,8 +24,8 @@
                               </span>
                             </small>
                             <div class="event-speakers-container" ng-if="event.speakers.length>0">
-                              <i class="icon icon_group"></i>
                               <small class="event-speakers">
+				<i class="icon icon_group"></i>
                                 <a ng-repeat="speaker in event.speakers"> {{speaker.name}}<span ng-if="!$last">, </span>
                                 </a>
                                 <!-- <a href=# class="js-meu-percurso" onclick="meu_percurso(this.parentElement.parentElement.event);">

@@ -22,11 +22,10 @@ span.event-track {
     content: "#";
 }
 .event-place { margin-left: 2px; }
-.event-speakers {
-    float: left; margin-left: 1em; margin-top: -1.5em; 
-}
+.icon_group { float: left; }
 .event-speakers a {
-    float: left; margin-left: 0.5em;
+    float: left;
+    margin-left: 0.5em;
 }
 small.event-place span { margin-left: 1em; }
 .sorted-by-place small.event-place { display:none; }
