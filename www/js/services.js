@@ -1,4 +1,4 @@
-app = angular.module('emergencias.services', [])
+app = angular.module('emergencias.services', []);
 
 app.service('Util', function() {
     this.index_obj = function(obj_list) {
