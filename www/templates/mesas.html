@@ -4,11 +4,11 @@
         <div class="list">
           <div class="collection-repeat-container" >
             <div id="programacao-container">
-                <!-- <div ng-repeat="(date, events_group) in events | arrayFilter: 'tracks': ['Mesa de Debates', 'Festas']"> -->
-                <div ng-repeat="events in events | arrayFilter: 'tracks': ['Mesa de Debates']">
+                <div ng-repeat="(date, events_group) in events | arrayFilter: 'tracks': ['Mesa de Debates'] | orderBy:'startsOn' | groupBy: 'startsOn'">
+                <!-- <div ng-repeat="events in events | arrayFilter: 'tracks': ['Mesa de Debates'] | orderBy:'startsOn' | groupBy: 'startsOn'"> -->
                 <!-- <div collection-repeat="(date, events_group) in events | arrayFilter: 'tracks': ['Mesa de Debates', 'Festas']"> -->
                     <small class="event-place">{{ date }}</small>
-                    <!-- <div class="item" ng-repeat="event in events_group | orderBy:'startsAt'"> -->
+                    <div class="item" ng-repeat="event in events_group | orderBy:'startsAt'">
                         <div class="item-content">
                           <div>
                             <a ui-sref="emergencias.event-detail({event:event.id})">
