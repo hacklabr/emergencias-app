@@ -68,7 +68,7 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
     })
 
     .state('emergencias.programacao_redes', {
-        url: '/programacao',
+        url: '/redes/:meeting',
         views: {
             'menu-view': {
                 templateUrl: 'templates/programacao-redes.html',
@@ -88,7 +88,7 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
     })
 
     .state('emergencias.programacao_territorios', {
-        url: '/programacao',
+        url: '/territorios/:territory',
         views: {
             'menu-view': {
                 templateUrl: 'templates/programacao-territorios.html',

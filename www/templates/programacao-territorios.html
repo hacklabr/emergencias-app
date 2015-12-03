@@ -1,10 +1,10 @@
-<ion-view view-title="Rodas de Conversas">
+<ion-view view-title="#Percurso{{territory}}">
     <ion-content id="programacao-content" overflow-scroll="true">
       <div g-show="renderDone" class="list list-programacao">
         <div class="list">
           <div class="collection-repeat-container" >
             <div id="programacao-container">
-                <div ng-repeat="(date, events_group) in events | arrayFilter: 'types': ['Rodas de Conversas'] | orderBy:'startsOn' | groupBy: 'date'">
+                <div ng-repeat="(date, events_group) in events | arrayFilter: 'territories': [territory] | orderBy:'startsOn' | groupBy: 'date'">
 		  <ng-include src="'/templates/event-item.html'"></ng-include>
                 </div>
             </div>

@@ -44,6 +44,8 @@ for event in events:
             percurso = percurso.replace(' e ', '').replace(' ', '')
             percursos.append(percurso)
             territories[percurso] = 1
+        elif track.startswith('Percursos Territoriais'):
+            pass
         else:
             types.append(track)
     event['terms']['types'] = types

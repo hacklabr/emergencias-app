@@ -12,10 +12,17 @@ angular.module('emergencias.controllers', [])
 //     ]
 // })
 
-.controller('ProgramacaoCtrl', function($rootScope, $scope, Event, MeuPercurso, $localStorage) {
+.controller('ProgramacaoCtrl', function($rootScope, $scope, $stateParams, Event, MeuPercurso, $localStorage) {
     Event.all.then(function(events) {
 	       $scope.events = events
     });
+
+    if ($stateParams.meeting) {
+	$scope.meeting = $stateParams.meeting;
+    }
+    if ($stateParams.territory) {
+	$scope.territory = $stateParams.territory;
+    }
 
     $scope.$on('$ionicView.beforeEnter', function(){
         $rootScope.programacao = true;
