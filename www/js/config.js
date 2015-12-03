@@ -41,7 +41,7 @@ angular.module("emergencias.config", [])
         TERMS_URL: "http://www.google.com",
         PRAVACY_URL: "http://www.uol.com.br",
 
-        APP_ID: '1460336737533597'
+        APP_ID: 'b3b396b4'
     }
 });
 //http://emergencias.cultura.gov.br/wp-content/uploads/json/spaces-pb.json
