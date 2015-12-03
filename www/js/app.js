@@ -1,9 +1,6 @@
 var emergencias = angular.module("emergencias", [
-    'ionic',
-    'ionic.service.core',
+    'ionic','ionic.service.core',
     'ionic.service.push',
-    'rzModule',
-    'emergencias.wrappers',
     'emergencias.controllers',
     'emergencias.services',
     'emergencias.filters',
