@@ -1,5 +1,14 @@
 app = angular.module('emergencias.services', []);
 
+var format_description = function(desc) {
+    var ps = desc.split(/\n+/);
+    var desc = ''
+    for (var i=0; i<ps.length; i++) {
+	desc += '<p>' + ps[i] + '</p>'
+    }
+    return desc;
+}
+
 app.service('Util', function() {
     this.index_obj = function(obj_list) {
         var indexed_obj = {};
@@ -38,9 +47,13 @@ app.service('Speaker', function($http, GlobalConfiguration, Util) {
     });
 
     this.all = this.speakers.then(function(data) {
-            return data;
-        }
-    );
+        new_data = [];
+        data.forEach(function(data, i){
+            data.description = format_description(data.description);
+            new_data.push(data);
+        });
+        return new_data;
+    });
 
     this.indexed_speakers = this.speakers.then(
         function(speakers_data) {
@@ -123,7 +136,8 @@ app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Ut
                 event_data.types = event_data.terms.types;
                 event_data.meetings = event_data.terms.meetings;
                 event_data.territories = event_data.terms.territories;
-		event_data.date = format_date(event_data.startsOn)
+		event_data.date = format_date(event_data.startsOn);
+		event_data.description = format_description(event_data.description);
                 // indexed_events[event_data.id] = event_data;
                 new_events_data.push(event_data);
             });

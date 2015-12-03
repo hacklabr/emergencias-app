@@ -1,7 +1,11 @@
 
+.post-content a {
+    text-decoration: underline;
+}
 .speaker {
 	 margin-top: 1em;
-	 img { width: 100px; float: left; margin-right: 1em; }
+	 img { width: 150px; height: 150px; float: left; margin-right: 1em; margin-bottom: 1em;}
 	 h2 { font-size: 1.5em; margin: 0 }
+	 hr { margin: 1em 0; width: 100%;}
 }
 	 

@@ -107,6 +107,16 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
+    .state('emergencias.event-detail', {
+	url: '/programacao/event/:event',
+        views: {
+            'menu-view': {
+                templateUrl: 'templates/event-detail.html',
+                controller: 'EventCtrl'
+            }
+        }
+    })
+
     // .state('emergencias.redes', {
 	// url: '/redes',
 	// views: {
@@ -116,7 +126,7 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
     //         },
 	// }
     // })
-    //
+   //
     // .state('emergencias.meu-percurso', {
     //     url: '/programacao/meu-percurso',
     //     views: {
