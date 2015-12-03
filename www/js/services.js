@@ -93,6 +93,20 @@ app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Ut
         return events_data.data;
     });
 
+    var week = [ '2ª feira',
+		 '3ª feira',
+		 '4ª feira',
+		 '5ª feira',
+		 '6ª feira',
+		 'Sábado',
+		 'Domingo' ]
+
+    var format_date = function(date) {
+	date = new Date(date)
+	console.log(date)
+	return date.getDate() + '/' + (date.getMonth()+1) + ' - ' + week[date.getDay()]
+    }
+
     this.all = $q.all([this.events, Speaker.indexed_speakers, Space.indexed_spaces]).then(
         function(data) {
             events_data = data[0];
@@ -109,6 +123,7 @@ app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Ut
                 event_data.types = event_data.terms.types;
                 event_data.meetings = event_data.terms.meetings;
                 event_data.territories = event_data.terms.territories;
+		event_data.date = format_date(event_data.startsOn)
                 // indexed_events[event_data.id] = event_data;
                 new_events_data.push(event_data);
             });

@@ -1,4 +1,4 @@
-                    <small class="event-place">{{ date }}</small>
+                    <small class="event-place"><h2>Dia {{ date }}</h2></small>
                     <div class="item" ng-repeat="event in events_group | orderBy:'startsAt'">
                         <div class="item-content">
                           <div>
@@ -7,7 +7,7 @@
                                   <i class="icon icon_clock"></i>
                                           <time>{{event.startsAt}}</time>
                               </div>
-                              <h2>{{event.name}}</h2>
+                              <h3>{{event.name}}</h3>
                             </a>
 			    <div class="event-terms">
                               <small class="event-term event-place" ng-if="event.space">

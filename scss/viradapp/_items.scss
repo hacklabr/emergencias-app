@@ -104,10 +104,21 @@
 	right:0 !important;
 }
 
+.event-place {
+    h2 {
+	font-size: 14px;
+	font-weight: bold;
+	line-height: 20px;
+	padding-left: 10px;
+	padding-top: 3px;
+	padding-bottom: 0;
+	margin-bottom: 3px;
+    }
+}
 // Programação items
 .list-programacao {
 	.item {
-		h2 {
+		h3 {
 			font-size: 12px;
 			font-weight: bold;
 			line-height: 20px;
