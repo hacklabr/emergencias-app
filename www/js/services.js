@@ -173,3 +173,51 @@ app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Ut
         );
     };
 });
+
+app.service('Notifications', function($http, $localStorage, $ionicPush) {
+
+    var self = this;
+
+    if (!$localStorage.messages) {
+	$localStorage.messages = [];
+	$localStorage.unread = 0;
+    }
+
+    this.messages = $localStorage.messages;
+    this.unread = $localStorage.unread;
+
+    this.commit = function() {
+	$localStorage.messages = self.messages;
+	$localStorage.unread = self.unread;
+    }
+
+    this.notify = function(message) {
+	self.unread += 1;
+	self.messages.unshift(message);
+
+	self.commit();
+    }
+
+    this.getMessages = function() {
+	return self.messages;
+    }
+
+    this.readAll = function(){
+	self.unread = 0
+	self.commit();
+    }
+
+    $ionicPush.init({
+	debug: true,
+	"onNotification": function(notification) {
+	    var message = {
+		title: notification.title,
+		message: notification.text
+	    }
+	    self.notify(message);
+	}
+    })
+
+
+})
+

@@ -146,45 +146,15 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
-    // .state('emergencias.redes', {
-	// url: '/redes',
-	// views: {
-    //         'menu-view': {
-	// 	templateUrl: 'templates/redes.html',
-	// 	controller: 'TrackCtrl'
-    //         },
-	// }
-    // })
-   //
-    // .state('emergencias.meu-percurso', {
-    //     url: '/programacao/meu-percurso',
-    //     views: {
-    //         'menu-view': {
-    //             templateUrl: 'templates/meu-percurso.html',
-    //             controller: 'MeuPercursoCtrl'
-    //         },
-    //     }
-    // })
-    //
-    // .state('emergencias.event-detail', {
-    //     url: '/programacao/event/:event',
-    //     views: {
-    //         'menu-view': {
-    //             templateUrl: 'templates/event-detail.html',
-    //             controller: 'EventCtrl'
-    //         }
-    //     }
-    // })
-    //
-    // .state('emergencias.place-detail', {
-    //     url: '/programacao/place/:place',
-    //     views: {
-    //         'menu-view': {
-    //             templateUrl: 'templates/place-detail.html',
-    //             controller: 'PlaceCtrl'
-    //         }
-    //     }
-    // })
+    .state('emergencias.notifications', {
+	url: '/notifications',
+	views: {
+	    'menu-view': {
+		templateUrl: 'templates/notifications.html',
+		controller: 'NotificationsCtrl'
+	    }
+	}
+    })
 
     .state('emergencias.about', {
         url: '/programacao/sobre',
