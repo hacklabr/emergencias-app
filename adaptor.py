@@ -33,10 +33,12 @@ for event in events:
                 encontro = encontro[6:]
             if encontro.startswith('de '):
                 encontro = encontro[3:]
+            encontro = encontro.replace(' e ', '').replace(' ', '')
             encontros.append(encontro)
             meetings[encontro] = 1
         elif track.startswith('Percurso '):
             percurso = track[9:]
+            percurso = percurso.replace(' e ', '').replace(' ', '')
             percursos.append(percurso)
             territories[percurso] = 1
         else:
