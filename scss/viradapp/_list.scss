@@ -17,6 +17,23 @@ small.event-term {
 div.event-speaker-container {
 
 }
+.icon-telegram {
+    width: 30px;
+    height: 30px;
+    padding: 10px 0 0 10px;
+    display: inline-box;
+}
+.chat-telegram {
+    padding: -5px;
+    small {
+	position: absolute;
+	top: 12px;
+	left: 35px;
+	vertical-align: top;
+	font-size: 15px;
+	display: inline-box;
+    }
+}
 .icon_hashtag {
     color: #CD2028;
     font-weight: bold;

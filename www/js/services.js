@@ -62,7 +62,7 @@ app.service('Speaker', function($http, GlobalConfiguration, Util) {
     );
 
     this.get = function(speaker_id) {
-        return this.speakers.then(
+        return this.indexed_speakers.then(
             function(indexed_speakers){
                 return indexed_speakers[speaker_id]
             }
@@ -82,6 +82,20 @@ app.service('Meeting', function($http, GlobalConfiguration, Util) {
             return meetings_data;
         }
     );
+
+    this.indexed_meetings = this.meetings.then(
+        function(data) {
+            return Util.index_obj(data);
+        }
+    );
+
+    this.get = function(meeting_id) {
+        return this.indexed_meetings.then(
+            function(indexed_meetings) {
+                return indexed_meetings[meeting_id];
+            }
+        );
+    };
 })
 
 app.service('Territory', function($http, GlobalConfiguration, Util) {

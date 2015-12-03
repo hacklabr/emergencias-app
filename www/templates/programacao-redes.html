@@ -1,10 +1,16 @@
-<ion-view view-title="#Encontro{{meeting}}">
+<ion-view view-title="#Encontro{{meeting.id}}">
     <ion-content id="programacao-content" overflow-scroll="true">
       <div g-show="renderDone" class="list list-programacao">
+	<div class="chat-telegram" ng-if="meeting.telegram">
+	  <img class="icon-telegram" src="/img/icon-telegram.png"/>
+	  <a ng-href="{{meeting.telegram}}">
+	    <small>Participe do grupo {{meeting.id}}</small>
+	  </a>
+	</div>
         <div class="list">
           <div class="collection-repeat-container" >
             <div id="programacao-container">
-                <div ng-repeat="(date, events_group) in events | arrayFilter: 'meetings': [meeting] | orderBy:'startsOn' | groupBy: 'date'">
+                <div ng-repeat="(date, events_group) in events | arrayFilter: 'meetings': [meeting.id] | orderBy:'startsOn' | groupBy: 'date'">
 		  <ng-include src="'templates/event-item.html'"></ng-include>
                 </div>
             </div>

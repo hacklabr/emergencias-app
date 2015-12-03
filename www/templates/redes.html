@@ -5,8 +5,8 @@
                 <div class="collection-repeat-container" >
                     <div id="redes-container">
 		      <div class="item" ng-repeat="meeting in meetings">
-                        <a ui-sref="emergencias.programacao_redes({meeting:meeting})">
-			#Encontro{{meeting}}
+                        <a ui-sref="emergencias.programacao_redes({meeting:meeting.id})">
+			#Encontro{{meeting.id}}
 		      </div>
                     </div>
                 </div>
