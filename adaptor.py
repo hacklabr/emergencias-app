@@ -46,8 +46,8 @@ for event in events:
     event['terms']['territories'] = percursos
     del event['terms']['tracks']
 
-open('data/events-pb.json', 'w').write(json.dumps(events))
-open('data/meetings-pb.json', 'w').write(json.dumps(sorted(meetings.keys())))
-open('data/territories-pb.json', 'w').write(json.dumps(sorted(territories.keys())))
-open('data/speakers-pb.json', 'w').write(json.dumps(speakers))
-open('data/spaces-pb.json', 'w').write(json.dumps(spaces))
+open('www/data/events-pb.json', 'w').write(json.dumps(events))
+open('www/data/meetings-pb.json', 'w').write(json.dumps(sorted(meetings.keys())))
+open('www/data/territories-pb.json', 'w').write(json.dumps(sorted(territories.keys())))
+open('www/data/speakers-pb.json', 'w').write(json.dumps(speakers))
+open('www/data/spaces-pb.json', 'w').write(json.dumps(spaces))
