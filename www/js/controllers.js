@@ -12,13 +12,15 @@ angular.module('emergencias.controllers', [])
 //     ]
 // })
 
-.controller('ProgramacaoCtrl', function($rootScope, $scope, $stateParams, Event, MeuPercurso, $localStorage) {
+.controller('ProgramacaoCtrl', function($rootScope, $scope, $stateParams, Event, Meeting, $localStorage) {
     Event.all.then(function(events) {
 	       $scope.events = events
     });
 
     if ($stateParams.meeting) {
-	$scope.meeting = $stateParams.meeting;
+	Meeting.get($stateParams.meeting).then(function(data) {
+	    $scope.meeting = data;
+	});
     }
     if ($stateParams.territory) {
 	$scope.territory = $stateParams.territory;
@@ -29,7 +31,6 @@ angular.module('emergencias.controllers', [])
     });
 
     $scope.$on('$ionicView.beforeLeave', function(){
-        // console.log(config);
         $rootScope.programacao = false;
     });
 })

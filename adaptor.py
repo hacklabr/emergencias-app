@@ -55,8 +55,16 @@ for event in events:
 
 ind = 4
 
+meetings_data = []
+for meeting in sorted(meetings.keys()):
+    meetings_data.append({
+        'id': meeting,
+    })
+
+meetings_data[0]['telegram'] = 'http://emergencias.hacklab.com.br/chats/Xis'
+
 open(os.path.join(DEST, 'events-pb.json'), 'w').write(json.dumps(events, indent=ind))
-open(os.path.join(DEST, 'meetings-pb.json'), 'w').write(json.dumps(sorted(meetings.keys()), indent=ind))
+open(os.path.join(DEST, 'meetings-pb.json'), 'w').write(json.dumps(meetings_data, indent=ind))
 open(os.path.join(DEST, 'territories-pb.json'), 'w').write(json.dumps(sorted(territories.keys()), indent=ind))
 open(os.path.join(DEST, 'speakers-pb.json'), 'w').write(json.dumps(speakers, indent=ind))
 open(os.path.join(DEST, 'spaces-pb.json'), 'w').write(json.dumps(spaces, indent=ind))
