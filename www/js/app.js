@@ -6,8 +6,7 @@ var emergencias = angular.module("emergencias", [
     'emergencias.services',
     'emergencias.filters',
     'emergencias.config',
-    'emergencias.meu_percurso',
-    'emergencias.programacao',
+    // 'emergencias.meu_percurso',
     'ngStorage',
     'ngCordova'
 ]);
@@ -184,7 +183,7 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
 	var push = new Ionic.Push({
 	    "debug": true
 	});
-	
+
 	push.register(function(token) {
 	    console.log("Device token:",token.token);
 	});

@@ -159,7 +159,7 @@ app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Ut
     };
 })
 
-app.factory('Emergencias', function($http, GlobalConfiguration, $cordovaFile, $ionicPlatform, MeuPercurso, $q, $cacheFactory) {
+app.factory('Emergencias', function($http, GlobalConfiguration, $cordovaFile, $ionicPlatform, $q, $cacheFactory) {
     var conf = {
         assets : "/assets/old/",
         spaces_data : {

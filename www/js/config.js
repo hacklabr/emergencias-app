@@ -1,34 +1,34 @@
 angular.module("emergencias.config", [])
-.factory('Conn', function(){
-    CONN = "DEFAULT";
-
-    // Connection Change Handler
-    // This function just change the global connection type
-    var connChangeHandler = function(conn){
-        if(window.Connection) {
-            if(Connection.NONE == conn.type){
-                emergencias.value('CONN', Connection.NONE);
-            } else if(Connection.ETHERNET == conn.type
-                || Connection.WIFI == conn.type
-                    || Connection.CELL_4G){
-                        CONN = "FAST";
-                    } else {
-                        CONN = "SLOW";
-                    }
-        } else {
-            CONN = "UNKNOWN";
-        }
-    }
-
-    document.addEventListener("online", connChangeHandler, false);
-    document.addEventListener("offline", connChangeHandler, false);
-
-    return {
-        type: function(){
-            return CONN;
-        }
-    }
-})
+// .factory('Conn', function(){
+//     CONN = "DEFAULT";
+//
+//     Connection Change Handler
+//     This function just change the global connection type
+//     var connChangeHandler = function(conn){
+//         if(window.Connection) {
+//             if(Connection.NONE == conn.type){
+//                 emergencias.value('CONN', Connection.NONE);
+//             } else if(Connection.ETHERNET == conn.type
+//                 || Connection.WIFI == conn.type
+//                     || Connection.CELL_4G){
+//                         CONN = "FAST";
+//                     } else {
+//                         CONN = "SLOW";
+//                     }
+//         } else {
+//             CONN = "UNKNOWN";
+//         }
+//     }
+//
+//     document.addEventListener("online", connChangeHandler, false);
+//     document.addEventListener("offline", connChangeHandler, false);
+//
+//     return {
+//         type: function(){
+//             return CONN;
+//         }
+//     }
+// })
 .factory('GlobalConfiguration', function(){
     return {
         BASE_URL : "http://emergencias.hacklab.com.br/api",
