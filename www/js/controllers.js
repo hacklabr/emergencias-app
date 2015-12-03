@@ -12,7 +12,7 @@ angular.module('emergencias.controllers', [])
 //     ]
 // })
 
-.controller('ProgramacaoCtrl', function($rootScope, $scope, $stateParams, Event, Meeting, $localStorage) {
+.controller('ProgramacaoCtrl', function($rootScope, $scope, $stateParams, Event, Meeting, Territory, $localStorage) {
     Event.all.then(function(events) {
 	       $scope.events = events
     });
@@ -22,8 +22,11 @@ angular.module('emergencias.controllers', [])
 	    $scope.meeting = data;
 	});
     }
+
     if ($stateParams.territory) {
-	$scope.territory = $stateParams.territory;
+	Territory.get($stateParams.territory).then(function(data) {
+	    $scope.territory = data;
+	});
     }
 
     $scope.$on('$ionicView.beforeEnter', function(){
@@ -41,36 +44,15 @@ angular.module('emergencias.controllers', [])
     });
 })
 
-// .controller('PercursosCtrl', function($rootScope, $scope, Territory, MeuPercurso, $localStorage) {
-//     Territory.all.then(function(territories) {
-// 	$scope.territories = territories
-//     });
-// })
+.controller('PercursosCtrl', function($rootScope, $scope, Territory, $localStorage) {
+    Territory.all.then(function(territories) {
+ 	$scope.territories = territories
+    });
+})
 
 .controller('FilterCtrl', function($rootScope, $scope, $localStorage) {
     $scope.search_text = '';
 })
-
-// .controller('PlaceCtrl', function($rootScope, $scope, $stateParams, Emergencias, Conn){
-//     $scope.$on('$ionicView.beforeEnter', function(){
-//         $rootScope.curr = 'place';
-//     });
-//
-//     $scope.$on('$ionicView.beforeLeave', function(){
-//         $rootScope.curr = false;
-//     });
-//
-//     if($stateParams.place){
-//         Emergencias.getPlaceEvents($stateParams.place)
-//         .then(function(data){
-//             $rootScope.place = data;
-//             $scope.space = data;
-//             $scope.spaceEvents = data.events;
-//         });
-//     } else {
-//         // none selected
-//     }
-// })
 
 .controller('EventCtrl', function($rootScope, $scope, $stateParams, Event, Date, $ionicModal, $state){
     $scope.$on('$ionicView.beforeEnter', function(){

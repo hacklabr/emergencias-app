@@ -1,10 +1,16 @@
-<ion-view view-title="#Percurso{{territory}}">
+<ion-view view-title="#Percurso{{territory.id}}">
     <ion-content id="programacao-content" overflow-scroll="true">
       <div g-show="renderDone" class="list list-programacao">
+	<div class="chat-telegram" ng-if="territory.telegram">
+	  <img class="icon-telegram" src="/img/icon-telegram.png"/>
+	  <a ng-href="{{territory.telegram}}">
+	    <small>Participe do grupo {{territory.id}}</small>
+	  </a>
+	</div>
         <div class="list">
           <div class="collection-repeat-container" >
             <div id="programacao-container">
-                <div ng-repeat="(date, events_group) in events | arrayFilter: 'territories': [territory] | orderBy:'startsOn' | groupBy: 'date'">
+                <div ng-repeat="(date, events_group) in events | arrayFilter: 'territories': [territory.id] | orderBy:'startsOn' | groupBy: 'date'">
 		  <ng-include src="'templates/event-item.html'"></ng-include>
                 </div>
             </div>

@@ -5,8 +5,8 @@
                 <div class="collection-repeat-container" >
                     <div id="redes-container">
 		      <div class="item" ng-repeat="territory in territories">
-                        <a ui-sref="emergencias.programacao_territorios({territory:territory})">			
-			#Percurso{{territory}}
+                        <a ui-sref="emergencias.programacao_territorios({territory:territory.id})">
+			#Percurso{{territory.id}}
 		      </div>
                     </div>
                 </div>

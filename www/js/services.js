@@ -110,6 +110,20 @@ app.service('Territory', function($http, GlobalConfiguration, Util) {
             return data;
         }
     );
+
+    this.indexed_territories = this.territories.then(
+        function(data) {
+            return Util.index_obj(data);
+        }
+    );
+
+    this.get = function(territory_id) {
+        return this.indexed_territories.then(
+            function(indexed_territories) {
+                return indexed_territories[territory_id];
+            }
+        );
+    };
 })
 
 app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Util) {
