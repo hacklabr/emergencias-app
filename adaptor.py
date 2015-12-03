@@ -19,12 +19,20 @@ meetings = {}
 territories = {}
 
 for event in events:
-    tracks = []
+    types = []
     encontros = []
     percursos = []
     for track in event['terms']['tracks']:
         if track.startswith('Encontro '):
             encontro = track[9:]
+            if encontro.startswith('de '):
+                encontro = encontro[3:]
+            if encontro.startswith('Rede '):
+                    encontro = encontro[5:]
+            if encontro.startswith('Redes'):
+                encontro = encontro[6:]
+            if encontro.startswith('de '):
+                encontro = encontro[3:]
             encontros.append(encontro)
             meetings[encontro] = 1
         elif track.startswith('Percurso '):
@@ -32,10 +40,11 @@ for event in events:
             percursos.append(percurso)
             territories[percurso] = 1
         else:
-            tracks.append(track)
-    event['terms']['tracks'] = tracks
+            types.append(track)
+    event['terms']['types'] = types
     event['terms']['meetings'] = encontros
-    event['terms']['territories'] = territories
+    event['terms']['territories'] = percursos
+    del event['terms']['tracks']
 
 open('data/events-pb.json', 'w').write(json.dumps(events))
 open('data/meetings-pb.json', 'w').write(json.dumps(sorted(meetings.keys())))

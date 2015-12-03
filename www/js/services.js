@@ -38,8 +38,7 @@ app.service('Speaker', function($http, GlobalConfiguration, Util) {
     });
 
     this.all = this.speakers.then(function(data) {
-	// Acho que aqui tá errado, devia ser só data - Asa
-            return data.data;
+            return data;
         }
     );
 
@@ -107,8 +106,9 @@ app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Ut
                 });
                 event_data.space = indexed_spaces[parseInt(event_data.spaceId)];
                 event_data.speakers = speakers;
-                event_data.tracks = event_data.terms.tracks;
                 event_data.types = event_data.terms.types;
+                event_data.meetings = event_data.terms.meetings;
+                event_data.territories = event_data.terms.territories;
                 // indexed_events[event_data.id] = event_data;
                 new_events_data.push(event_data);
             });

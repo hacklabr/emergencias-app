@@ -7,12 +7,15 @@
 .list {
 	margin-bottom: 0;
 }
-
-small.event-place {
-    display:block; margin-top: 5px; padding-bottom:-5px;
+.event-terms {
+    margin-left: -0.3em;
 }
-span.event-track {
+small.event-term {
+    float: left;
     margin-left: 0.5em;
+}
+div.event-speaker-container {
+
 }
 .icon_hashtag {
     color: #CD2028;
@@ -21,11 +24,10 @@ span.event-track {
 .icon_hashtag:before {
     content: "#";
 }
-.event-place { margin-left: 2px; }
-.icon_group { float: left; }
 .event-speakers a {
-    float: left;
     margin-left: 0.5em;
+    float: left;
 }
+.icon_group { float: left; }
 small.event-place span { margin-left: 1em; }
 .sorted-by-place small.event-place { display:none; }
