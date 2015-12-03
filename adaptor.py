@@ -51,8 +51,10 @@ for event in events:
     event['terms']['territories'] = percursos
     del event['terms']['tracks']
 
-open(os.path.join(DEST, 'events-pb.json'), 'w').write(json.dumps(events))
-open(os.path.join(DEST, 'meetings-pb.json'), 'w').write(json.dumps(sorted(meetings.keys())))
-open(os.path.join(DEST, 'territories-pb.json'), 'w').write(json.dumps(sorted(territories.keys())))
-open(os.path.join(DEST, 'speakers-pb.json'), 'w').write(json.dumps(speakers))
-open(os.path.join(DEST, 'spaces-pb.json'), 'w').write(json.dumps(spaces))
+ind = 4
+
+open(os.path.join(DEST, 'events-pb.json'), 'w').write(json.dumps(events, indent=ind))
+open(os.path.join(DEST, 'meetings-pb.json'), 'w').write(json.dumps(sorted(meetings.keys()), indent=ind))
+open(os.path.join(DEST, 'territories-pb.json'), 'w').write(json.dumps(sorted(territories.keys()), indent=ind))
+open(os.path.join(DEST, 'speakers-pb.json'), 'w').write(json.dumps(speakers, indent=ind))
+open(os.path.join(DEST, 'spaces-pb.json'), 'w').write(json.dumps(spaces, indent=ind))
