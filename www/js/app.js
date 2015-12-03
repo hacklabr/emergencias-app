@@ -62,7 +62,7 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         views: {
             'menu-view': {
                 templateUrl: 'templates/redes.html',
-                controller: 'ProgramacaoCtrl'
+                controller: 'RedesCtrl'
             },
         }
     })
@@ -82,7 +82,7 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         views: {
             'menu-view': {
                 templateUrl: 'templates/territorios.html',
-                controller: 'ProgramacaoCtrl'
+                controller: 'PercursosCtrl'
             },
         }
     })

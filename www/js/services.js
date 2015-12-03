@@ -38,6 +38,7 @@ app.service('Speaker', function($http, GlobalConfiguration, Util) {
     });
 
     this.all = this.speakers.then(function(data) {
+	// Acho que aqui tá errado, devia ser só data - Asa
             return data.data;
         }
     );
@@ -55,6 +56,34 @@ app.service('Speaker', function($http, GlobalConfiguration, Util) {
             }
         );
     };
+})
+
+app.service('Meeting', function($http, GlobalConfiguration, Util) {
+    var language = 'pb';
+    this.url = GlobalConfiguration.BASE_URL + '/meetings-' + language + '.json';
+
+    this.meetings = $http.get(this.url, {cache : true}).then(function(meetings_data) {
+        return meetings_data.data;
+    });
+
+    this.all = this.meetings.then(function(meetings_data) {
+            return meetings_data;
+        }
+    );
+})
+
+app.service('Territory', function($http, GlobalConfiguration, Util) {
+    var language = 'pb';
+    this.url = GlobalConfiguration.BASE_URL + '/territories-' + language + '.json';
+
+    this.territories = $http.get(this.url, {cache : true}).then(function(territories_data) {
+        return territories_data.data;
+    });
+
+    this.all = this.territories.then(function(data) {
+            return data;
+        }
+    );
 })
 
 app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Util) {

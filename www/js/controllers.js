@@ -27,6 +27,18 @@ angular.module('emergencias.controllers', [])
     });
 })
 
+.controller('RedesCtrl', function($rootScope, $scope, Meeting, MeuPercurso, $localStorage) {
+    Meeting.all.then(function(meetings) {
+	$scope.meetings = meetings
+    });
+})
+
+.controller('PercursosCtrl', function($rootScope, $scope, Territory, MeuPercurso, $localStorage) {
+    Territory.all.then(function(territories) {
+	$scope.territories = territories
+    });
+})
+
 .controller('FilterCtrl', function($rootScope, $scope, Emergencias, MeuPercurso, $localStorage) {
     $scope.search_text = '';
 })
