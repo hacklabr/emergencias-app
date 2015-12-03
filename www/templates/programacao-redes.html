@@ -5,7 +5,7 @@
           <div class="collection-repeat-container" >
             <div id="programacao-container">
                 <div ng-repeat="(date, events_group) in events | arrayFilter: 'meetings': [meeting] | orderBy:'startsOn' | groupBy: 'date'">
-		  <ng-include src="'/templates/event-item.html'"></ng-include>
+		  <ng-include src="'templates/event-item.html'"></ng-include>
                 </div>
             </div>
           </div>
