@@ -1,0 +1,16 @@
+<ion-view view-title="Percursos Territoriais">
+    <ion-content id="redes-content" overflow-scroll="true">
+        <div g-show="renderDone" class="list list-programacao">
+            <div class="list">
+                <div class="collection-repeat-container" >
+                    <div id="redes-container">
+		      <div class="item" ng-repeat="territory in territories">
+                        <a ui-sref="emergencias.programacao_territorios({territory:territory})">			
+			#Percurso{{territory}}
+		      </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </ion-content>
+</ion-view>
