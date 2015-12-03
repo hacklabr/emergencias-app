@@ -47,7 +47,7 @@ angular.module('emergencias.controllers', [])
 //     });
 // })
 
-.controller('FilterCtrl', function($rootScope, $scope, Emergencias, $localStorage) {
+.controller('FilterCtrl', function($rootScope, $scope, $localStorage) {
     $scope.search_text = '';
 })
 
@@ -120,7 +120,7 @@ angular.module('emergencias.controllers', [])
     // });
 
 })
-.controller('ButtonsCtrl', function($scope, $ionicSideMenuDelegate, $rootScope, Emergencias, $ionicGesture){
+.controller('ButtonsCtrl', function($scope, $ionicSideMenuDelegate, $rootScope, $ionicGesture){
     ionic.Platform.ready(function(){
         $ionicGesture.on('swiperight', function(){
 
@@ -739,16 +739,6 @@ angular.module('emergencias.controllers', [])
 //     }
 // })
 .controller('AppCtrl', function($scope, $rootScope, $localStorage, $ionicHistory, $cordovaSocialSharing, GlobalConfiguration){
-    $scope.anon = true;
-    if($localStorage.uid){
-        $scope.anon = false;
-        // MeuPercurso.loadUserData($localStorage.uid).then(function(userData){
-        //     if(userData){
-        //         $localStorage.user = userData;
-        //         $rootScope.connected = $localStorage.hasOwnProperty("accessToken") === true;
-        //     }
-        // });
-    }
 
     // $rootScope.$on('fb_connected', function(ev, data) {
     //     $rootScope.connected = true;
@@ -828,5 +818,4 @@ angular.module('emergencias.controllers', [])
     // $scope.showMe = function(b){
     //     return b === $rootScope.curr;
     // }
-
 });
