@@ -1,5 +1,7 @@
 var emergencias = angular.module("emergencias", [
-    'ionic','ionic.service.core',
+    'ionic',
+    'ionic.service.core',
+    'ionic.service.push',
     'rzModule',
     'emergencias.wrappers',
     'emergencias.controllers',
@@ -10,6 +12,34 @@ var emergencias = angular.module("emergencias", [
     'ngStorage',
     'ngCordova'
 ]);
+
+emergencias.run(function($ionicPlatform, $ionicPush) {
+
+    $ionicPlatform.ready(function() {
+
+        Ionic.io();
+
+        // this will give you a fresh user or the previously saved 'current user'
+        var user = Ionic.User.current();
+        // if the user doesn't have an id, you'll need to give it one.
+        if (!user.id) {
+            user.id = Ionic.User.anonymousId();
+            // user.id = 'your-custom-user-id';
+        }
+        // console.log("User ID: ", user.id);
+        //persist the user
+        user.save();
+
+        // Push
+        $ionicPush.init({
+            "debug": true,
+        });
+
+        $ionicPush.register(function(token) {
+            console.log("Device token:",token.token);
+        });
+    });
+})
 
 emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
     //$ionicConfigProvider.scrolling.jsScrolling(false);
@@ -176,16 +206,4 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
     // });
 
     $urlRouterProvider.otherwise('/emergencias/programacao');
-})
-
-.run(function($ionicPlatform) {
-    $ionicPlatform.ready(function() {
-	var push = new Ionic.Push({
-	    "debug": true
-	});
-
-	push.register(function(token) {
-	    console.log("Device token:",token.token);
-	});
-    });
 })
