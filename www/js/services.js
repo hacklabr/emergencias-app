@@ -120,13 +120,14 @@ app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Ut
         return events_data.data;
     });
 
-    var week = [ '2ª feira',
-                '3ª feira',
-                '4ª feira',
-                '5ª feira',
-                '6ª feira',
-                'Sábado',
-                'Domingo' ]
+    var week = [ 'Domingo',
+		 '2ª feira',
+                 '3ª feira',
+                 '4ª feira',
+                 '5ª feira',
+                 '6ª feira',
+                 'Sábado',
+                 'Domingo' ]
 
     var format_date = function(date) {
     date = new Date(date)
