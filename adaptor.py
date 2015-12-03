@@ -1,8 +1,11 @@
 #!/usr/bin/env python
 
-import json, urllib
+import json, urllib, sys, os
 
-#percursos = [ 82, 79, 87, 74, 72, 26, 83, 77, 92, 88, 81, 80, 86, ]
+try:
+    DEST = sys.argv[1]
+except IndexError:
+    DEST = 'www/data'
 
 BASE_URL = 'http://emergencias.cultura.gov.br/wp-content/uploads/json'
 
@@ -48,8 +51,8 @@ for event in events:
     event['terms']['territories'] = percursos
     del event['terms']['tracks']
 
-open('www/data/events-pb.json', 'w').write(json.dumps(events))
-open('www/data/meetings-pb.json', 'w').write(json.dumps(sorted(meetings.keys())))
-open('www/data/territories-pb.json', 'w').write(json.dumps(sorted(territories.keys())))
-open('www/data/speakers-pb.json', 'w').write(json.dumps(speakers))
-open('www/data/spaces-pb.json', 'w').write(json.dumps(spaces))
+open(os.path.join(DEST, 'events-pb.json'), 'w').write(json.dumps(events))
+open(os.path.join(DEST, 'meetings-pb.json'), 'w').write(json.dumps(sorted(meetings.keys())))
+open(os.path.join(DEST, 'territories-pb.json'), 'w').write(json.dumps(sorted(territories.keys())))
+open(os.path.join(DEST, 'speakers-pb.json'), 'w').write(json.dumps(speakers))
+open(os.path.join(DEST, 'spaces-pb.json'), 'w').write(json.dumps(spaces))
