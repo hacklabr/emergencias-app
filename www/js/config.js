@@ -31,8 +31,9 @@ angular.module("emergencias.config", [])
 })
 .factory('GlobalConfiguration', function(){
     return {
-        BASE_URL : "http://emergencias.hacklab.com.br/api",
+        //BASE_URL : "http://emergencias.hacklab.com.br/api",
         //BASE_URL : 'http://localhost:8100/data',
+	BASE_URL: 'http://emergencias.cultura.gov.br/wp-content/uploads/json',
         TEMPLATE_URL : "http://viradacultural.prefeitura.sp.gov.br/2015/wp-content/themes/viradacultural-2015", // seens deprecated
         SOCIAL_API_URL : "http://viradacultural.prefeitura.sp.gov.br/2015/api",
         SHARE_URL : "http://viradacultural.prefeitura.sp.gov.br/2015",
@@ -43,3 +44,5 @@ angular.module("emergencias.config", [])
         APP_ID: '1460336737533597'
     }
 });
+//http://emergencias.cultura.gov.br/wp-content/uploads/json/spaces-pb.json
+//http://emergencias.cultura.gov.br/wp-content/uploads/json/speakers-pb.json

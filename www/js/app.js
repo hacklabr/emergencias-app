@@ -41,7 +41,67 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         url: '/programacao',
         views: {
             'menu-view': {
-                templateUrl: 'templates/mesas.html',
+                templateUrl: 'templates/programacao-mesas.html',
+                controller: 'ProgramacaoCtrl'
+            },
+        }
+    })
+
+    .state('emergencias.rodas', {
+        url: '/programacao',
+        views: {
+            'menu-view': {
+                templateUrl: 'templates/programacao-rodas.html',
+                controller: 'ProgramacaoCtrl'
+            },
+        }
+    })
+
+    .state('emergencias.redes', {
+        url: '/redes',
+        views: {
+            'menu-view': {
+                templateUrl: 'templates/redes.html',
+                controller: 'ProgramacaoCtrl'
+            },
+        }
+    })
+
+    .state('emergencias.programacao_redes', {
+        url: '/programacao',
+        views: {
+            'menu-view': {
+                templateUrl: 'templates/programacao-redes.html',
+                controller: 'ProgramacaoCtrl'
+            },
+        }
+    })
+
+    .state('emergencias.territorios', {
+        url: '/territorios',
+        views: {
+            'menu-view': {
+                templateUrl: 'templates/territorios.html',
+                controller: 'ProgramacaoCtrl'
+            },
+        }
+    })
+
+    .state('emergencias.programacao_territorios', {
+        url: '/programacao',
+        views: {
+            'menu-view': {
+                templateUrl: 'templates/programacao-territorios.html',
+                controller: 'ProgramacaoCtrl'
+            },
+        }
+    })
+
+    .state('emergencias.cultural', {
+        url: '/programacao',
+        views: {
+            'menu-view': {
+                templateUrl: 'templates/programacao-cultural.html',
                 controller: 'ProgramacaoCtrl'
             },
         }
