@@ -3,11 +3,12 @@
         <div g-show="renderDone" class="list list-programacao">
             <div class="list">
                 <div class="collection-repeat-container" >
-                    <div id="redes-container">
-		      <div class="item" ng-repeat="meeting in meetings">
-                        <a ui-sref="emergencias.programacao_redes({meeting:meeting.id})">
-			#Encontro{{meeting.id}}
-		      </div>
+                    <div id="redes-container" ng-repeat="meeting in meetings">
+                      <a ui-sref="emergencias.programacao_redes({meeting:meeting.id})">
+			<div class="item">
+			  #Encontro{{meeting.id}}
+			</div>
+		      </a>
                     </div>
                 </div>
             </div>
