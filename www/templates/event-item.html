@@ -1,41 +1,41 @@
                     <small class="event-place"><h2>Dia {{ date }}</h2></small>
                     <div class="item" ng-repeat="event in events_group | orderBy:'startsAt'">
                         <div class="item-content">
-                          <div>
-                            <a ui-sref="emergencias.event-detail({event:event.id})">
+                          <a ui-sref="emergencias.event-detail({event:event.id})">
+                            <div>
                               <div class="event-time">
-                                  <i class="icon icon_clock"></i>
-                                          <time>{{event.startsAt}}</time>
+                                <i class="icon icon_clock"></i>
+                                <time>{{event.startsAt}}</time>
                               </div>
                               <h3>{{event.name}}</h3>
-                            </a>
-			    <div class="event-terms">
-                              <small class="event-term event-place" ng-if="event.space">
-				<i class="icon icon_pin"></i> {{event.space.name}}
-			      </small>
-                              <small class="event-term event-track" ng-if="event.types[0]">
-				<i class="icon icon_chat"></i> {{event.types[0]}}
-			      </small>
-			      <small class="event-term event-type" ng-if="event.meetings[0]">
-				<i class="icon_hashtag"></i>
-				Encontro{{event.meetings[0]}}
-                              </small>
-                              <small class="event-term event-type" ng-if="event.territories[0]">
-				<i class="icon icon_map"></i>
-				Percurso{{event.territories[0]}}
-                              </small>
-			      <br/>
-                              <div class="event-speakers-container" ng-if="event.speakers.length>0">
-				<small class="event-term event-speakers">
-				  <i class="icon icon_group"></i>
-                                  <a ng-repeat="speaker in event.speakers"> {{speaker.name}}<span ng-if="!$last">, </span>
-                                  </a>
-                                  <!-- <a href=# class="js-meu-percurso" onclick="meu_percurso(this.parentElement.parentElement.event);">
-                                       <i ng-class="{'icon_star':event.in_meu_percurso,'icon_star_alt':!event.in_meu_percurso}" class="icon icon-accessory event-star"></i>
-                                  </a> -->
+			      <div class="event-terms">
+				<small class="event-term event-place" ng-if="event.space">
+				  <i class="icon icon_pin"></i> {{event.space.name}}
 				</small>
-                              </div>
-			    </div>
-                          </div>
+				<small class="event-term event-track" ng-if="event.types[0]">
+				  <i class="icon icon_chat"></i> {{event.types[0]}}
+				</small>
+				<small class="event-term event-type" ng-if="event.meetings[0]">
+				  <i class="icon_hashtag"></i>
+				  Encontro{{event.meetings[0]}}
+				</small>
+				<small class="event-term event-type" ng-if="event.territories[0]">
+				  <i class="icon icon_map"></i>
+				  Percurso{{event.territories[0]}}
+				</small>
+				<br/>
+				<div class="event-speakers-container" ng-if="event.speakers.length>0">
+				  <small class="event-term event-speakers">
+				    <i class="icon icon_group"></i>
+                                    <a ng-repeat="speaker in event.speakers"> {{speaker.name}}<span ng-if="!$last">, </span>
+                                    </a>
+                                    <!-- <a href=# class="js-meu-percurso" onclick="meu_percurso(this.parentElement.parentElement.event);">
+					 <i ng-class="{'icon_star':event.in_meu_percurso,'icon_star_alt':!event.in_meu_percurso}" class="icon icon-accessory event-star"></i>
+                                    </a> -->
+				  </small>
+				</div>
+			      </div>
+                            </div>
+                          </a>
                         </div>
                     </div>
