@@ -199,6 +199,7 @@ app.service('Notifications', function($http, $localStorage, $ionicPush) {
 
     this.messages = $localStorage.messages;
     this.unread = $localStorage.unread;
+    this.count = this.messages.length
 
     this.commit = function() {
 	$localStorage.messages = self.messages;
@@ -208,6 +209,7 @@ app.service('Notifications', function($http, $localStorage, $ionicPush) {
     this.notify = function(message) {
 	self.unread += 1;
 	self.messages.unshift(message);
+	self.count = self.messages.length;
 
 	self.commit();
     }

@@ -44,7 +44,7 @@
 		  Programação Cultural
 		</li>
 	    </ul>
-                <ion-item class="item-icon-left" menu-close ui-sref="emergencias.notifications()">
+                <ion-item class="item-icon-left" menu-close ui-sref="emergencias.notifications()" ng-if="notifications.count>0">
                     <i class="icon icon_mail_alt"></i>
                     Salves <span class="unread" ng-if="notifications.unread>0">({{notifications.unread}})</span>
                 </ion-item>
