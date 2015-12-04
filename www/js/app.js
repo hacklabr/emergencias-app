@@ -151,6 +151,15 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
 	}
     })
 
+    .state('emergencias.onde', {
+        url: '/programacao/onde',
+        views: {
+            'menu-view': {
+                templateUrl: 'templates/onde.html',
+            }
+        }
+    })
+
     .state('emergencias.about', {
         url: '/programacao/sobre',
         views: {

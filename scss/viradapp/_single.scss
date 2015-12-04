@@ -58,3 +58,29 @@
 	margin: 0 0 15px 0;
     }
 }
+
+.onde {
+    margin-left: 1em;
+    h2 {
+	font-size: 20px;
+	margin: 0;
+	padding: 0;
+	margin-bottom: -10px;
+	margin-top: 20px;
+    }
+    h3 {
+	text-align: left;
+	font-size: 18px;
+	margin-bottom: 5px;
+    }
+    small {
+	text-align: left;
+	display: block;
+	i {
+	    margin-right: 1em;
+	}
+    }
+    i.margin {
+	margin-left: 12px;
+    }
+}
