@@ -25,6 +25,7 @@ for event in events:
     types = []
     encontros = []
     percursos = []
+    event['startsOn'] = event['startsOn'][:8] + '%02d' % (int(event['startsOn'][8:])+1)
     for track in event['terms']['tracks']:
         if track.startswith('Encontro '):
             encontro = track[9:]
