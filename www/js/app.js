@@ -28,9 +28,7 @@ emergencias.run(function($ionicPlatform, $ionicPush) {
         user.save();
 
         // Push
-        $ionicPush.init({
-            "debug": true,
-        });
+        $ionicPush.init();
 
         $ionicPush.register(function(token) {
             console.log("Device token:",token.token);

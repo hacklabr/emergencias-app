@@ -222,7 +222,6 @@ app.service('Notifications', function($http, $localStorage, $ionicPush) {
     }
 
     $ionicPush.init({
-	debug: true,
 	"onNotification": function(notification) {
 	    var message = {
 		title: notification.title,
