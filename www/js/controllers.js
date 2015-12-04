@@ -54,7 +54,7 @@ angular.module('emergencias.controllers', [])
     $scope.search_text = '';
 })
 
-.controller('EventCtrl', function($rootScope, $scope, $stateParams, Event, Date, $ionicModal, $state){
+.controller('EventCtrl', function($rootScope, $scope, $stateParams, Event, $ionicModal, $state){
     $scope.$on('$ionicView.beforeEnter', function(){
         $rootScope.curr = 'event';
     });
@@ -67,9 +67,7 @@ angular.module('emergencias.controllers', [])
         hasMore : false
     }
 
-    $scope.LL = Date.LL;
     if($stateParams.event){
-
         Event.get($stateParams.event).then(function (event) {
             $rootScope.event = event;
             $scope.event = event;
