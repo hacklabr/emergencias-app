@@ -45,12 +45,16 @@
 		</li>
 	    </ul>
                 <ion-item class="item-icon-left" menu-close ui-sref="emergencias.notifications()" ng-if="notifications.count>0">
-                    <i class="icon icon_mail_alt"></i>
+                    <i class="icon icon_mail"></i>
                     Salves <span class="unread" ng-if="notifications.unread>0">({{notifications.unread}})</span>
                 </ion-item>
                 <ion-item class="item-icon-left" menu-close ui-sref="emergencias.onde()">
                     <i class="icon icon_map"></i>
                     Onde Acontece
+                </ion-item>
+                <ion-item class="item-icon-left" menu-close ui-sref="emergencias.evento()">
+                    <i class="icon icon_globe_alt"></i>
+                    O Evento
                 </ion-item>
                 <ion-item class="item-icon-left" menu-close ui-sref="emergencias.about()">
                     <i class="icon icon_info"></i>

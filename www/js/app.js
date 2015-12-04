@@ -169,6 +169,15 @@ emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $
         }
     })
 
+    .state('emergencias.evento', {
+        url: '/programacao/evento',
+        views: {
+            'menu-view': {
+                templateUrl: 'templates/emergencias.html',
+            }
+        }
+    })
+
     // .state('emergencias.social', {
     //     url: '/emergencias/social',
     //     views: {
