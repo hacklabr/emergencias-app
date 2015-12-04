@@ -44,10 +44,10 @@ div.event-speaker-container {
 .icon_hashtag:before {
     content: "#";
 }
-.event-speakers a {
-    margin-left: 0.5em;
+.event-speakers span.speaker {
     float: left;
+    margin: 2px 0 0 3px;
 }
-.icon_group { float: left; }
+i.icon_group { float: left; }
 small.event-place span { margin-left: 1em; }
 .sorted-by-place small.event-place { display:none; }

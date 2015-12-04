@@ -27,8 +27,8 @@
 				<div class="event-speakers-container" ng-if="event.speakers.length>0">
 				  <small class="event-term event-speakers">
 				    <i class="icon icon_group"></i>
-                                    <a ng-repeat="speaker in event.speakers"> {{speaker.name}}<span ng-if="!$last">, </span>
-                                    </a>
+                                    <span class="speaker" ng-repeat="speaker in event.speakers"> {{speaker.name}}<span ng-if="!$last">, </span>
+                                    </span>
                                     <!-- <a href=# class="js-meu-percurso" onclick="meu_percurso(this.parentElement.parentElement.event);">
 					 <i ng-class="{'icon_star':event.in_meu_percurso,'icon_star_alt':!event.in_meu_percurso}" class="icon icon-accessory event-star"></i>
                                     </a> -->
