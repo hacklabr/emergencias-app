@@ -38,6 +38,15 @@
             height: 18px;
         }
     }
+    strong {
+	text-align: left;
+	display: block;
+	margin-top: 10px;
+    }
+    a {
+	text-align: left;
+	display: block;
+    }
     footer {
         .friends-group {
             border-top: 1px solid $gray-light;
