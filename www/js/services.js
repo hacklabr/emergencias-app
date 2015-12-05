@@ -19,6 +19,38 @@ app.service('Util', function() {
     }
 })
 
+app.service('Cache', function($http, $q, GlobalConfiguration, $localStorage) {
+    var self = this;
+
+    if (!$localStorage.cache)
+	$localStorage.cache = initialData;
+
+    this.getCached = function(name) {
+	return $q.when($localStorage.cache[name].data)
+    }
+    this.getNew = function(name) {
+	var url = GlobalConfiguration.BASE_URL + '/' + name + '-pb.md5';
+	return $http.get(url, {cache : false}).then(function(data) {
+	    var checksum = data.data
+	    console.log($localStorage.cache[name]['checksum'])
+	    console.log(checksum)
+	    if ($localStorage.cache[name]['checksum'] == checksum)
+		return null;
+	    url = GlobalConfiguration.BASE_URL + '/' + name + '-pb.json';
+	    return $http.get(url, {cache: false}).then(function(data) {
+		$localStorage.cache[name]['checksum'] = checksum;
+		$localStorage.cache[name]['data'] = data.data;
+		return data.data;
+	    });
+	});
+    }
+    this.get = function(name) {
+	return self.getNew(name).then(function(data) {
+	    return $localStorage.cache[name]
+	})
+    }
+})
+
 app.service('Space', function($http, GlobalConfiguration, Util) {
 
     var language = 'pb';
@@ -70,24 +102,25 @@ app.service('Speaker', function($http, GlobalConfiguration, Util) {
     };
 })
 
-app.service('Meeting', function($http, GlobalConfiguration, Util) {
+app.service('Meeting', function($q, $http, GlobalConfiguration, Cache, Util) {
     var language = 'pb';
     this.url = GlobalConfiguration.BASE_URL + '/meetings-' + language + '.json';
 
-    this.meetings = $http.get(this.url, {cache : true}).then(function(meetings_data) {
-        return meetings_data.data;
-    });
+    this.cached = Cache.getCached('meetings').then(function(data) {
+	return data;
+    })
+    this.renew = Cache.getNew('meetings').then(function(data) {
+	return data
+    })
 
-    this.all = this.meetings.then(function(meetings_data) {
-            return meetings_data;
-        }
-    );
-
-    this.indexed_meetings = this.meetings.then(
+    /*
+    //this.indexed_meetings = this.meetings.then(
+    this.indexed_meetings = this.all.then(
         function(data) {
             return Util.index_obj(data);
         }
     );
+    */
 
     this.get = function(meeting_id) {
         return this.indexed_meetings.then(
@@ -96,6 +129,7 @@ app.service('Meeting', function($http, GlobalConfiguration, Util) {
             }
         );
     };
+    this.renew
 })
 
 app.service('Territory', function($http, GlobalConfiguration, Util) {
@@ -126,12 +160,12 @@ app.service('Territory', function($http, GlobalConfiguration, Util) {
     };
 })
 
-app.service('Event', function($http, $q, GlobalConfiguration, Speaker, Space, Util) {
+app.service('Event', function($q, $http, GlobalConfiguration, Speaker, Space, Util) {
 
     var language = 'pb';
     this.url = GlobalConfiguration.BASE_URL + '/events-' + language + '.json';
-    this.events = $http.get(this.url, {cache : true}).then(function(events_data) {
-        return events_data.data;
+    this.events = $http.get(this.url, {cache : true}).then(function(data) {
+        return data.data;
     });
 
     var week = [ 'Domingo',

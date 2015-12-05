@@ -39,8 +39,17 @@ angular.module('emergencias.controllers', [])
 })
 
 .controller('RedesCtrl', function($rootScope, $scope, Meeting, $localStorage) {
-    Meeting.all.then(function(meetings) {
+    Meeting.cached.then(function(meetings) {
 	$scope.meetings = meetings
+    });
+    Meeting.renew.then(function(meetings) {
+	if (meetings != null) {
+	    console.log('renewed');
+	    console.log(meetings);
+	    $scope.meetings = meetings
+	} else {
+	    console.log('same data');
+	}
     });
 })
 
