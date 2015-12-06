@@ -13,10 +13,6 @@ angular.module('emergencias.controllers', [])
 // })
 
 .controller('ProgramacaoCtrl', function($rootScope, $scope, $stateParams, Event, Meeting, Territory, $localStorage) {
-    Event.all.then(function(events) {
-	       $scope.events = events
-    });
-
     if ($stateParams.meeting) {
 	Meeting.get($stateParams.meeting).then(function(data) {
 	    $scope.meeting = data;
@@ -29,6 +25,15 @@ angular.module('emergencias.controllers', [])
 	});
     }
 
+    Event.cached.then(function(events) {
+	       $scope.events = events
+    });
+    Event.renew.then(function(events) {
+	if (events != null) {
+	    $scope.events = events
+	} 
+    });
+
     $scope.$on('$ionicView.beforeEnter', function(){
         $rootScope.programacao = true;
     });
@@ -39,14 +44,24 @@ angular.module('emergencias.controllers', [])
 })
 
 .controller('RedesCtrl', function($rootScope, $scope, Meeting, $localStorage) {
-    Meeting.all.then(function(meetings) {
+    Meeting.cached.then(function(meetings) {
 	$scope.meetings = meetings
+    });
+    Meeting.renew.then(function(meetings) {
+	if (meetings != null) {
+	    $scope.meetings = meetings
+	}
     });
 })
 
 .controller('PercursosCtrl', function($rootScope, $scope, Territory, $localStorage) {
-    Territory.all.then(function(territories) {
- 	$scope.territories = territories
+    Territory.cached.then(function(territories) {
+	$scope.territories = territories
+    });
+    Territory.renew.then(function(territories) {
+	if (territories != null) {
+	    $scope.territories = territories
+	}
     });
 })
 
@@ -69,7 +84,6 @@ angular.module('emergencias.controllers', [])
 
     if($stateParams.event){
         Event.get($stateParams.event).then(function (event) {
-            $rootScope.event = event;
             $scope.event = event;
         });
     } else {
