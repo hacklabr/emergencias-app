@@ -12,21 +12,19 @@ app.service('Util', function() {
 
 app.service('Cache', function($http, $q, GlobalConfiguration, $localStorage, Util) {
     var self = this;
-
+    var timeout = 5;
     this.store = function(data, checksum) {
 	$localStorage.cachedChecksum = checksum;
 	$localStorage.cachedData = data;
 	$localStorage.cachedIndex = {
-	    'spaces': Util.index_obj(data.spaces),
-	    'speakers': Util.index_obj(data.speakers),
 	    'meetings': Util.index_obj(data.meetings),
 	    'territories': Util.index_obj(data.territories),
 	    'events': Util.index_obj(data.events)
 	}
+	$localStorage.lastUpdate = new Date().getTime()
     }
 
-    if (true || !$localStorage.cachedData) {
-	console.log('storing initial data')
+    if (!$localStorage.cachedData) {
 	self.store(INITIAL_DATA, INITIAL_CHECKSUM);
     }
 
@@ -34,10 +32,14 @@ app.service('Cache', function($http, $q, GlobalConfiguration, $localStorage, Uti
 	return $q.when($localStorage.cachedIndex[name]);
     }
     this.getCached = function(name) {
-	return $q.when($localStorage.cachedData[name])
+	return $q.when($localStorage.cachedData[name]);
     }
     this.getNew = function(name) {
-	var url = GlobalConfiguration.BASE_URL + '/data-pb.md5';
+	var diff = new Date().getTime() - $localStorage.lastUpdate
+	if (diff  < timeout) {
+	    return $q.when(null);
+	}
+	var url = GlobalConfiguration.BASE_URL + '/data-pb.md5?'+name;
 	return $http.get(url, {cache : false}).then(function(data) {
 	    var checksum = data.data
 	    if ($localStorage.cachedChecksum == checksum)
@@ -51,17 +53,9 @@ app.service('Cache', function($http, $q, GlobalConfiguration, $localStorage, Uti
     }
     this.get = function(name) {
 	return self.getNew(name).then(function(data) {
-	    return $localStorage.cachedData[name]
+	    return $localStorage.cachedData[name];
 	})
     }
-})
-
-app.service('Space', function($http, GlobalConfiguration, Cache) {
-    this.indexed_spaces = Cache.getIndex('spaces')
-})
-
-app.service('Speaker', function($http, GlobalConfiguration, Cache) {
-    this.indexed_speakers = Cache.getIndex('speakers')
 })
 
 app.service('Meeting', function($q, $http, GlobalConfiguration, Cache) {
@@ -97,52 +91,20 @@ app.service('Territory', function($http, GlobalConfiguration, Cache) {
     }
 })
 
-app.service('Event', function($q, $http, GlobalConfiguration, Speaker, Space, Cache) {
+app.service('Event', function($q, $http, GlobalConfiguration, Cache) {
     var self = this;
-
-    var week = [ 'Domingo',
-		 '2ª feira',
-                 '3ª feira',
-                 '4ª feira',
-                 '5ª feira',
-                 '6ª feira',
-                 'Sábado',
-                 'Domingo' ]
-
-    var format_date = function(date) {
-	date = new Date(date)
-	return date.getDate() + '/' + (date.getMonth()+1) + ' - ' + week[date.getDay()]
-    }
-
-    this.events = Cache.getCached('events')
-
-    this.all = $q.all([this.events, Speaker.indexed_speakers, Space.indexed_spaces]).then(
-        function(data) {
-            events_data = data[0];
-            indexed_speakers = data[1];
-            indexed_spaces = data[2];
-            new_events_data = [];
-            events_data.forEach(function(event_data, i){
-                speakers = [];
-                event_data.speakers.forEach(function(speaker_id) {
-                    speakers.push(indexed_speakers[parseInt(speaker_id)]);
-                });
-                event_data.speakers = speakers;
-                event_data.space = indexed_spaces[parseInt(event_data.spaceId)];
-                event_data.date = format_date(event_data.startsOn);
-                new_events_data.push(event_data);
-            });
-            return new_events_data;
-        }
-    );
-
+    this.cached = Cache.getCached('events').then(function(data) {
+	return data;
+    })
+    this.renew = Cache.getNew('events').then(function(data) {
+	return data
+    })
     this.indexed_events = Cache.getIndex('events')
     this.get = function(id) {
 	return self.indexed_events.then(function(index) {
 	    return index[id]
 	})
     }
-    
 });
 
 app.service('Notifications', function($http, $localStorage, $ionicPush) {

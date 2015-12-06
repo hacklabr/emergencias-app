@@ -13,10 +13,6 @@ angular.module('emergencias.controllers', [])
 // })
 
 .controller('ProgramacaoCtrl', function($rootScope, $scope, $stateParams, Event, Meeting, Territory, $localStorage) {
-    Event.all.then(function(events) {
-	       $scope.events = events
-    });
-
     if ($stateParams.meeting) {
 	Meeting.get($stateParams.meeting).then(function(data) {
 	    $scope.meeting = data;
@@ -28,6 +24,15 @@ angular.module('emergencias.controllers', [])
 	    $scope.territory = data;
 	});
     }
+
+    Event.cached.then(function(events) {
+	       $scope.events = events
+    });
+    Event.renew.then(function(events) {
+	if (events != null) {
+	    $scope.events = events
+	} 
+    });
 
     $scope.$on('$ionicView.beforeEnter', function(){
         $rootScope.programacao = true;
@@ -44,11 +49,7 @@ angular.module('emergencias.controllers', [])
     });
     Meeting.renew.then(function(meetings) {
 	if (meetings != null) {
-	    console.log('renewed');
-	    console.log(meetings);
 	    $scope.meetings = meetings
-	} else {
-	    console.log('same data');
 	}
     });
 })
@@ -59,11 +60,7 @@ angular.module('emergencias.controllers', [])
     });
     Territory.renew.then(function(territories) {
 	if (territories != null) {
-	    console.log('renewed');
-	    console.log(territories);
 	    $scope.territories = territories
-	} else {
-	    console.log('same data');
 	}
     });
 })
@@ -87,7 +84,6 @@ angular.module('emergencias.controllers', [])
 
     if($stateParams.event){
         Event.get($stateParams.event).then(function (event) {
-            $rootScope.event = event;
             $scope.event = event;
         });
     } else {

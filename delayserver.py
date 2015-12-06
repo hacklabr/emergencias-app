@@ -8,8 +8,8 @@ import time, random
 
 class MainHandler(tornado.web.RequestHandler):
     def get(self, name, ext):
-        if name == 'meetings':
-            time.sleep(1)
+        if ext == 'json':
+            time.sleep(2)
         self.write(open('www/data/%s-pb.%s' % (name, ext)).read())
         #self.write('%d' % (random.random()*10000))
 
