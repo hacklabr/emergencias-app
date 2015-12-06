@@ -3,6 +3,8 @@
 
 import json, urllib, sys, os, md5, datetime
 
+API_VERSION=3
+
 try:
     DEST = sys.argv[1]
 except IndexError:
@@ -147,3 +149,4 @@ data = {
 data = json.dumps(data, indent=ind)
 open(os.path.join(DEST, 'data-pb.json'), 'w').write(data)
 open(os.path.join(DEST, 'data-pb.md5'), 'w').write(md5.md5(data).hexdigest())
+open(os.path.join(DEST, 'api_version.txt'), 'w').write('%d' % API_VERSION)
