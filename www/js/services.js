@@ -13,8 +13,8 @@ app.service('Util', function() {
 app.service('Cache', function($http, $q, GlobalConfiguration, $localStorage, Util) {
     var self = this;
     var timeout = 5;
-    this.store = function(apiVersion, data, checksum) {
-	$localStorage.apiVersion = apiVersion
+    this.store = function(data, checksum) {
+	$localStorage.apiVersion = API_VERSION;
 	$localStorage.cachedChecksum = checksum;
 	$localStorage.cachedData = data;
 	$localStorage.cachedIndex = {
@@ -26,7 +26,7 @@ app.service('Cache', function($http, $q, GlobalConfiguration, $localStorage, Uti
     }
 
     if (!$localStorage.apiVersion || $localStorage.apiVersion < API_VERSION) {
-	self.store(API_VERSION, INITIAL_DATA, INITIAL_CHECKSUM);
+	self.store(INITIAL_DATA, INITIAL_CHECKSUM);
     }
 
     this.getIndex = function(name) {
