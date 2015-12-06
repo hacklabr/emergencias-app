@@ -54,8 +54,17 @@ angular.module('emergencias.controllers', [])
 })
 
 .controller('PercursosCtrl', function($rootScope, $scope, Territory, $localStorage) {
-    Territory.all.then(function(territories) {
- 	$scope.territories = territories
+    Territory.cached.then(function(territories) {
+	$scope.territories = territories
+    });
+    Territory.renew.then(function(territories) {
+	if (territories != null) {
+	    console.log('renewed');
+	    console.log(territories);
+	    $scope.territories = territories
+	} else {
+	    console.log('same data');
+	}
     });
 })
 

@@ -18,6 +18,15 @@ spaces = load('spaces')
 speakers = load('speakers')
 spaces = load('spaces')
 
+def format_description(desc):
+    ps = desc.split('\n')
+    desc = ''
+    for p in desc:
+        if not p:
+            continue
+        desc += '<p>%s</p>\n' % p
+    return desc;
+
 meetings = {}
 territories = {}
 
@@ -26,6 +35,7 @@ for event in events:
     encontros = []
     percursos = []
     event['startsOn'] = event['startsOn'][:8] + '%02d' % (int(event['startsOn'][8:])+1)
+    event['description'] = format_description(event['description'])
     for track in event['terms']['tracks']:
         if track.startswith('Encontro '):
             encontro = track[9:]
@@ -49,10 +59,13 @@ for event in events:
             pass
         else:
             types.append(track)
-    event['terms']['types'] = types
-    event['terms']['meetings'] = encontros
-    event['terms']['territories'] = percursos
-    del event['terms']['tracks']
+    event['types'] = types
+    event['meetings'] = encontros
+    event['territories'] = percursos
+    del event['terms']
+
+for speaker in speakers:
+    speaker['description'] = format_description(speaker['description'])
 
 ind = 4
 
@@ -71,14 +84,13 @@ for territory in sorted(territories.keys()):
 meetings_data[0]['telegram'] = 'http://emergencias.hacklab.com.br/chats/Xis'
 territories_data[0]['telegram'] = 'http://emergencias.hacklab.com.br/chats/Xis'
 
-def save(name, data):
-    data = json.dumps(data, indent=ind)
-    checksum = md5.md5(data).hexdigest()
-    open(os.path.join(DEST, '%s-pb.json' % name), 'w').write(data)
-    open(os.path.join(DEST, '%s-pb.md5' % name), 'w').write(checksum)
-
-save('events', events)
-save('meetings', meetings_data)
-save('territories', territories_data)
-save('speakers', speakers)
-save('spaces', spaces)
+data = {
+    'events': events,
+    'meetings': meetings_data,
+    'territories': territories_data,
+    'speakers': speakers,
+    'spaces': spaces,
+}
+data = json.dumps(data, indent=ind)
+open(os.path.join(DEST, 'data-pb.json'), 'w').write(data)
+open(os.path.join(DEST, 'data-pb.md5'), 'w').write(md5.md5(data).hexdigest())

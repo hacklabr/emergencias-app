@@ -1,14 +1,5 @@
 app = angular.module('emergencias.services', []);
 
-var format_description = function(desc) {
-    var ps = desc.split(/\n+/);
-    var desc = ''
-    for (var i=0; i<ps.length; i++) {
-	desc += '<p>' + ps[i] + '</p>'
-    }
-    return desc;
-}
-
 app.service('Util', function() {
     this.index_obj = function(obj_list) {
         var indexed_obj = {};
@@ -19,154 +10,95 @@ app.service('Util', function() {
     }
 })
 
-app.service('Cache', function($http, $q, GlobalConfiguration, $localStorage) {
+app.service('Cache', function($http, $q, GlobalConfiguration, $localStorage, Util) {
     var self = this;
 
-    if (!$localStorage.cache)
-	$localStorage.cache = initialData;
+    this.store = function(data, checksum) {
+	$localStorage.cachedChecksum = checksum;
+	$localStorage.cachedData = data;
+	$localStorage.cachedIndex = {
+	    'spaces': Util.index_obj(data.spaces),
+	    'speakers': Util.index_obj(data.speakers),
+	    'meetings': Util.index_obj(data.meetings),
+	    'territories': Util.index_obj(data.territories),
+	    'events': Util.index_obj(data.events)
+	}
+    }
 
+    if (true || !$localStorage.cachedData) {
+	console.log('storing initial data')
+	self.store(INITIAL_DATA, INITIAL_CHECKSUM);
+    }
+
+    this.getIndex = function(name) {
+	return $q.when($localStorage.cachedIndex[name]);
+    }
     this.getCached = function(name) {
-	return $q.when($localStorage.cache[name].data)
+	return $q.when($localStorage.cachedData[name])
     }
     this.getNew = function(name) {
-	var url = GlobalConfiguration.BASE_URL + '/' + name + '-pb.md5';
+	var url = GlobalConfiguration.BASE_URL + '/data-pb.md5';
 	return $http.get(url, {cache : false}).then(function(data) {
 	    var checksum = data.data
-	    console.log($localStorage.cache[name]['checksum'])
-	    console.log(checksum)
-	    if ($localStorage.cache[name]['checksum'] == checksum)
+	    if ($localStorage.cachedChecksum == checksum)
 		return null;
-	    url = GlobalConfiguration.BASE_URL + '/' + name + '-pb.json';
+	    url = GlobalConfiguration.BASE_URL + '/data-pb.json';
 	    return $http.get(url, {cache: false}).then(function(data) {
-		$localStorage.cache[name]['checksum'] = checksum;
-		$localStorage.cache[name]['data'] = data.data;
-		return data.data;
+		self.store(data.data, checksum)
+		return data.data[name];
 	    });
 	});
     }
     this.get = function(name) {
 	return self.getNew(name).then(function(data) {
-	    return $localStorage.cache[name]
+	    return $localStorage.cachedData[name]
 	})
     }
 })
 
-app.service('Space', function($http, GlobalConfiguration, Util) {
-
-    var language = 'pb';
-    this.url = GlobalConfiguration.BASE_URL + '/spaces-' + language + '.json';
-    this.spaces = $http.get(this.url, {cache : true});
-
-    this.all = this.spaces.then(function(data) {
-            return data.data;
-        }
-    );
-
-    this.indexed_spaces = this.spaces.then(
-        function(spaces_data) {
-            return Util.index_obj(spaces_data.data);
-        }
-    )
+app.service('Space', function($http, GlobalConfiguration, Cache) {
+    this.indexed_spaces = Cache.getIndex('spaces')
 })
 
-app.service('Speaker', function($http, GlobalConfiguration, Util) {
-
-    var language = 'pb';
-    this.url = GlobalConfiguration.BASE_URL + '/speakers-' + language + '.json';
-
-    this.speakers = $http.get(this.url, {cache : true}).then(function(speakers_data) {
-        return speakers_data.data;
-    });
-
-    this.all = this.speakers.then(function(data) {
-        new_data = [];
-        data.forEach(function(data, i){
-            data.description = format_description(data.description);
-            new_data.push(data);
-        });
-        return new_data;
-    });
-
-    this.indexed_speakers = this.speakers.then(
-        function(speakers_data) {
-            return Util.index_obj(speakers_data);
-        }
-    );
-
-    this.get = function(speaker_id) {
-        return this.indexed_speakers.then(
-            function(indexed_speakers){
-                return indexed_speakers[speaker_id]
-            }
-        );
-    };
+app.service('Speaker', function($http, GlobalConfiguration, Cache) {
+    this.indexed_speakers = Cache.getIndex('speakers')
 })
 
-app.service('Meeting', function($q, $http, GlobalConfiguration, Cache, Util) {
-    var language = 'pb';
-    this.url = GlobalConfiguration.BASE_URL + '/meetings-' + language + '.json';
-
+app.service('Meeting', function($q, $http, GlobalConfiguration, Cache) {
+    var self = this;
     this.cached = Cache.getCached('meetings').then(function(data) {
 	return data;
     })
     this.renew = Cache.getNew('meetings').then(function(data) {
 	return data
     })
+    this.indexed_meetings = Cache.getIndex('meetings')
+    this.get = function(id) {
+	return self.indexed_meetings.then(function(index) {
+	    return index[id]
+	})
+    }
 
-    /*
-    //this.indexed_meetings = this.meetings.then(
-    this.indexed_meetings = this.all.then(
-        function(data) {
-            return Util.index_obj(data);
-        }
-    );
-    */
-
-    this.get = function(meeting_id) {
-        return this.indexed_meetings.then(
-            function(indexed_meetings) {
-                return indexed_meetings[meeting_id];
-            }
-        );
-    };
-    this.renew
 })
 
-app.service('Territory', function($http, GlobalConfiguration, Util) {
-    var language = 'pb';
-    this.url = GlobalConfiguration.BASE_URL + '/territories-' + language + '.json';
-
-    this.territories = $http.get(this.url, {cache : true}).then(function(territories_data) {
-        return territories_data.data;
-    });
-
-    this.all = this.territories.then(function(data) {
-            return data;
-        }
-    );
-
-    this.indexed_territories = this.territories.then(
-        function(data) {
-            return Util.index_obj(data);
-        }
-    );
-
-    this.get = function(territory_id) {
-        return this.indexed_territories.then(
-            function(indexed_territories) {
-                return indexed_territories[territory_id];
-            }
-        );
-    };
+app.service('Territory', function($http, GlobalConfiguration, Cache) {
+    var self = this;
+    this.cached = Cache.getCached('territories').then(function(data) {
+	return data;
+    })
+    this.renew = Cache.getNew('territories').then(function(data) {
+	return data
+    })
+    this.indexed_territories = Cache.getIndex('territories')
+    this.get = function(id) {
+	return self.indexed_territories.then(function(index) {
+	    return index[id]
+	})
+    }
 })
 
-app.service('Event', function($q, $http, GlobalConfiguration, Speaker, Space, Util) {
-
-    var language = 'pb';
-    this.url = GlobalConfiguration.BASE_URL + '/events-' + language + '.json';
-    this.events = $http.get(this.url, {cache : true}).then(function(data) {
-        return data.data;
-    });
+app.service('Event', function($q, $http, GlobalConfiguration, Speaker, Space, Cache) {
+    var self = this;
 
     var week = [ 'Domingo',
 		 '2ª feira',
@@ -178,9 +110,11 @@ app.service('Event', function($q, $http, GlobalConfiguration, Speaker, Space, Ut
                  'Domingo' ]
 
     var format_date = function(date) {
-    date = new Date(date)
-    return date.getDate() + '/' + (date.getMonth()+1) + ' - ' + week[date.getDay()]
+	date = new Date(date)
+	return date.getDate() + '/' + (date.getMonth()+1) + ' - ' + week[date.getDay()]
     }
+
+    this.events = Cache.getCached('events')
 
     this.all = $q.all([this.events, Speaker.indexed_speakers, Space.indexed_spaces]).then(
         function(data) {
@@ -193,33 +127,22 @@ app.service('Event', function($q, $http, GlobalConfiguration, Speaker, Space, Ut
                 event_data.speakers.forEach(function(speaker_id) {
                     speakers.push(indexed_speakers[parseInt(speaker_id)]);
                 });
-                event_data.space = indexed_spaces[parseInt(event_data.spaceId)];
                 event_data.speakers = speakers;
-                event_data.types = event_data.terms.types;
-                event_data.meetings = event_data.terms.meetings;
-                event_data.territories = event_data.terms.territories;
+                event_data.space = indexed_spaces[parseInt(event_data.spaceId)];
                 event_data.date = format_date(event_data.startsOn);
-                event_data.description = format_description(event_data.description);
-                // indexed_events[event_data.id] = event_data;
                 new_events_data.push(event_data);
             });
             return new_events_data;
         }
     );
 
-    this.indexed_events = this.all.then(
-        function(events_data) {
-            return Util.index_obj(events_data);
-        }
-    );
-    //
-    this.get = function(event_id) {
-        return this.indexed_events.then(
-            function(indexed_events){
-                return indexed_events[event_id]
-            }
-        );
-    };
+    this.indexed_events = Cache.getIndex('events')
+    this.get = function(id) {
+	return self.indexed_events.then(function(index) {
+	    return index[id]
+	})
+    }
+    
 });
 
 app.service('Notifications', function($http, $localStorage, $ionicPush) {

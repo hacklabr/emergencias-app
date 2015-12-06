@@ -2,17 +2,10 @@
 
 import json
 
-def get(name):
-    data = open('www/data/%s-pb.json' % name).read()
-    checksum = open('www/data/%s-pb.md5' % name).read()
-    return {
-        'checksum': checksum,
-        'data': json.loads(data)
-    }
+data = open('www/data/data-pb.json').read()
+checksum = open('www/data/data-pb.md5').read()
 
-data = {}
+code = "var INITIAL_CHECKSUM = '%s';\n\n" % checksum
+code += 'var INITIAL_DATA = ' + data + ';'
 
-for key in ('meetings',):
-    data[key] = get(key)
-
-open('www/js/initialdata.js', 'w').write('var initialData = ' + json.dumps(data, indent=4))
+open('www/js/initialdata.js', 'w').write(code)
