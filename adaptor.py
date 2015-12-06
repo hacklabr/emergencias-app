@@ -136,8 +136,8 @@ for territory in sorted(territories.keys()):
         'id': territory,
     })
 
-meetings_data[0]['telegram'] = 'http://emergencias.hacklab.com.br/chats/Xis'
-territories_data[0]['telegram'] = 'http://emergencias.hacklab.com.br/chats/Xis'
+#meetings_data[0]['telegram'] = 'http://emergencias.hacklab.com.br/chats/Xis'
+#territories_data[0]['telegram'] = 'http://emergencias.hacklab.com.br/chats/Xis'
 
 data = {
     'events': events,
