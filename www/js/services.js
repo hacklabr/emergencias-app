@@ -108,7 +108,7 @@ app.service('Event', function($q, $http, GlobalConfiguration, Cache) {
     }
 });
 
-app.service('Notifications', function($http, $localStorage, $ionicPush) {
+app.service('Notifications', function($http, $localStorage) {
 
     var self = this;
 
@@ -142,13 +142,62 @@ app.service('Notifications', function($http, $localStorage, $ionicPush) {
 	self.unread = 0
 	self.commit();
     }
-    var push = new Ionic.Push({
-        "onNotification": function(notification) {
-            var message = {
-                title: notification.title,
-                message: notification.text
-            }
-            self.notify(message);
+
+    this.init = function(){
+
+        Ionic.io();
+
+        var push_register_callback = function(pushToken) {
+          console.log('Registered token:', pushToken.token);
+          user.addPushToken(pushToken);
+          user.save(); // you NEED to call a save after you add the token
+      };
+
+        var push_config = {
+            "debug": true,
+            canShowAlert: true, //Can pushes show an alert on your screen?
+            canSetBadge: true, //Can pushes update app icon badges?
+            canPlaySound: true, //Can notifications play a sound?
+            canRunActionsOnWake: true, //Can run actions outside the app,
+            // android: {
+            //     icon: 'icon'
+            // },
+            "onNotification": function(notification) {
+
+                var message = {};
+                message.message = notification.text;
+                if (notification.title === 'emergencias-app') {
+                    if (notification.payload && notification.payload.title) {
+                        message.title = notification.payload.title;
+                        notification.title = notification.payload.title;
+                    } else {
+                        notification.title = '';
+                    }
+                } else {
+                    message.title = notification.title;
+                }
+                // notification.image = ''
+                self.notify(message);
+                return notification;
+            },
+            "onRegister": push_register_callback
+        };
+        var push = new Ionic.Push(push_config);
+        // FIXME: the above method should be used
+        // $ionicPush.init(push_config);
+
+        var user = Ionic.User.current();
+        // this will give you a fresh user or the previously saved 'current user'
+        // var user = $ionicUser.current();
+        // if the user doesn't have an id, you'll need to give it one.
+        if (!user.id) {
+            user.id = Ionic.User.anonymousId();
         }
-    })
+
+        // Identify your user with the Ionic User Service
+        user.save();
+
+        push.register(push_register_callback);
+        // $ionicPush.register(push_config);
+    };
 })

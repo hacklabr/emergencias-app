@@ -10,35 +10,6 @@ var emergencias = angular.module("emergencias", [
     'ngCordova'
 ]);
 
-emergencias.run(function($ionicPlatform, $ionicPush) {
-
-    $ionicPlatform.ready(function() {
-
-        Ionic.io();
-
-        // this will give you a fresh user or the previously saved 'current user'
-        var user = Ionic.User.current();
-        // if the user doesn't have an id, you'll need to give it one.
-        if (!user.id) {
-            user.id = Ionic.User.anonymousId();
-            // user.id = 'your-custom-user-id';
-        }
-        // console.log("User ID: ", user.id);
-        //persist the user
-        user.save();
-
-        // Push
-        var push = new Ionic.Push();
-        // $ionicPush.init();
-
-        push.register(function(token) {
-            user.addPushToken(token);
-            user.save(); // you NEED to call a save after you add the token
-            console.log("Device token:",token.token);
-        });
-    });
-})
-
 emergencias.config(function($stateProvider, $httpProvider, $urlRouterProvider, $ionicConfigProvider, $compileProvider) {
     //$ionicConfigProvider.scrolling.jsScrolling(false);
     $httpProvider.defaults.cache = true;

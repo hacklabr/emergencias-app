@@ -31,7 +31,7 @@ angular.module('emergencias.controllers', [])
     Event.renew.then(function(events) {
 	if (events != null) {
 	    $scope.events = events
-	} 
+	}
     });
 
     $scope.$on('$ionicView.beforeEnter', function(){
@@ -115,7 +115,8 @@ angular.module('emergencias.controllers', [])
     });
 })
 
-.controller('AppCtrl', function($scope, $rootScope, $localStorage, Notifications, $cordovaSocialSharing, $ionicPush, GlobalConfiguration) {
+.controller('AppCtrl', function($scope, $rootScope, $localStorage, Notifications, $cordovaSocialSharing, GlobalConfiguration) {
+    Notifications.init();
     $scope.notifications = Notifications
 })
 
