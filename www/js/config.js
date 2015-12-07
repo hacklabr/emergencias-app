@@ -29,6 +29,11 @@ angular.module("emergencias.config", [])
 //         }
 //     }
 // })
+.config(function($sceProvider) {
+  // Completely disable SCE.  For demonstration purposes only!
+  // Do not use in new projects.
+  $sceProvider.enabled(false);
+})
 .factory('GlobalConfiguration', function(){
     return {
         BASE_URL : "http://emergencias.hacklab.com.br/api3",

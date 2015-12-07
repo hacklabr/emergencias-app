@@ -1,9 +1,9 @@
-<ion-view view-title="Salves!">
+<ion-view view-title="Notificações">
     <ion-content id="programacao-content" overflow-scroll="true">
       <div id="notifications-container">
 	<div class="notification" ng-repeat="message in notifications.messages">
 	  <h1>{{message.title}}</h1>
-	  <p>{{message.message}}</p>
+	  <p ng-bind-html="message.message"></p>
 	</div>
       </div>
     </ion-content>
