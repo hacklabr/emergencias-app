@@ -28,9 +28,12 @@ emergencias.run(function($ionicPlatform, $ionicPush) {
         user.save();
 
         // Push
-        $ionicPush.init();
+        var push = new Ionic.Push();
+        // $ionicPush.init();
 
-        $ionicPush.register(function(token) {
+        push.register(function(token) {
+            user.addPushToken(token);
+            user.save(); // you NEED to call a save after you add the token
             console.log("Device token:",token.token);
         });
     });

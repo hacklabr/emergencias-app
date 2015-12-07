@@ -142,8 +142,7 @@ app.service('Notifications', function($http, $localStorage, $ionicPush) {
 	self.unread = 0
 	self.commit();
     }
-
-    $ionicPush.init({
+    var push = new Ionic.Push({
 	"onNotification": function(notification) {
 	    var message = {
 		title: notification.title,
@@ -155,4 +154,3 @@ app.service('Notifications', function($http, $localStorage, $ionicPush) {
 
 
 })
-
