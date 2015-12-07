@@ -14,43 +14,36 @@ angular.module('emergencias.controllers', [])
 
 .controller('ProgramacaoCtrl', function($rootScope, $scope, $stateParams, Event, Meeting, Territory, $localStorage) {
     if ($stateParams.meeting) {
-	Meeting.get($stateParams.meeting).then(function(data) {
-	    $scope.meeting = data;
-	});
+        Meeting.get($stateParams.meeting).then(function(data) {
+            $scope.meeting = data;
+        });
     }
 
     if ($stateParams.territory) {
-	Territory.get($stateParams.territory).then(function(data) {
-	    $scope.territory = data;
-	});
+        Territory.get($stateParams.territory).then(function(data) {
+            $scope.territory = data;
+        });
     }
 
     Event.cached.then(function(events) {
-	       $scope.events = events
+        $scope.events = events
     });
     Event.renew.then(function(events) {
-	if (events != null) {
-	    $scope.events = events
-	}
+        if (events != null) {
+            $scope.events = events
+        }
     });
 
-    $scope.$on('$ionicView.beforeEnter', function(){
-        $rootScope.programacao = true;
-    });
-
-    $scope.$on('$ionicView.beforeLeave', function(){
-        $rootScope.programacao = false;
-    });
 })
 
 .controller('RedesCtrl', function($rootScope, $scope, Meeting, $localStorage) {
     Meeting.cached.then(function(meetings) {
-	$scope.meetings = meetings
+        $scope.meetings = meetings
     });
     Meeting.renew.then(function(meetings) {
-	if (meetings != null) {
-	    $scope.meetings = meetings
-	}
+        if (meetings != null) {
+            $scope.meetings = meetings
+        }
     });
 })
 
