@@ -122,20 +122,20 @@ app.service('Notifications', function($http, $localStorage, $ionicPush) {
     this.count = this.messages.length
 
     this.commit = function() {
-	$localStorage.messages = self.messages;
-	$localStorage.unread = self.unread;
+        $localStorage.messages = self.messages;
+        $localStorage.unread = self.unread;
     }
 
     this.notify = function(message) {
-	self.unread += 1;
-	self.messages.unshift(message);
-	self.count = self.messages.length;
+        self.unread += 1;
+        self.messages.unshift(message);
+        self.count = self.messages.length;
 
-	self.commit();
+        self.commit();
     }
 
     this.getMessages = function() {
-	return self.messages;
+        return self.messages;
     }
 
     this.readAll = function(){
@@ -143,14 +143,12 @@ app.service('Notifications', function($http, $localStorage, $ionicPush) {
 	self.commit();
     }
     var push = new Ionic.Push({
-	"onNotification": function(notification) {
-	    var message = {
-		title: notification.title,
-		message: notification.text
-	    }
-	    self.notify(message);
-	}
+        "onNotification": function(notification) {
+            var message = {
+                title: notification.title,
+                message: notification.text
+            }
+            self.notify(message);
+        }
     })
-
-
 })
