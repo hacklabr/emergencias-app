@@ -121,7 +121,10 @@ for event in events:
     if spaceId:
         event['space'] = spaces_ind[spaceId]
     else:
-        event['space'] = ''
+        event['space'] = { 'name': '' }
+
+    if event['space']['name'] == u'Pra\xe7a Mau\xe1':
+        event['space']['name'] = "Praça Quinze"
 
     event['date'] = format_date(event['startsOn'])
 
