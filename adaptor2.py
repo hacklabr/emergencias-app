@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-
+#coding: utf-8
 import json, urllib, sys, os
 
 try:
@@ -70,6 +70,10 @@ for territory in sorted(territories.keys()):
 
 #meetings_data[0]['telegram'] = 'http://emergencias.hacklab.com.br/chats/Xis'
 #territories_data[0]['telegram'] = 'http://emergencias.hacklab.com.br/chats/Xis'
+
+for space in spaces:
+    if space['name'] == u'Pra\xe7a Mau\xe1':
+        space['name'] = "Praça Quinze"
 
 open(os.path.join(DEST, 'events-pb.json'), 'w').write(json.dumps(events, indent=ind))
 open(os.path.join(DEST, 'meetings-pb.json'), 'w').write(json.dumps(meetings_data, indent=ind))
