@@ -52,15 +52,6 @@ territories = {}
 
 final_events = []
 
-now = datetime.datetime.now()
-if now.hour < 2:
-    now -= datetime.timedelta(1)
-today = now.date()
-
-def outdated(date):
-    date = datetime.datetime.strptime(date, '%Y-%m-%d').date()
-    return date < today
-
 def format_date(date):
     if not date:
         return ''
@@ -78,8 +69,6 @@ def format_date(date):
     return '%02d/%02d - %s' % (date.day, date.month, week[date.weekday()])
 
 for event in events:
-    if outdated(event['startsOn']):
-        continue
     types = []
     encontros = []
     percursos = []
